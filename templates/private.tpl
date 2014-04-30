@@ -18,9 +18,9 @@
     {% include 'header.tpl' %}
   </div>
   <div class="container-fluid">
-    <div class="row-fluid">
+    <div class="row">
       {% include 'menu.tpl' %}
-      <section class="span10">{% block content %}{% endblock content %}</section>
+      <section class="col-md-10">{% block content %}{% endblock content %}</section>
     </div>
   </div>
   <script src="/js/jquery.min.js"></script>

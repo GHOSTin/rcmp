@@ -1,5 +1,5 @@
-<nav class="span2">
-  <ul class="unstyled">
+<nav class="col-md-2">
+  <ul class="list-unstyled">
     <li><a href="/">Главная</a></li>
     <li><a href="http://mi.rpod.ru">RPOD</a></li>
     <li><a href="https://www.youtube.com/user/cndlos">Youtube</a></li>

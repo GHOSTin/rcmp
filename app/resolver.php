@@ -7,7 +7,7 @@ class resolver{
   public function __construct(\app\controller $controller){
     $this->default = $controller;
   }
-  
+
   public function get_controller(\app\request $request){
     $path = parse_url($_SERVER['REQUEST_URI']);
     // дефолтная страница
@@ -20,7 +20,6 @@ class resolver{
       $route = [$args[1][0], $args[2][0]];
     }else
       $route = ['error', 'error404'];
-
     if($this->is_logged_user($request))
       $class = '\app\\'.$route[0].'\\controllers\\private_'.$route[1];
     else

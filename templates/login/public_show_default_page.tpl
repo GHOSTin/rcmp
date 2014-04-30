@@ -1,12 +1,18 @@
 {% extends "public.tpl" %}
 {% block content %}
-<form action="/login/enter/" method="post">
-  <div>
-    <label>email:</label> <input type="text" name="login">
+<div class="row">
+  <div class="col-md-4">
+    <form action="/login/enter/" method="post" role="form">
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="text" class="form-control" name="login">
+      </div>
+      <div class="form-group">
+        <label>Пароль:</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+      <input type="submit" value="Войти">
+    </form>
   </div>
-  <div>
-    <label>Пароль:</label><input type="password" name="password">
-  </div>
-  <input type="submit" value="Войти">
-</form>
+</div>
 {% endblock content %}
