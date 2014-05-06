@@ -11,7 +11,7 @@
         <label>Пароль:</label>
         <input type="password" class="form-control" name="password">
       </div>
-      <input type="submit" value="Войти">
+      <button type="submit" class="btn btn-default">Войти</button>
     </form>
   </div>
 </div>

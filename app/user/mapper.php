@@ -3,6 +3,8 @@
 use \PDO;
 use \RuntimeException;
 use \boxxy\classes\mapper_pdo;
+use \boxxy\di;
+use \app\user\user;
 
 class mapper extends mapper_pdo{
 
@@ -12,14 +14,9 @@ class mapper extends mapper_pdo{
   private static $find_by_login = "SELECT id, nickname, email, hash
     FROM users WHERE email = :email";
 
-  public function create_object(array $row){
-    $user = new user();
-    $user->set_id($row['id']);
-    $user->set_nickname($row['nickname']);
-    $user->set_email($row['email']);
-    $user->set_hash($row['hash']);
-    return $user;
-  }
+  private static $id = "SELECT MAX(`id`) as `max_id` FROM `users`";
+  private static $insert = "INSERT INTO users SET id = :id,
+    nickname = :nickname, email = :email, hash = :hash";
 
   public function find_all(){
     $stmt = $this->pdo->prepare(self::$find_all);
@@ -27,7 +24,7 @@ class mapper extends mapper_pdo{
       throw new RuntimeException;
     $users = [];
     while($row = $stmt->fetch())
-      $users[] = $this->create_object($row);
+      $users[] = di::get('\app\user\factory')->build($row);
     return $users;
   }
 
@@ -40,8 +37,25 @@ class mapper extends mapper_pdo{
     if($count === 0)
       return null;
     elseif($count === 1)
-      return $this->create_object($stmt->fetch());
+      return di::get('\app\user\factory')->build($stmt->fetch());
     else
+      throw new RuntimeException;
+  }
+
+  public function get_insert_id(){
+    $stmt = $this->pdo->prepare(self::$id);
+    if(!$stmt->execute())
+      throw new RuntimeException;
+    return $stmt->fetch()['max_id'] + 1;
+  }
+
+  public function insert(user $user){
+    $stmt = $this->pdo->prepare(self::$insert);
+    $stmt->bindValue(':id', $user->get_id(), PDO::PARAM_INT);
+    $stmt->bindValue(':email', $user->get_email(), PDO::PARAM_STR);
+    $stmt->bindValue(':nickname', $user->get_nickname(), PDO::PARAM_STR);
+    $stmt->bindValue(':hash', $user->get_hash(), PDO::PARAM_STR);
+    if(!$stmt->execute())
       throw new RuntimeException;
   }
 }

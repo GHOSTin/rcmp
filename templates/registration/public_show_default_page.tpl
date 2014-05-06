@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
           <label>Пароль</label>
-          <input type="text" class="form-control" name="password" placeholder="Введите ваш пароль">
+          <input type="password" class="form-control" name="password" placeholder="Введите ваш пароль">
         </div>
         <button type="submit" class="btn btn-default">Зарегистрироватся</button>
     </form>
