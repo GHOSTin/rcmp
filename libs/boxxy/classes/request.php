@@ -1,6 +1,6 @@
-<?php namespace app;
+<?php namespace boxxy\classes;
 
-class request{
+class request implements \boxxy\interfaces\request{
 
   private $properties;
 

@@ -1,4 +1,4 @@
-<?php
+<?php namespace boxxy;
 class autoload{
 
   private static $paths = [];
@@ -9,7 +9,7 @@ class autoload{
       throw new exception('Путь не представлен в файловой системе.');
     self::$paths[] = $path;
     if(!self::$register){
-      spl_autoload_register(['autoload', 'call']);
+      spl_autoload_register(['\boxxy\autoload', 'call']);
       self::$register = true;
     }
   }

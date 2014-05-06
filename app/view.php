@@ -12,11 +12,9 @@ class view{
     $this->path = explode('\\', \get_class($controller));
   }
 
-  public function render(){
-    $template_dir = ROOT.'templates/'.$this->path[1].'/';
-    require_once ROOT.'libs/Twig/Autoloader.php';
-    \Twig_Autoloader::register();
-    $loader = new \Twig_Loader_Filesystem(ROOT.'templates/');
+  public function render($root){
+    $template_dir = $root.'templates/'.$this->path[1].'/';
+    $loader = new \Twig_Loader_Filesystem($root.'templates/');
     $loader->prependPath($template_dir, $this->path[1]);
     $twig = new \Twig_Environment($loader);
     print $twig->render('@'.$this->path[1].'/'.$this->path[3].'.tpl', $this->content);

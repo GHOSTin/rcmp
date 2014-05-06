@@ -1,0 +1,17 @@
+<?php namespace boxxy;
+require_once('autoload.php');
+require_once('interfaces/request.php');
+require_once('interfaces/resolver.php');
+require_once('interfaces/view.php');
+require_once('Pimple.php');
+require_once('di.php');
+require_once('Twig/Autoloader.php');
+require_once('classes/response.php');
+require_once('classes/response_app.php');
+require_once('classes/controller.php');
+require_once('classes/response.php');
+require_once('classes/request.php');
+require_once('classes/resolver.php');
+require_once('classes/error404.php');
+require_once('classes/view.php');
+\Twig_Autoloader::register();
