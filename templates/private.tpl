@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="well">
-    {{ user.get_nickname() }}
+    {{ user.get_nickname() }} <a href="/login/exit/">Выход</a>
   </div>
   <div class="container-fluid">
     {% include 'header.tpl' %}
