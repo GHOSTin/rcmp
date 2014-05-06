@@ -1,13 +1,14 @@
 <?php namespace app;
 
+use \boxxy\di;
+
 class view{
 
   private $content = [];
   private $path;
 
-  public function __construct(\app\controller $controller, \app\request $request){
-    if(isset($_SESSION['user']))
-      $this->content['user'] = $_SESSION['user'];
+  public function __construct(\boxxy\classes\controller $controller, \boxxy\classes\request $request){
+    $this->content['user'] = di::get('user');
     $this->content['component'] = $controller->execute($request);
     $this->path = explode('\\', \get_class($controller));
   }

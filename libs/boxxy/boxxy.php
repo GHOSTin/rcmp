@@ -10,6 +10,7 @@ require_once('classes/response.php');
 require_once('classes/response_app.php');
 require_once('classes/controller.php');
 require_once('classes/response.php');
+require_once('classes/mapper_pdo.php');
 require_once('classes/request.php');
 require_once('classes/resolver.php');
 require_once('classes/error404.php');

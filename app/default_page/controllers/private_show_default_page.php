@@ -1,8 +1,11 @@
 <?php namespace app\default_page\controllers;
 
-class private_show_default_page extends \app\controller{
-  
-  public function execute(\app\request $request){
+use \boxxy\classes\controller;
+use \boxxy\interfaces\request;
+
+class private_show_default_page extends controller{
+
+  public function execute(request $request){
     return true;
   }
 }

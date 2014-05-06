@@ -1,14 +1,18 @@
 <?php namespace app;
 
+use \boxxy\di;
+use \boxxy\classes\controller;
+use \boxxy\classes\request;
+
 class resolver{
 
   private $default;
 
-  public function __construct(\app\controller $controller){
+  public function __construct(controller $controller){
     $this->default = $controller;
   }
 
-  public function get_controller(\app\request $request){
+  public function get_controller(request $request){
     $path = parse_url($_SERVER['REQUEST_URI']);
     // дефолтная страница
     if($path['path'] === '/')
@@ -20,7 +24,7 @@ class resolver{
       $route = [$args[1][0], $args[2][0]];
     }else
       $route = ['error', 'error404'];
-    if($this->is_logged_user($request))
+    if(!is_null(di::get('user')))
       $class = '\app\\'.$route[0].'\\controllers\\private_'.$route[1];
     else
       $class = '\app\\'.$route[0].'\\controllers\\public_'.$route[1];
@@ -28,12 +32,5 @@ class resolver{
       return new $class;
     else
       return $this->default;
-  }
-
-  public function is_logged_user(){
-    if(isset($_SESSION['user']))
-      return true;
-    else
-      return false;
   }
 }

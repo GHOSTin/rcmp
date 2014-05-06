@@ -2,8 +2,9 @@
 
 use \PDO;
 use \RuntimeException;
+use \boxxy\classes\mapper_pdo;
 
-class mapper extends \app\mapper{
+class mapper extends mapper_pdo{
 
   private static $find_all = "SELECT id, nickname, email, hash
     FROM users ORDER BY nickname";

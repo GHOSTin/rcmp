@@ -2,10 +2,12 @@
 
 use \boxxy\di;
 use \app\conf;
+use \boxxy\classes\controller;
+use \boxxy\interfaces\request;
 
-class public_enter extends \app\controller{
+class public_enter extends controller{
 
-  public function execute(\app\request $request){
+  public function execute(request $request){
     $user = di::get('\app\user\mapper')
       ->find_by_email($request->get_property('login'));
     $php = di::get('\app\php');

@@ -1,8 +1,8 @@
-<?php namespace app;
+<?php namespace boxxy\classes;
 
 use \PDO;
 
-class mapper{
+class mapper_pdo{
 
   protected $pdo;
 
