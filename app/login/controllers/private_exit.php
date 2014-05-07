@@ -8,7 +8,7 @@ class private_exit extends controller{
 
   public function execute(request $request){
     $php = di::get('\app\php');
-    $php->session_destroy();
+    setcookie("uid", "", time() - 3600, '/');
     $php->header('Location: /');
   }
 }

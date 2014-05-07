@@ -6,8 +6,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, maximum-scale = 1, minimum-scale = 1">
   <link rel="stylesheet" href="/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" >
-  <link rel="stylesheet" href="/css/default.css" >
   {% block css %}{% endblock css %}
 </head>
 <body>

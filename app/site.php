@@ -43,11 +43,14 @@ class site{
     };
     di::set_instance($pimple);
     $php = di::get('\app\php');
-    $php->session_start();
-    $user = $php->get_session_value('user');
-    if(!is_null($user))
-      $pimple['user'] = $user;
-    else
+    if(isset($_COOKIE['uid'])){
+      $user = di::get('\app\user\mapper')->find_by_session($_COOKIE['uid']);
+      if(is_null($user)){
+        setcookie("uid", "", time() - 3600, '/');
+        $pimple['user'] = null;
+      }else
+        $pimple['user'] = $user;
+    }else
       $pimple['user'] = null;
   }
 }
