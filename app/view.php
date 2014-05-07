@@ -10,6 +10,7 @@ class view{
   public function __construct(\boxxy\classes\controller $controller, \boxxy\classes\request $request){
     $this->content['user'] = di::get('user');
     $this->content['component'] = $controller->execute($request);
+    $this->content['host'] = $request->get_host();
     $this->path = explode('\\', \get_class($controller));
   }
 
