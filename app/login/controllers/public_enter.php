@@ -13,7 +13,8 @@ class public_enter extends controller{
     $php = di::get('\app\php');
     if(!is_null($user)){
       if($user->get_hash() === sha1(md5($request->get_property('password').conf::auth_salt))){
-        setcookie('uid', $mapper->create_session($user), strtotime('+30 days'), '/');
+        setcookie('uid', $mapper->create_session($user), strtotime('+30 days'),
+                  '/', $request->get_host());
         $php->header('Location: /');
         return true;
       }
