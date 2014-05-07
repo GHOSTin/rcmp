@@ -17,7 +17,7 @@ class resolver{
     // дефолтная страница
     if($path['path'] === '/')
       $route = ['default_page', 'show_default_page'];
-    elseif(preg_match_all('|^/api/([0-9a-z]+)/([a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
+    elseif(preg_match_all('|^/api/([0-9a-z]{40})/([a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
       $request->set_property('key', $args[1][0]);
       $route = ['api', $args[2][0]];
     }elseif(preg_match_all('|^/([a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
