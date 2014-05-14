@@ -23,6 +23,9 @@ class mapper extends mapper_pdo{
   private static $insert = "INSERT INTO users SET id = :id,
     nickname = :nickname, email = :email, hash = :hash";
 
+  private static $update = 'UPDATE users  SET id = :id,
+    nickname = :nickname, email = :email, hash = :hash WHERE id = :id';
+
   private static $session = "INSERT INTO sessions SET session = :session,
     user_id = :user_id";
 
@@ -89,5 +92,15 @@ class mapper extends mapper_pdo{
     $stmt->bindValue(':hash', $user->get_hash(), PDO::PARAM_STR);
     if(!$stmt->execute())
       throw new RuntimeException;
+  }
+
+  public function update(user $user){
+    $stmt = $this->pdo->prepare(self::$update);
+    $stmt->bindValue(':id', $user->get_id(), PDO::PARAM_INT);
+    $stmt->bindValue(':nickname', $user->get_nickname(), PDO::PARAM_STR);
+    $stmt->bindValue(':email', $user->get_email(), PDO::PARAM_STR);
+    $stmt->bindValue(':hash', $user->get_hash(), PDO::PARAM_STR);
+    if(!$stmt->execute())
+      throw new RuntimeException();
   }
 }

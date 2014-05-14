@@ -13,6 +13,8 @@
       </div>
       <button type="submit" class="btn btn-default">Войти</button>
     </form>
+    <h3>Востановление пароля</h3>
+    <p>Если вы забыли пароль и не можете его вспомить то вы можете его <a href="/password/">востановить</a>.</p>
   </div>
 </div>
 {% endblock content %}
