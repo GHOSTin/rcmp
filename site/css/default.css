@@ -11,7 +11,7 @@ body {
 }
 
 .rcmp_main_block {
-    padding: 60px 20px 0px 20px;
+    padding: 60px 20px;
     background-color: #FFFFFF;
     -webkit-box-shadow: 10px 0px 31px 29px rgba(0,0,0,0.52);
     -moz-box-shadow: 10px 0px 31px 29px rgba(0,0,0,0.52);
