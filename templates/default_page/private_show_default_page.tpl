@@ -1,13 +1,6 @@
 {% extends "private.tpl" %}
 {% block content %}
 <div class="page-header"><h1>Подкаст Канадского Лося и Co<sup style="color: #A0A0A0;">18+</sup></h1></div>
-<section class="col-md-12">
-  <div class="alert alert-danger">
-    <b>Предупреждение:</b>
-    Автор данного подкаста не несет никакой ответственности за внезапное
-    желание убить всех людей, купить купить айфон или поставить Linux
-  </div>
-</section>
 <section class="row">
   <section class="col-md-6">
     {% include "@default_page/about.tpl" %}
