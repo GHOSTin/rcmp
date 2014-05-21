@@ -48,7 +48,7 @@
       </section>
       <section class="panel panel-default">
         <div class="panel-body">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">убрика «Заднее слово&trade;»</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Рубрика «Заднее слово&trade;»</a>
           <div id="collapseFour" class="panel-collapse collapse">
             <hr>
             <p>

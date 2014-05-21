@@ -9,6 +9,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="/css/bootstrap.min.css?v=1">
   <link rel="stylesheet" href="/css/default.css">
+  <link rel="shortcut icon" href="favicon.ico">
   {% block css %}{% endblock css %}
 </head>
 <body>
