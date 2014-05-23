@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
-    <div class="navbar-header">
+    <div class="navbar-header" id="main-menu-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
