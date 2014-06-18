@@ -18,6 +18,7 @@
             <li><a href="https://itunes.apple.com/us/podcast/kanadskij-los/id363311940?mt=2&ign-mpt=uo%3D4" target="_blank">На iTunes&trade;</a></li>
             <li><a href="http://pirate.rcmp.me/download.html" target="_blank">Пиратская версия</a></li>
             <li><a href="http://meir.podfm.ru/los/?all=1" target="_blank">На  PodFM.ru</a></li>
+            <li><a href="/online/">Онлайн-эфир</a></li>
           </ul>
         </li>
         <li class="dropdown">
