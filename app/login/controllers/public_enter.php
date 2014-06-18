@@ -14,7 +14,7 @@ class public_enter extends controller{
     if(!is_null($user)){
       if($user->get_hash() === sha1(md5($request->get_property('password').conf::auth_salt))){
         setcookie('uid', $mapper->create_session($user), strtotime('+30 days'),
-                  '/', $request->get_host());
+                  '/', conf::host);
         $php->header('Location: /');
         return true;
       }
