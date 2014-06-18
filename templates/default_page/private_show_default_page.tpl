@@ -1,6 +1,7 @@
 {% extends "private.tpl" %}
 {% block content %}
 <div class="page-header"><h1>Подкаст Канадского Лося и Co<sup style="color: #A0A0A0;">18+</sup></h1></div>
+{% include '@default_page/online.tpl' %}
 <section class="row">
   <section class="col-md-6">
     {% include "@default_page/about.tpl" %}

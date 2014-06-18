@@ -3,6 +3,7 @@
 use \boxxy\di;
 use \boxxy\classes\controller;
 use \boxxy\interfaces\request;
+use \app\conf;
 
 class private_exit extends controller{
 
