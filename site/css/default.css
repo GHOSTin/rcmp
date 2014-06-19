@@ -50,3 +50,29 @@ body {
 a+.btn-inverse{
     margin: 10px 0;
 }
+.page-header{
+    position: relative;
+}
+.page-header h1{
+    z-index: 1;
+    position: relative;
+}
+.img-online{
+    height: 180px;
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+    z-index: 0;
+    -webkit-animation: img-online 2s ease-in 1;
+    animation: img-online 2s ease-in 1;
+}
+
+@-webkit-keyframes img-online {
+    0% {bottom: -160px;}
+    100% {bottom: -70px;}
+}
+
+@keyframes img-online {
+    0% {bottom: -160px;}
+    100% {bottom: -70px;}
+}
