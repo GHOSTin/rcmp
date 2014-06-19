@@ -6,7 +6,7 @@ $(document).ready(function(){
             xhr.withCredentials = true;
         },
         success: function(request){
-            if(request == 'online'){
+            if($.trim(request) == 'online'){
                 $('#main-menu-header').append('<a class="navbar-brand" href="/stream" ><p class="label label-danger">Онлайн вещание</p></a>');
             }
         }
