@@ -61,10 +61,8 @@ a+.btn-inverse{
     height: 180px;
     position: absolute;
     right: 0;
-    bottom: -70px;
+    bottom: -60px;
     z-index: 0;
-    -webkit-animation: img-online 2s ease-in 1;
-    animation: img-online 2s ease-in 1;
 }
 
 @-webkit-keyframes img-online {
