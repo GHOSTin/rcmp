@@ -22,6 +22,13 @@
         <section class="col-md-12">{% block content %}{% endblock content %}</section>
       </div>
     </main>
+    <footer class="rcmp_footer">
+      <div class="container">
+        <div class="row">
+          {% include 'footer.tpl' %}
+        </div>
+      </div>
+    </footer>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
