@@ -25,7 +25,7 @@
     </phplint>
   </target>
   <target name="tar">
-    <tar destfile="${BUILD_DIR}/build.tgz" compression="gzip">
+    <tar destfile="${BUILD_DIR}/rcmp.tar.gz" compression="gzip">
       <fileset refid="archive.files"/>
     </tar>
   </target>
