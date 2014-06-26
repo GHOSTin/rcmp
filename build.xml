@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="rcmp" default="main" basedir=".">
+  <property name="BUILD_DIR" value="${user.home}/builds/" override="false"/>
+    <fileset dir="." id="archive.files">
+        <include name="app/**"/>
+        <include name="libs/**"/>
+        <include name="site/**"/>
+        <include name="templates/**"/>
+        <exclude name="app/conf.php"/>
+    </fileset>
+  <target name="main"  depends="clean, phplint, tar">
+  </target>
+  <target name="clean">
+    <delete includeemptydirs="true" verbose="true" failonerror="true">
+        <fileset dir="${BUILD_DIR}">
+            <include name="*.*" />
+        </fileset>
+    </delete>
+  </target>
+  <target name="phplint">
+    <phplint haltonfailure="true">
+      <fileset dir="${project.basedir}">
+        <include name="**/*.php"/>
+      </fileset>
+    </phplint>
+  </target>
+  <target name="tar">
+    <tar destfile="${BUILD_DIR}/build.tgz" compression="gzip">
+      <fileset refid="archive.files"/>
+    </tar>
+  </target>
+</project>

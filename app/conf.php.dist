@@ -1,0 +1,12 @@
+<?php namespace app;
+
+class conf{
+
+  const db_host = 'localhost';
+  const db_name = '';
+  const db_user = '';
+  const db_password = '';
+  const host = 'rcmp.local';
+  const auth_salt = '0123456789';
+  const status = 'developer';
+}
