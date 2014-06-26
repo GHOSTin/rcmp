@@ -8,4 +8,5 @@ class conf{
   const db_password = 'cndlos';
   const host = 'rcmp.local';
   const auth_salt = 'dfgtyqDFJSHwmmsdf8JSHGFD732bhysdh278';
+  const status = 'developer'; //'developer'|'production'
 }
