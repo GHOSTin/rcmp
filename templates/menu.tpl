@@ -46,5 +46,25 @@
         {% endif %}
       </ul>
     </div>
+    <div class="rcmp_online_player hide">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 25" class="svg-online-player" >
+        <path d="M0,25C20.432,25,15.185,0,40.308,0h48.543C94.973,0,100,4.634,100,10.385V25"></path>
+      </svg>
+      <p class="label">Онлайн вещание</p>
+      <div id="jquery_jplayer" class="jp-jplayer" style="width: 0px; height: 0px;"></div>
+      <div id="jp_container_1" class="jp-audio-stream">
+        <div class="jp-type-single">
+          <div class="jp-gui jp-interface">
+            <ul class="jp-controls">
+              <li><a href="javascript:;" class="jp-play" tabindex="1" style="display: block;"><i class="glyphicon glyphicon-play"></i></a></li>
+              <li><a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;"><i class="glyphicon glyphicon-stop"></i></a></li>
+            </ul>
+            <div class="jp-volume-bar">
+              <div class="jp-volume-bar-value" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
