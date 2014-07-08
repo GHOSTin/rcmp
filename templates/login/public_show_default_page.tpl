@@ -1,6 +1,6 @@
 {% extends "public.tpl" %}
 {% block content %}
-<div class="row">
+<div class="row" id="rcmp_login">
   <div class="col-md-4">
     <form action="/login/enter/" method="post" role="form">
       <div class="form-group">
@@ -18,4 +18,5 @@
     <p>Если вы не зарегистрированы. Вы можете пройти <a href="/registration/">регистрацию</a>.</p>
   </div>
 </div>
+{% include "default_page/donation.tpl" %}
 {% endblock content %}

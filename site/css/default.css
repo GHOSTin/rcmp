@@ -38,6 +38,10 @@ nav .container {
     min-height: 350px;
 }
 
+body.online #rcmp_login{
+    margin-top: 60px;
+}
+
 .rcmp_online_player{
     width: 200px;
     height: 50px;

@@ -18,3 +18,9 @@
     <li><a href="http://twitter.com/cndlos" target="_blank">Официальный Twitter</a></li>
   </ul>
 </div>
+<div class="col-xs-12 col-sm-4">
+  <h3>По всем вопросам писать сюда</h3>
+  <ul class="list-unstyled">
+    <li><a href="mailto:nekrasov@mlsco.ru?subject=Feedback">nekrasov@mlsco.ru</a></li>
+  </ul>
+</div>

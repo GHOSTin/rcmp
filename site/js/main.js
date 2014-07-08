@@ -35,6 +35,7 @@ $(document).ready(function(){
                     keyEnabled: true
                 });
                 $('.page-header').prepend('<img src="/images/online.png" class="img-responsive img-online">');
+                $('body').addClass('online');
             }
         }
     });
