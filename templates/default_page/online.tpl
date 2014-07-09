@@ -7,3 +7,16 @@
     </div>
   </div>
 </div>
+<div class="row" style="margin-bottom:20px">
+  <div class="col-md-6">
+    <p>
+    <iframe width="480" height="360" src="//www.youtube.com/embed/K-0I0G7Wnxg?rel=0" frameborder="0" allowfullscreen></iframe>
+    </p>
+  </div>
+  <div class="col-md-6">
+    <h2>Победитель конкурса к 400 подкасту</h2>
+    <p>Заслуженно, выполнив все условия конкурса победителем стал преданный подслушиватель <a href="http://bozify.rpod.ru/">Данил Амиров</a>.</p>
+    <p>Как говорит сам победитель он ходит в футболках, которые выигрывает в конкурсах данного подкаста. Поэтому вместо того что-бы выслать ему заслуженный приз Ipod Touch мы вышлем посылку с дешевыми китайскими футболками.</p>
+    <h3 data-toggle="modal" data-target="#rcmp_donation" style="cursor: pointer;"><strong style="border-bottom: 1px dashed">Поддержите подкаст донейшанами.</strong></h3>
+  </div>
+</div>
