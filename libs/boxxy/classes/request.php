@@ -1,8 +1,13 @@
 <?php namespace boxxy\classes;
 
+use \boxxy\classes\uploaded_file as file;
+
 class request implements \boxxy\interfaces\request{
 
   private $properties;
+  private $uri;
+  private $host;
+  private $files;
 
   public function __construct(){
     if(!empty($_GET))
@@ -11,10 +16,20 @@ class request implements \boxxy\interfaces\request{
     if(!empty($_POST))
         foreach($_POST as $key => $value)
           $this->set_property($key, $value);
+    $this->set_host($_SERVER['SERVER_NAME']);
+    $this->set_uri($_SERVER['REQUEST_URI']);
   }
 
-  public function set_property($key, $value){
-    $this->properties[$key] = $value;
+  public function add_file(file $file){
+    $this->files[] = $file;
+  }
+
+  public function get_files(){
+    return $this->files;
+  }
+
+  public function get_host(){
+    return $this->host;;
   }
 
   public function get_property($key){
@@ -25,14 +40,18 @@ class request implements \boxxy\interfaces\request{
   }
 
   public function get_uri(){
-    return $_SERVER['REQUEST_URI'];
+    return $this->uri;
   }
 
-  public function get_host(){
-    return $_SERVER['SERVER_NAME'];
+  public function set_property($key, $value){
+    $this->properties[$key] = $value;
   }
 
-  public function get_files(){
-    return $_FILES;
+  public function set_host($host){
+    $this->host = $host;
+  }
+
+  public function set_uri($uri){
+    $this->uri = $uri;
   }
 }

@@ -3,7 +3,7 @@
 use \PDO;
 use \RuntimeException;
 use \boxxy\classes\mapper_pdo;
-use \boxxy\di;
+use \boxxy\classes\di;
 use \app\user\user;
 
 class mapper extends mapper_pdo{

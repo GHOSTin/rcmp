@@ -1,6 +1,6 @@
 <?php namespace app\password\controllers;
 
-use \boxxy\di;
+use \boxxy\classes\di;
 use \boxxy\interfaces\request;
 use \boxxy\classes\controller;
 

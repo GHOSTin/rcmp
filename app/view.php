@@ -1,24 +1,36 @@
 <?php namespace app;
 
-use \boxxy\di;
+use \RuntimeException;
+use \boxxy\classes\di;
+use \boxxy\classes\request;
 
-class view{
+class view extends \boxxy\classes\view {
 
-  private $content = [];
-  private $path;
-
-  public function __construct(\boxxy\classes\controller $controller, \boxxy\classes\request $request){
-    $this->content['user'] = di::get('user');
-    $this->content['component'] = $controller->execute($request);
-    $this->content['host'] = $request->get_host();
-    $this->path = explode('\\', \get_class($controller));
+  public function render($root, request $request, array $response){
+    $response['user'] = di::get('user');
+    require_once($root.'libs/Twig/Autoloader.php');
+    \Twig_Autoloader::register();
+    $templates = $root.'templates'.DIRECTORY_SEPARATOR;
+    $path = parse_url($request->get_uri());
+    if($path['path'] === '/')
+      $route = ['default_page', 'show_default_page'];
+    elseif(preg_match_all('|^/([0-9a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
+      $route = [$args[1][0], 'show_default_page'];
+    }elseif(preg_match_all('|^/([0-9a-z_]+)/([0-9a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
+      $route = [$args[1][0], $args[2][0]];
+    }else
+      throw new RuntimeException;
+    $template_name = self::get_strong_name($route);
+    $loader = new \Twig_Loader_Filesystem($templates);
+    $loader->prependPath($templates.$route[0], $route[0]);
+    $twig = new \Twig_Environment($loader);
+    return $twig->render($template_name, $response);
   }
 
-  public function render($root){
-    $template_dir = $root.'templates/'.$this->path[1].'/';
-    $loader = new \Twig_Loader_Filesystem($root.'templates/');
-    $loader->prependPath($template_dir, $this->path[1]);
-    $twig = new \Twig_Environment($loader);
-    print $twig->render('@'.$this->path[1].'/'.$this->path[3].'.tpl', $this->content);
+  private function get_strong_name(array $route){
+    if(!is_null(di::get('user')))
+      return DIRECTORY_SEPARATOR.$route[0].DIRECTORY_SEPARATOR.'private_'.$route[1].'.tpl';
+    else
+      return DIRECTORY_SEPARATOR.$route[0].DIRECTORY_SEPARATOR.'public_'.$route[1].'.tpl';
   }
 }

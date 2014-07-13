@@ -1,7 +1,7 @@
 <?php namespace app\user;
 
 use \app\conf;
-use \boxxy\di;
+use \boxxy\classes\di;
 
 class model{
 
