@@ -7,6 +7,21 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <section class="col-xs-12">
+    <div class="panel panel-default" id="LastVideo">
+      <div class="panel-heading">
+        <h3 class="panel-title">Последний выпуск: <span></span></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6" id="video"></div>
+          <div class="col-sm-6 hidden-xs" id="description" style="font-size: .95em"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 <div class="row" style="margin-bottom:20px">
   <div class="col-md-6">
     <p>
