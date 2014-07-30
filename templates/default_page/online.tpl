@@ -7,10 +7,10 @@
     </div>
   </div>
 </div>
-<div class="row" style="margin-bottom:20px">
+<div class="row" style="margin-bottom:20px;">
   <div class="col-md-6">
     <p>
-    <iframe width="480" height="360" src="//www.youtube.com/embed/K-0I0G7Wnxg?rel=0" frameborder="0" allowfullscreen></iframe>
+    <iframe width="100%" height="360" src="//www.youtube.com/embed/K-0I0G7Wnxg?rel=0" frameborder="0" allowfullscreen></iframe>
     </p>
   </div>
   <div class="col-md-6">
