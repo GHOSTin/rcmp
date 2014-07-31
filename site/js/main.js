@@ -17,7 +17,7 @@ function getLastVideo(data){
 $(document).ready(function(){
 
     var stream = {
-            title: "ABC Jazz",
+            title: "RCMP Stream",
             mp3: "http://rcmp.me/stream"
         },
         ready = false;
