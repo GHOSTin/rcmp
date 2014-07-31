@@ -8,7 +8,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-1"> <!-- required for floating -->
+  <div class="col-xs-2 col-sm-1"> <!-- required for floating -->
     <!-- Nav tabs -->
     <ul class="nav nav-tabs tabs-left vertical-text">
       <li class="active"><a href="#paypal" data-toggle="tab">PayPal</a></li>
@@ -25,16 +25,19 @@
           <input type="hidden" name="hosted_button_id" value="5YQDFQ9LCLKTU">
           <p>Ежемесячная помощь подкасту</p>
           <div class="row">
-            <div class="col-sm-5">
+            <div class="col-xs-5">
               <select name="os0" class="form-control">
                 <option value="$25/month">$25 per Month</option>
                 <option value="$10/month">$10 per Month</option>
                 <option value="$5/month">$5 per Month</option>
               </select>
             </div>
-            <div class="col-sm-7">
-              <input class="paypalInput" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif"
-                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <div class="col-xs-2 widget_card"></div>
+            <div class="col-xs-4">
+              <span class="b-button b-button_orange" data-block="b-button">
+                <span class="b-button__inner">Поддержать</span>
+                <input class="paypalInput b-button__input" type="image" name="submit" alt="PayPal - The safer, easier way to pay online!">
+              </span>
             </div>
           </div>
           <input type="hidden" name="on0" value="">
@@ -46,7 +49,15 @@
           <p>Помощь подкасту</p>
           <input type="hidden" name="cmd" value="_s-xclick">
           <input type="hidden" name="hosted_button_id" value="42ZQXUB44Q4LG">
-          <input class="paypalInput" type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Paypal">
+          <div class="row">
+            <div class="col-xs-2 widget_card"></div>
+            <div class="col-xs-4">
+              <span class="b-button b-button_orange" data-block="b-button">
+                <span class="b-button__inner">Поддержать</span>
+                <input class="paypalInput b-button__input" type="image" name="submit" alt="PayPal">
+              </span>
+            </div>
+          </div>
           <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
         </form>
       </div>

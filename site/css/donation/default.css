@@ -21,3 +21,57 @@
 .widget-donate p{
     font-size: 16px;
 }
+.b-button{
+    position: relative;
+    text-decoration: none;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.b-button_orange{
+    height: 32px;
+}
+.b-button_orange .b-button__inner{
+    background:url("/images/b-widget-button__sprite.png") 0 0 repeat-x #f47c33;
+    color: white;
+    text-shadow: -1px -1px 1px #f16a2a;
+    border: none;
+    height: 32px;
+    line-height: 31px;
+    font-size: 16px;
+}
+.b-button__inner{
+    background:url("/images/b-widget-button__sprite.png") 0 -228px repeat-x #fff;
+    border: 1px solid #b4b4b4;
+    border-radius: 3px;
+    height: 23px;
+    line-height: 23px;
+    position: relative;
+    font-size: 13px;
+    padding: 0 15px;
+    display: block;
+}
+.b-button__input{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    line-height: 0;
+    text-indent: -9999px;
+}
+.widget_card{
+    background: transparent url(/images/quickpay-widget__card.png) no-repeat center;
+    height: 32px;
+}
