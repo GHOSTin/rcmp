@@ -14,7 +14,9 @@ class view extends \boxxy\classes\view {
     $path = parse_url($request->get_uri());
     if($path['path'] === '/')
       $route = ['default_page', 'show_default_page'];
-    elseif(preg_match_all('|^/([0-9a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
+    elseif(preg_match_all('|^/api/([0-9a-z]{40})/([a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
+      $route = ['api', $args[2][0]];
+    }elseif(preg_match_all('|^/([0-9a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
       $route = [$args[1][0], 'show_default_page'];
     }elseif(preg_match_all('|^/([0-9a-z_]+)/([0-9a-z_]+)/$|', $path['path'], $args, PREG_PATTERN_ORDER)){
       $route = [$args[1][0], $args[2][0]];
@@ -28,6 +30,8 @@ class view extends \boxxy\classes\view {
   }
 
   private function get_strong_name(array $route){
+    if($route[0] === 'api')
+      return DIRECTORY_SEPARATOR.$route[0].DIRECTORY_SEPARATOR.$route[1].'.tpl';
     if(!is_null(di::get('user')))
       return DIRECTORY_SEPARATOR.$route[0].DIRECTORY_SEPARATOR.'private_'.$route[1].'.tpl';
     else

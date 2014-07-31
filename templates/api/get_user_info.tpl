@@ -1,4 +1,4 @@
-{% set user = component.user %}
+{% set user = response.user %}
 {%- if user -%}
   {
     "error": false,
