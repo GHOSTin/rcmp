@@ -1,20 +1,22 @@
 <?php namespace app;
 
+use \app\errors\controllers\error404;
+use \boxxy\classes\request;
 use \PDO;
-use \boxxy\di;
+use \boxxy\classes\di;
 
 class site{
 
   public function run($root){
     $this->init();
-    $request = new \boxxy\classes\request();
+    $request = new request();
     if(!empty($_GET))
       foreach($_GET as $key => $value)
         $request->set_property($key, $value);
     if(!empty($_POST))
       foreach($_POST as $key => $value)
         $request->set_property($key, $value);
-    $resolver = new \app\resolver(new \app\errors\controllers\error404());
+    $resolver = new \app\resolver(new error404());
     $controller = $resolver->get_controller($request);
     $view = new \app\view($controller, $request);
     $view->render($root);

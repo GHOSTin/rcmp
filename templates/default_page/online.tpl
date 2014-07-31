@@ -7,16 +7,31 @@
     </div>
   </div>
 </div>
-<div class="row" style="margin-bottom:20px;">
+<div class="row">
+  <section class="col-xs-12">
+    <div class="panel panel-default" id="LastVideo">
+      <div class="panel-heading">
+        <h3 class="panel-title">Последний выпуск: <span></span></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6" id="video"></div>
+          <div class="col-sm-6 hidden-xs" id="description" style="font-size: .95em"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="row" style="margin-bottom:20px">
   <div class="col-md-6">
     <p>
-    <iframe width="100%" height="360" src="//www.youtube.com/embed/K-0I0G7Wnxg?rel=0" frameborder="0" allowfullscreen></iframe>
+    <iframe width="480" height="360" src="//www.youtube.com/embed/K-0I0G7Wnxg?rel=0" frameborder="0" allowfullscreen></iframe>
     </p>
   </div>
   <div class="col-md-6">
     <h2>Победитель конкурса к 400 подкасту</h2>
     <p>Заслуженно, выполнив все условия конкурса победителем стал преданный подслушиватель <a href="http://bozify.rpod.ru/">Данил Амиров</a>.</p>
     <p>Как говорит сам победитель он ходит в футболках, которые выигрывает в конкурсах данного подкаста. Поэтому вместо того что-бы выслать ему заслуженный приз Ipod Touch мы вышлем посылку с дешевыми китайскими футболками.</p>
-    <h3><a href="/donation/"><strong style="border-bottom: 1px dashed">Поддержите подкаст донейшанами.</strong></a></h3>
+    <h3 data-toggle="modal" data-target="#rcmp_donation" style="cursor: pointer;"><strong style="border-bottom: 1px dashed">Поддержите подкаст донейшанами.</strong></h3>
   </div>
 </div>

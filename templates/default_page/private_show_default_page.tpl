@@ -34,3 +34,6 @@
 {% include "@default_page/show_comments.tpl" %}
 {% include "@default_page/donation.tpl" %}
 {% endblock content %}
+{% block js %}
+  <script src="http://gdata.youtube.com/feeds/api/users/cndlos/uploads?v=2&alt=json-in-script&format=5&max-results=1&callback=getLastVideo"></script>
+{% endblock %}

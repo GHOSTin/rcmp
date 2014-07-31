@@ -50,7 +50,7 @@ class Pimple implements ArrayAccess
     {
         $this->factories = new \SplObjectStorage();
         $this->protected = new \SplObjectStorage();
-
+        
         foreach ($values as $key => $value) {
             $this->offsetSet($key, $value);
         }

@@ -1,6 +1,6 @@
 <?php namespace app\login\controllers;
 
-use \boxxy\di;
+use \boxxy\classes\di;
 use \boxxy\classes\controller;
 use \boxxy\interfaces\request;
 use \app\conf;
