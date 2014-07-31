@@ -1,0 +1,23 @@
+.nav.tabs-left.vertical-text a{
+    padding-left: 38px;
+    background:white no-repeat left center;
+}
+.nav.tabs-left.vertical-text a[href$='paypal']{
+    background-image: url('/images/paypal_logo.jpg');
+}
+.nav.tabs-left.vertical-text a[href$='yandex']{
+     background-image: url('/images/yandex_money_logo.jpg');
+}
+
+.widget-donate{
+    background: #fff url('/images/widget-donate.png');
+    background-size: 10px 100%;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #999;
+    margin: 2px 3px 4px;
+    padding: 20px;
+    width: 502px;
+}
+.widget-donate p{
+    font-size: 16px;
+}
