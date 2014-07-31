@@ -30,7 +30,7 @@
             <li><a href="http://twitter.com/cndlos" target="_blank">Официальный Twitter</a></li>
           </ul>
         </li>
-        <li><a href="" data-toggle="modal" data-target="#rcmp_donation">Помощь подкасту</a></li>
+        <li><a href="/donation/">Помощь подкасту</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user is empty %}
