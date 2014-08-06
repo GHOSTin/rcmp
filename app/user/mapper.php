@@ -14,6 +14,9 @@ class mapper extends mapper_pdo{
   private static $find_by_login = "SELECT id, nickname, email, hash
     FROM users WHERE email = :email";
 
+  private static $find_by_id = "SELECT id, nickname, email, hash
+    FROM users WHERE id = :id";
+
   private static $find_by_session = "SELECT id, nickname, email, hash
     FROM users, sessions WHERE session = :session
     AND users.id = sessions.user_id";
@@ -52,6 +55,20 @@ class mapper extends mapper_pdo{
   public function find_by_email($email){
     $stmt = $this->pdo->prepare(self::$find_by_login);
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    if(!$stmt->execute())
+      throw new RuntimeException;
+    $count = $stmt->rowCount();
+    if($count === 0)
+      return null;
+    elseif($count === 1)
+      return di::get('\app\user\factory')->build($stmt->fetch());
+    else
+      throw new RuntimeException;
+  }
+
+  public function find_by_id($id){
+    $stmt = $this->pdo->prepare(self::$find_by_id);
+    $stmt->bindValue(':id', $id, PDO::PARAM_STR);
     if(!$stmt->execute())
       throw new RuntimeException;
     $count = $stmt->rowCount();

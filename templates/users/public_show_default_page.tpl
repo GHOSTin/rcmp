@@ -1,5 +1,5 @@
 {% extends "public.tpl" %}
-{% set users = component.users %}
+{% set users = response.users %}
 {% block content %}
   <ul class="unstyled">
   {% for user in users %}

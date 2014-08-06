@@ -1,0 +1,37 @@
+.news-rating{
+    width: 48px;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.news-rating > p {
+    display: block;
+    margin: 0;
+    height: 28px;
+}
+
+.news-rating > p > a {
+    color: black;
+}
+
+.news-feed > li {
+    border-top: solid 1px rgb(216, 216, 216);
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+}
+.news-feed > li:first-child {
+    border-top: none;
+}
+
+.tools {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: none;
+}
+
+.news-feed > li .media-body:hover .tools{
+    display: block;
+}

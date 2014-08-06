@@ -20,11 +20,23 @@ class app extends \boxxy\classes\app {
     $pimple['\app\user\factory'] = function ($pimple) {
       return new \app\user\factory();
     };
+    $pimple['\app\news\factory'] = function ($pimple) {
+      return new \app\news\factory();
+    };
     $pimple['\app\user\mapper'] = function ($pimple) {
       return new \app\user\mapper($pimple['pdo']);
     };
+    $pimple['\app\news\mapper'] = function ($pimple) {
+      return new \app\news\mapper($pimple['pdo']);
+    };
+    $pimple['\app\news2votes\mapper'] = function ($pimple) {
+      return new \app\news2votes\mapper($pimple['pdo']);
+    };
     $pimple['\app\user\model'] = function ($pimple) {
       return new \app\user\model();
+    };
+    $pimple['\app\news\model'] = function ($pimple) {
+      return new \app\news\model();
     };
     di::set_instance($pimple);
     $php = di::get('\app\php');
