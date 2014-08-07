@@ -15,15 +15,3 @@
 {% block buttons %}
   <div class="btn btn-default send_news">Отправить</div>
 {% endblock buttons %}
-{% block script %}
-  $('.send_news').off('click');
-  $(document).on('click', '.send_news', function(){
-    $.get('/news/save_news/', {
-      title: $('#title').val(),
-      description: $('#summernote').code()
-    }, function(r){
-      $('.dialog').modal('hide');
-      init_content(r);
-    });
-  });
-{% endblock %}

@@ -45,6 +45,24 @@ $(document).ready(function(){
                 show_content(r);
             });
         }
+    }).on('click', '.send_news', function(){
+        $.get('/news/save_news/', {
+            title: $('#title').val(),
+            description: $('#summernote').code()
+        }, function(r){
+            $('.dialog').modal('hide');
+            $('.news-feed').append(r);
+        });
+    }).on('click', '.send_edit_news', function(){
+            var id = $('.news_id').text();
+            $.post('/news/edit_news/', {
+                id: id,
+                title: $('#title').val(),
+                description: $('#summernote').code()
+            }, function(r){
+                $('.dialog').modal('hide');
+                $('.news-feed').find('li[data-id='+id+']').replaceWith(r);
+        });
     });
 
 });
