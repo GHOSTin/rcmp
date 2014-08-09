@@ -64,5 +64,17 @@ $(document).ready(function(){
                 $('.news-feed').find('li[data-id='+id+']').replaceWith(r);
         });
     });
+    $('.news-status').on('change', function(){
+        if($('input#active').is(':checked')) {
+            $.get('/news/get_news_list/', {}, function(r){
+                $('ul.media-list').replaceWith(r);
+            });
+        }
+        if($('input#history').is(':checked')) {
+            $.get('/news/get_history_news_list/', {}, function(r){
+                $('ul.media-list').replaceWith(r);
+            });
+        }
+    }).trigger('change');
 
 });

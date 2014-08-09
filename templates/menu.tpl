@@ -31,6 +31,7 @@
           </ul>
         </li>
         <li><a href="/donation/">Помощь подкасту</a></li>
+        <li><a href="/news/"><sup style="color: #d44950">BETA</sup> Обсудить</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user is empty %}

@@ -11,10 +11,10 @@ class mapper extends mapper_pdo {
    WHERE id = :id";
 
   private static $actual_news = "SELECT * FROM news
-   WHERE TIMESTAMPDIFF(DAY, FROM_UNIXTIME(`pubtime`), NOW()) <= MOD(3+WEEKDAY(NOW()), 7) ORDER BY pubtime";
+   WHERE TIMESTAMPDIFF(DAY, FROM_UNIXTIME(`pubtime`, '%Y-%m-%d 00:00:00'), NOW()) <= MOD(3+WEEKDAY(NOW()), 7) ORDER BY pubtime";
 
   private static $history_news = "SELECT * FROM news
-   WHERE TIMESTAMPDIFF(DAY, FROM_UNIXTIME(`pubtime`), NOW()) > MOD(3+WEEKDAY(NOW()), 7) ORDER BY pubtime";
+   WHERE TIMESTAMPDIFF(DAY, FROM_UNIXTIME(`pubtime`, '%Y-%m-%d 00:00:00'), NOW()) > MOD(3+WEEKDAY(NOW()), 7) ORDER BY pubtime";
 
   private static $id = "SELECT id FROM news ORDER BY id DESC LIMIT 1";
 
@@ -36,6 +36,18 @@ class mapper extends mapper_pdo {
 
   public function find_actual_news(){
     $stmt = $this->pdo->prepare(self::$actual_news);
+    if(!$stmt->execute())
+      throw new RuntimeException;
+    $news = [];
+    while($row = $stmt->fetch()) {
+      $row['votes'] = di::get('\app\news2votes\mapper')->find($row['id']);
+      $news[] = di::get('\app\news\factory')->build($row);
+    }
+    return $news;
+  }
+
+  public function find_history_news(){
+    $stmt = $this->pdo->prepare(self::$history_news);
     if(!$stmt->execute())
       throw new RuntimeException;
     $news = [];

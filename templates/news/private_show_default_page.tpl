@@ -1,19 +1,15 @@
 {% extends "public.tpl" %}
-{% set news = response.news %}
 {% block content %}
   <p><button class="btn btn-success" id="new-news"><i class="glyphicon glyphicon-plus"></i> Добавить новость для обсуждения</button></p>
-  <div class="btn-group" data-toggle="buttons">
+  <div class="btn-group news-status" data-toggle="buttons">
     <label class="btn btn-default active">
-      <input type="radio" name="options" id="option1" checked>Активные темы
+      <input type="radio" name="options" id="active" checked>Активные темы
     </label>
     <label class="btn btn-default">
-      <input type="radio" name="options" id="option2">Темы прошлых выпусков
+      <input type="radio" name="options" id="history">Темы прошлых выпусков
     </label>
   </div>
-  <ul class="media-list news-feed">
-  {% for item in news %}
-    {% include '@news/news-item.tpl' with {'item': item} %}
-  {% endfor %}
+  <ul class="media-list">
   </ul>
 {% endblock content %}
 {% block css %}
