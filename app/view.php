@@ -26,6 +26,8 @@ class view extends \boxxy\classes\view {
     $loader = new \Twig_Loader_Filesystem($templates);
     $loader->prependPath($templates.$route[0], $route[0]);
     $twig = new \Twig_Environment($loader);
+    require_once($root.'libs/BBCodeExtension.php');
+    $twig->addExtension(new \BBCodeExtension());
     return $twig->render($template_name, $response);
   }
 

@@ -14,7 +14,7 @@ class news {
    */
   public function set_description($description)
   {
-    $this->description = $description;
+    $this->description = strip_tags(htmlspecialchars_decode($description));
   }
 
   /**

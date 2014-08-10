@@ -9,8 +9,8 @@
     <input id="title" class="form-control" value="{{ item.get_title() }}">
   </p>
   <p>
-    <label for="summernote">Описание</label>
-    <textarea id="summernote" >{{ item.get_description()|raw }}</textarea>
+    <label for="editor">Описание</label>
+    <textarea id="editor" >{{ item.get_description() }}</textarea>
   </p>
   <span class="news_id sr-only">{{ item.get_id() }}</span>
 {% endblock %}

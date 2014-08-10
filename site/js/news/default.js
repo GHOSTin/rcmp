@@ -3,15 +3,10 @@ $(document).ready(function(){
         $.get('get_dialog_new_news/',{
         },function(r){
             show_content(r);
-        }).done(function(){$('#summernote').summernote({
-            lang: 'ru-RU',
-            height: "300px",
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough']],
-                ['para', ['ul', 'ol']],
-                ['insert', ['link', 'picture', 'video']],
-            ]
+        }).done(function(){$('#editor').wysibb({
+                lang: 'ru',
+                buttons: "bold,italic,underline,|,video,link",
+                minheight: 200
             });
         });
     }).on('click', '.news-rating a', function(){
@@ -24,17 +19,12 @@ $(document).ready(function(){
     }).on('click', '.edit_news', function(){
         $.get('/news/get_dialog_edit_news/', {
             news_id: $(this).closest('li').attr('data-id')
-        }, function(r){
+        }).done(function(r){
             show_content(r);
-        }).done(function(){$('#summernote').summernote({
-            lang: 'ru-RU',
-            height: "300px",
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough']],
-                ['para', ['ul', 'ol']],
-                ['insert', ['link', 'picture', 'video']],
-            ]
+            $('#editor').wysibb({
+                lang: 'ru',
+                buttons: "bold,italic,underline,|,video,link",
+                minheight: 200
             });
         });
     }).on('click', '.delete_news', function(){
@@ -46,19 +36,20 @@ $(document).ready(function(){
             });
         }
     }).on('click', '.send_news', function(){
-        $.get('/news/save_news/', {
-            title: $('#title').val(),
-            description: $('#summernote').code()
-        }, function(r){
-            $('.dialog').modal('hide');
-            $('.news-feed').append(r);
-        });
+        if(($('#title').val() != '' && $('#editor').bbcode() != ''))
+            $.get('/news/save_news/', {
+                title: $('#title').val(),
+                description: $('#editor').bbcode()
+            }, function(r){
+                $('.dialog').modal('hide');
+                $('.news-feed').append(r);
+            });
     }).on('click', '.send_edit_news', function(){
             var id = $('.news_id').text();
             $.post('/news/edit_news/', {
                 id: id,
                 title: $('#title').val(),
-                description: $('#summernote').code()
+                description: $('#editor').bbcode()
             }, function(r){
                 $('.dialog').modal('hide');
                 $('.news-feed').find('li[data-id='+id+']').replaceWith(r);

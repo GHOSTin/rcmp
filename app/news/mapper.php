@@ -78,7 +78,7 @@ class mapper extends mapper_pdo {
   public function insert(\app\news\news $news){
     $stmt = $this->pdo->prepare(self::$insert);
     $stmt->bindValue(':title', $news->get_title(), PDO::PARAM_STR);
-    $stmt->bindValue(':description', htmlspecialchars($news->get_description()), PDO::PARAM_STR);
+    $stmt->bindValue(':description', $news->get_description(), PDO::PARAM_STR);
     $stmt->bindValue(':pubtime', $news->get_pubtime(), PDO::PARAM_INT);
     $stmt->bindValue(':user_id', $news->get_user()->get_id(), PDO::PARAM_INT);
     $stmt->bindValue(':rating', $news->get_rating(), PDO::PARAM_INT);
@@ -91,7 +91,7 @@ class mapper extends mapper_pdo {
     $stmt = $this->pdo->prepare(self::$update);
     $stmt->bindValue(':id', $news->get_id(), PDO::PARAM_INT);
     $stmt->bindValue(':title', $news->get_title(), PDO::PARAM_STR);
-    $stmt->bindValue(':description', htmlspecialchars($news->get_description()), PDO::PARAM_STR);
+    $stmt->bindValue(':description', $news->get_description(), PDO::PARAM_STR);
     $stmt->bindValue(':pubtime', $news->get_pubtime(), PDO::PARAM_INT);
     $stmt->bindValue(':user_id', $news->get_user()->get_id(), PDO::PARAM_INT);
     $stmt->bindValue(':rating', $news->get_rating(), PDO::PARAM_INT);

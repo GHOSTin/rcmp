@@ -8,8 +8,8 @@
     <input id="title" class="form-control">
   </p>
   <p>
-    <label for="summernote">Описание</label>
-    <textarea id="summernote" ></textarea>
+    <label for="editor">Описание</label>
+    <textarea id="editor" ></textarea>
   </p>
 {% endblock %}
 {% block buttons %}

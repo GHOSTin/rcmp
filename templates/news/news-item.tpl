@@ -13,7 +13,7 @@
   <div class="media-body">
     <h6>Опубликовано: {{ item.get_user().get_nickname() }} {{ item.get_pubtime()|date('d.m.Y H:i') }}</h6>
     <h4 class="list-group-item-heading media-heading">{{ item.get_title() }}</h4>
-    <p class="list-group-item-text">{{ item.get_description()|raw }}</p>
+    <p class="list-group-item-text">{{ item.get_description()|bbCode|nl2br }}</p>
     {% if item.get_user().get_id() == user.get_id() %}
       <div class="btn-group btn-group-sm tools">
         <button type="button" class="btn btn-default edit_news">

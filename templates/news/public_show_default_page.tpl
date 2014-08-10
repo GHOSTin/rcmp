@@ -18,8 +18,6 @@
 {% endblock content %}
 {% block css %}
   <link href="/css/news/default.css" rel="stylesheet">
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/css/summernote.css" rel="stylesheet">
 {% endblock %}
 {% block js %}
   <script src="/js/news/default.js"></script>

@@ -10,7 +10,7 @@ class factory implements \boxxy\interfaces\factory {
     $news->set_id($data['id']);
     $news->set_title($data['title']);
     $news->set_pubtime($data['pubtime']);
-    $news->set_description(htmlspecialchars_decode($data['description']));
+    $news->set_description($data['description']);
     $news->set_rating($data['rating']);
     $news->set_votes($data['votes']);
     $user = di::get('\app\user\mapper')->find_by_id($data['user_id']);

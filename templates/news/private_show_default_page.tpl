@@ -14,13 +14,12 @@
 {% endblock content %}
 {% block css %}
   <link href="/css/news/default.css" rel="stylesheet">
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/css/summernote.css" rel="stylesheet">
+  <link href="/css/wbbtheme.css" rel="stylesheet">
 {% endblock %}
 {% block js %}
   <script src="/js/default.js"></script>
   <script src="/js/news/default.js"></script>
   <script src="/js/news/jquery.confirm.min.js"></script>
-  <script src="/js/summernote.min.js"></script>
-  <script src="/js/summernote-ru-RU.js"></script>
+  <script src="/js/jquery.wysibb.min.js"></script>
+  <script src="/js/jquery.wysibb-ru-RU.js"></script>
 {% endblock %}
