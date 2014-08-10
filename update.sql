@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `pubtime` int(11) NOT NULL,
   `description` text,
   `rating` int(4) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 CREATE TABLE IF NOT EXISTS `news2votes` (
   `news_id` int(8) NOT NULL,
   `user_id` smallint(5) NOT NULL
