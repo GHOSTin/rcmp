@@ -21,6 +21,8 @@ class model {
   public function edit_news($id, $title, $description){
     $mapper = di::get('\app\news\mapper');
     $news = $mapper->find_by_id($id);
+    if($news->get_user()->get_id() != di::get('user')->get_id())
+      return $news;
     $news->set_title($title);
     $news->set_description($description);
     $mapper->update($news);
@@ -28,9 +30,13 @@ class model {
   }
 
   public function delete_news($id){
+    $mapper = di::get('\app\news\mapper');
     $pdo = di::get('pdo');
     $pdo->beginTransaction();
-    di::get('\app\news\mapper')->delete($id);
+    $news = $mapper->find_by_id($id);
+    if($news->get_user()->get_id() != di::get('user')->get_id())
+      return $news;
+    $mapper->delete($id);
     di::get('\app\news2votes\mapper')->delete($id);
     $pdo->commit();
     return $id;
