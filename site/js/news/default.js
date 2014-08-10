@@ -46,14 +46,15 @@ $(document).ready(function(){
             });
     }).on('click', '.send_edit_news', function(){
             var id = $('.news_id').text();
-            $.post('/news/edit_news/', {
-                id: id,
-                title: $('#title').val(),
-                description: $('#editor').bbcode()
-            }, function(r){
-                $('.dialog').modal('hide');
-                $('.news-feed').find('li[data-id='+id+']').replaceWith(r);
-        });
+            if(($('#title').val() != '' && $('#editor').bbcode() != ''))
+                $.post('/news/edit_news/', {
+                    id: id,
+                    title: $('#title').val(),
+                    description: $('#editor').bbcode()
+                }, function(r){
+                    $('.dialog').modal('hide');
+                    $('.news-feed').find('li[data-id='+id+']').replaceWith(r);
+                });
     });
     $('.news-status').on('change', function(){
         if($('input#active').is(':checked')) {
