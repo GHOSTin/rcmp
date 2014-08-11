@@ -38,6 +38,9 @@ class app extends \boxxy\classes\app {
     $pimple['\app\news\model'] = function ($pimple) {
       return new \app\news\model();
     };
+    $pimple['\app\news2votes\model'] = function ($pimple) {
+      return new \app\news2votes\model();
+    };
     di::set_instance($pimple);
     $php = di::get('\app\php');
     if(isset($_COOKIE['uid'])){
