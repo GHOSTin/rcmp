@@ -38,8 +38,12 @@ nav .container {
     min-height: 350px;
 }
 
-body.online #rcmp_login{
-    margin-top: 60px;
+body.online .row > section{
+    padding-top: 60px;
+}
+
+body.online .page-header{
+    margin-top: -40px;
 }
 
 .rcmp_online_player{
