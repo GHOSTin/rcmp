@@ -2,11 +2,8 @@
 <project name="rcmp" default="main" basedir=".">
   <property name="BUILD_DIR" value="${user.home}/builds/" override="false"/>
     <fileset dir="." id="archive.files">
-        <include name="app/**"/>
-        <include name="libs/**"/>
-        <include name="site/**"/>
-        <include name="templates/**"/>
         <exclude name="app/conf.php"/>
+        <exclude name="build.xml"/>
     </fileset>
   <target name="main"  depends="clean, phplint, tar">
   </target>
