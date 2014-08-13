@@ -10,7 +10,7 @@ function getLastVideo(data){
     var $container = $('#LastVideo');
     var entry = data.feed.entry[0];
     $container.find('.panel-title span').html(entry.title.$t);
-    $container.find('.panel-body #video').html('<iframe height="360" width="100%" src="'+entry.content.src+'" frameborder="0" allowfullscreen></iframe>');
+    $container.find('.panel-body #video').html('<iframe height="360" width="100%" src="http://www.youtube.com/embed/'+entry.media$group.yt$videoid.$t+'" frameborder="0" allowfullscreen></iframe>');
     $.ajax({url:'//gdata.youtube.com/feeds/api/videos/'+entry.media$group.yt$videoid.$t+'?v=2&alt=jsonc',dataType:'json',cache:true})
         .done(function(msg){$container.find('.panel-body #description').html($.urlify(msg.data.description).replace(/\n/g,"<br>"));});
 }
