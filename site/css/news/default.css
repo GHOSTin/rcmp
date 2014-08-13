@@ -20,10 +20,12 @@
     margin: 0;
     padding: 10px 0;
     position: relative;
+    display: inline-block;
+    width: 100%;
 }
-.news-feed > li:first-child {
-    border-top: none;
-}
+/*.news-feed > li:first-child {*/
+    /*border-top: none;*/
+/*}*/
 
 .tools {
     position: absolute;
