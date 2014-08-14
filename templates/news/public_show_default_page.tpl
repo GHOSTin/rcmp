@@ -8,10 +8,10 @@
   <p>
     <div class="btn-group news-status" data-toggle="buttons">
       <label class="btn btn-default active">
-        <input type="radio" id="active" checked>Активные темы
+        <input type="radio" name="status" id="active" checked>Активные темы
       </label>
       <label class="btn btn-default">
-        <input type="radio" id="history">Темы прошлых выпусков
+        <input type="radio" name="status" id="history">Темы прошлых выпусков
       </label>
     </div>
   </p>
