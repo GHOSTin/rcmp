@@ -8,6 +8,8 @@ class get_user_info extends controller{
 
   public function execute(request $request){
     $session = di::get('em')->getRepository('\app\session\session')->find($request->get_property('key'));
+    if(!$session)
+      return null;
     return ['user' => $session->get_user()];
   }
 }
