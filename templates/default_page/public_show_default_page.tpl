@@ -31,7 +31,7 @@
     {% include "@default_page/footer.tpl" %}
   </div>
 </footer>
-{% include "@default_page/show_comments.tpl" %}
+{% include "show_comments.tpl" %}
 {% include "@default_page/donation.tpl" %}
 {% endblock content %}
 {% block js %}

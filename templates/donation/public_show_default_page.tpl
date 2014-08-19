@@ -78,6 +78,7 @@
     </p>
   </div>
 </div>
+{% include "show_comments.tpl" %}
 {% endblock content %}
 {% block css %}
   <link href="/css/bootstrap.vertical-tabs.css" rel="stylesheet">
