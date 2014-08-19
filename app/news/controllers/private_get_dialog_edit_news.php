@@ -8,6 +8,6 @@ class private_get_dialog_edit_news extends controller{
 
   public function execute(request $request)
   {
-    return ['news'=> di::get('\app\news\mapper')->find_by_id($request->get_property('news_id'))];
+    return ['news'=> di::get('em')->find('\app\news\news', $request->get_property('news_id'))];
   }
 }

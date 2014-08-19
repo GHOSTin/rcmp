@@ -34,36 +34,21 @@ class app extends \boxxy\classes\app {
     $pimple['\app\php'] = function ($pimple) {
       return new \app\php();
     };
-    $pimple['\app\user\factory'] = function ($pimple) {
-      return new \app\user\factory();
-    };
-    $pimple['\app\user\mapper'] = function ($pimple) {
-      return new \app\user\mapper($pimple['pdo']);
-    };
-    $pimple['\app\news\mapper'] = function ($pimple) {
-      return new \app\news\mapper($pimple['pdo']);
-    };
-    $pimple['\app\news2votes\mapper'] = function ($pimple) {
-      return new \app\news2votes\mapper($pimple['pdo']);
-    };
     $pimple['\app\user\model'] = function ($pimple) {
       return new \app\user\model();
     };
     $pimple['\app\news\model'] = function ($pimple) {
       return new \app\news\model();
     };
-    $pimple['\app\news2votes\model'] = function ($pimple) {
-      return new \app\news2votes\model();
-    };
     di::set_instance($pimple);
     $php = di::get('\app\php');
     if(isset($_COOKIE['uid'])){
-      $user = di::get('\app\user\mapper')->find_by_session($_COOKIE['uid']);
-      if(is_null($user)){
+      $session = di::get('em')->find('\app\session\session', $_COOKIE['uid']);
+      if(is_null($session)){
         setcookie("uid", "", time() - 3600, '/');
         $pimple['user'] = null;
       }else
-        $pimple['user'] = $user;
+        $pimple['user'] = $session->get_user();
     }else
       $pimple['user'] = null;
   }

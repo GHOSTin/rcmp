@@ -41,6 +41,13 @@ class php{
     $_SESSION[$value] = $key;
   }
 
+  public function get_cookie_value($value){
+    if(isset($_COOKIE[$value]))
+      return $_COOKIE[$value];
+    else
+      return null;
+  }
+
   public function time(){
     return time();
   }

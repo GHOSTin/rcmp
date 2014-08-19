@@ -181,7 +181,7 @@ class news {
   public function isVoted(){
     $votes = $this->get_votes();
     if($votes)
-      return $votes->contains(di::get('em')->find('\app\user\user', 1));
+      return $votes->contains(di::get('user'));
     return false;
   }
 

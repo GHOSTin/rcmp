@@ -7,7 +7,7 @@ use \boxxy\interfaces\request;
 class get_user_info extends controller{
 
   public function execute(request $request){
-    return ['user' => di::get('\app\user\mapper')
-      ->find_by_session($request->get_property('key'))];
+    $session = di::get('em')->getRepository('\app\session\session')->find($request->get_property('key'));
+    return ['user' => $session->get_user()];
   }
 }

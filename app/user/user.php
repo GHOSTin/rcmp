@@ -2,13 +2,14 @@
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
 /**
  * Class user
  * @package app\user
- * @Entity
+ * @Entity(repositoryClass="Doctrine\ORM\EntityRepository")
  * @Table(name="users")
  */
 class user{
@@ -16,6 +17,7 @@ class user{
   /**
    * @Id
    * @Column(name="id", type="integer")
+   * @GeneratedValue
    * @var int
    */
   private $id;

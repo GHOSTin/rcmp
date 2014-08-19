@@ -8,13 +8,20 @@ use \boxxy\interfaces\request;
 class public_enter extends controller{
 
   public function execute(request $request){
-    $mapper = di::get('\app\user\mapper');
-    $user = $mapper->find_by_email($request->get_property('login'));
+    /** @var $em \Doctrine\ORM\EntityManager */
+    $em = di::get('em');
+    /** @var $user \app\user\user */
+    $user = $em->getRepository('\app\user\user')->findOneBy(array('email' => $request->get_property('login')));
     $php = di::get('\app\php');
     if(!is_null($user)){
       if($user->get_hash() === sha1(md5($request->get_property('password').conf::auth_salt))){
-        setcookie('uid', $mapper->create_session($user), strtotime('+30 days'),
+        $session = new \app\session\session();
+        $session->set_session(sha1($user->get_id().$user->get_nickname().$user->get_email().time()));
+        $session->set_user($user);
+        $em->persist($session);
+        setcookie('uid', $session->get_session(), strtotime('+30 days'),
                   '/', conf::host);
+        $em->flush();
         $php->header('Location: /');
         return true;
       }

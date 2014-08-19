@@ -9,7 +9,7 @@ class model {
     $em = di::get('em');
     $news->set_title($title);
     $news->set_description($description);
-    $news->set_user(di::get('em')->find('\app\user\user', 1));
+    $news->set_user(di::get('user'));
     $news->set_pubtime(time());
     $em->persist($news);
     $em->flush();
@@ -17,26 +17,24 @@ class model {
   }
 
   public function edit_news($id, $title, $description){
-    $mapper = di::get('\app\news\mapper');
-    $news = $mapper->find_by_id($id);
-    if($news->get_user()->get_id() != di::get('user')->get_id())
+    $em = di::get('em');
+    $news = $em->find('\app\news\news', $id);
+    if($news->get_user() != di::get('user'))
       return $news;
     $news->set_title($title);
     $news->set_description($description);
-    $mapper->update($news);
+    $em->persist($news);
+    $em->flush();
     return $news;
   }
 
   public function delete_news($id){
-    $mapper = di::get('\app\news\mapper');
-    $pdo = di::get('pdo');
-    $pdo->beginTransaction();
-    $news = $mapper->find_by_id($id);
-    if($news->get_user()->get_id() != di::get('user')->get_id())
+    $em = di::get('em');
+    $news = $em->find('\app\news\news', $id);
+    if($news->get_user() != di::get('user'))
       return $news;
-    $mapper->delete($id);
-    di::get('\app\news2votes\mapper')->delete($id);
-    $pdo->commit();
+    $em->remove($news);
+    $em->flush();
     return $id;
   }
 
