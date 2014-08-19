@@ -15,7 +15,7 @@ use DomainException;
 /**
  * Class news
  * @package app\news
- * @Entity
+ * @Entity(repositoryClass="\app\news\repository")
  * @Table(name="news")
  */
 class news {
@@ -28,7 +28,6 @@ class news {
 
   /**
    * @ManyToOne(targetEntity="\app\user\user")
-   * @JoinColumn(name="user_id", referencedColumnName="id")
    * @var \app\user\user
    */
   private $user;
