@@ -3,6 +3,8 @@ namespace app;
 
 use \boxxy\classes\di;
 use \PDO;
+use \Doctrine\ORM\Tools\Setup;
+use \Doctrine\ORM\EntityManager;
 
 class app extends \boxxy\classes\app {
   public function execute_before_request_block(){
@@ -14,6 +16,21 @@ class app extends \boxxy\classes\app {
       $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
       return $pdo;
     });
+    $pimple['em'] = $pimple->share(function($pimple){
+      $paths = array(__DIR__);
+      $isDevMode = (\app\conf::status == 'development')? true: false;
+      $dbParams = array(
+          'driver'   => 'pdo_mysql',
+          'host'     => \app\conf::db_host,
+          'user'     => \app\conf::db_user,
+          'password' => \app\conf::db_password,
+          'dbname'   => \app\conf::db_name,
+      );
+
+      $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+      return EntityManager::create($dbParams, $config);
+    });
+
     $pimple['\app\php'] = function ($pimple) {
       return new \app\php();
     };

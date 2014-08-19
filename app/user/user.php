@@ -1,10 +1,38 @@
 <?php namespace app\user;
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
+
+/**
+ * Class user
+ * @package app\user
+ * @Entity
+ * @Table(name="users")
+ */
 class user{
 
+  /**
+   * @Id
+   * @Column(name="id", type="integer")
+   * @var int
+   */
   private $id;
+  /**
+   * @Column(name="nickname", type="string")
+   * @var string
+   */
   private $nickname;
+  /**
+   * @Column(name="email", type="string")
+   * @var string
+   */
   private $email;
+  /**
+   * @Column(name="hash", type="string")
+   * @var string
+   */
   private $hash;
 
   public function get_email(){

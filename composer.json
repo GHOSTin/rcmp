@@ -1,0 +1,15 @@
+{
+    "name": "mlsco/rcmp",
+    "description": "rcmp",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "author",
+            "email": "email@email.com"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "*"
+    }
+}

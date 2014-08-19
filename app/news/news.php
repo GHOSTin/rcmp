@@ -1,18 +1,67 @@
 <?php namespace app\news;
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\Table;
 use DomainException;
 
+
+/**
+ * Class news
+ * @package app\news
+ * @Entity
+ * @Table(name="news")
+ */
 class news {
+  /** @Id
+   *  @Column(name="id", type="integer")
+   * @var int
+   */
   private $id;
+
+  /**
+   * @ManyToOne(targetEntity="user")
+   * @GeneratedValue
+   * @var \app\user\user
+   */
   private $user;
+  /**
+   * @Column(name="title", type="string")
+   * @var string
+   */
   private $title;
+  /**
+   * @Column(name="pubtime", type="integer")
+   * @var int
+   */
   private $pubtime;
+  /**
+   * @Column(name="description", type="string")
+   * @var string
+   */
   private $description;
+  /**
+   * @Column(name="raiting", type="integer")
+   * @var int
+   */
   private $rating;
-  private $votes = [];
+  /**
+   * @ManyToMany(targetEntity="User")
+   * @JoinTable(name="news2votes",
+   *    joinColumns={@JoinColumn(name="news_id", referencedColumnName="id")},
+   *    inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
+   */
+  private $votes;
 
   /**
    * @param mixed $description
+   * @throws \DomainException
    */
   public function set_description($description)
   {
@@ -63,6 +112,7 @@ class news {
 
   /**
    * @param mixed $title
+   * @throws \DomainException
    */
   public function set_title($title)
   {
@@ -122,7 +172,7 @@ class news {
   /**
    * @param array $votes
    */
-  public function set_votes(array $votes)
+  public function set_votes($votes)
   {
     $this->votes = $votes;
   }
