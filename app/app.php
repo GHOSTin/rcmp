@@ -9,13 +9,6 @@ use \Doctrine\ORM\EntityManager;
 class app extends \boxxy\classes\app {
   public function execute_before_request_block(){
     $pimple = new \Pimple();
-    $pimple['pdo'] = $pimple->share(function($pimple){
-      $pdo = new PDO('mysql:host='. \app\conf::db_host.';dbname='. \app\conf::db_name, \app\conf::db_user, \app\conf::db_password);
-      $pdo->exec("SET NAMES utf8");
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-      return $pdo;
-    });
     $pimple['em'] = $pimple->share(function($pimple){
       $paths = array(__DIR__);
       $isDevMode = (\app\conf::status == 'development')? true: false;
@@ -25,6 +18,7 @@ class app extends \boxxy\classes\app {
           'user'     => \app\conf::db_user,
           'password' => \app\conf::db_password,
           'dbname'   => \app\conf::db_name,
+          'charset'  => 'utf8'
       );
 
       $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
