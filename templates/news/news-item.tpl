@@ -1,11 +1,11 @@
 <li class="media" data-id="{{ item.get_id() }}">
   <div class="pull-left news-rating">
-    <p>{% if user.get_id() not in item.get_votes() and user is not null %}
+    <p>{% if not item.isVoted() and user is not null %}
         <a href="#up"><i class="glyphicon glyphicon-chevron-up"></i></a>
       {% endif %}
     </p>
     <p class="rating">{{ item.get_rating() }}</p>
-    <p>{% if user.get_id() not in item.get_votes() and user is not null %}
+    <p>{% if not item.isVoted() and user is not null %}
         <a href="#down"><i class="glyphicon glyphicon-chevron-down"></i></a>
       {% endif %}
     </p>

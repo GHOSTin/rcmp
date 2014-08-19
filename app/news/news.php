@@ -1,5 +1,6 @@
 <?php namespace app\news;
 
+use boxxy\classes\di;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -162,7 +163,7 @@ class news {
   }
 
   /**
-   * @return array
+   * @return mixed
    */
   public function get_votes()
   {
@@ -175,6 +176,13 @@ class news {
   public function set_votes($votes)
   {
     $this->votes = $votes;
+  }
+
+  public function isVoted(){
+    $votes = $this->get_votes();
+    if($votes)
+      return $votes->contains(di::get('em')->find('\app\user\user', 1));
+    return false;
   }
 
 }

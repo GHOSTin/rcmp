@@ -5,16 +5,14 @@ use boxxy\classes\di;
 class model {
 
   public function add_news($title, $description){
-    $mapper = di::get('\app\news\mapper');
-    $data['id'] = null;
-    $data['title'] = $title;
-    $data['description'] = $description;
-    $data['user_id'] = di::get('user')->get_id();
-    $data['pubtime'] = time();
-    $data['rating'] = 0;
-    $data['votes'] = [];
-    $news = di::get('\app\news\factory')->build($data);
-    $news->set_id($mapper->insert($news));
+    $news = new \app\news\news();
+    $em = di::get('em');
+    $news->set_title($title);
+    $news->set_description($description);
+    $news->set_user(di::get('em')->find('\app\user\user', 1));
+    $news->set_pubtime(time());
+    $em->persist($news);
+    $em->flush();
     return $news;
   }
 

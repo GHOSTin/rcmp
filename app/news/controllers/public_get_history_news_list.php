@@ -8,6 +8,6 @@ class public_get_history_news_list extends controller {
 
   public function execute(request $request)
   {
-    return ['news'=>di::get('\app\news\mapper')->find_history_news()];
+    return ['news'=>di::get('em')->getRepository('\app\news\news')->find_history_news()];
   }
 }

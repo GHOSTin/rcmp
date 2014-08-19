@@ -37,9 +37,6 @@ class app extends \boxxy\classes\app {
     $pimple['\app\user\factory'] = function ($pimple) {
       return new \app\user\factory();
     };
-    $pimple['\app\news\factory'] = function ($pimple) {
-      return new \app\news\factory();
-    };
     $pimple['\app\user\mapper'] = function ($pimple) {
       return new \app\user\mapper($pimple['pdo']);
     };
