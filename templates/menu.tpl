@@ -15,6 +15,7 @@
           <ul class="dropdown-menu">
             <li><a href="http://mi.rpod.ru" target="_blank">На Rpod.ru</a></li>
             <li><a href="https://www.youtube.com/user/cndlos" target="_blank">На YouTube.com</a></li>
+            <li><a href="http://www.pinterest.com/cndlos/" target="_blank">На Pinterest.com</a></li>
             <li><a href="https://itunes.apple.com/us/podcast/kanadskij-los/id363311940?mt=2&ign-mpt=uo%3D4" target="_blank">На iTunes&trade;</a></li>
             <li><a href="http://pirate.rcmp.me/download.html" target="_blank">Пиратская версия</a></li>
             <li><a href="http://meir.podfm.ru/los/?all=1" target="_blank">На  PodFM.ru</a></li>
@@ -26,12 +27,13 @@
           <ul class="dropdown-menu">
             <li><a href="" data-toggle="modal" data-target="#rcmp_show_comments">Комментарии к подкастам</a></li>
             <li><a href="http://wiki.rcmp.me/" target="_blank">Вики подкаста</a></li>
+            <li><a href="http://chat.rcmp.me/" target="_blank">Уютный чат Канадского Лося</a></li>
             <li><a href="http://meirz.net" target="_blank">Блог Канадского Лося</a></li>
             <li><a href="http://twitter.com/cndlos" target="_blank">Официальный Twitter</a></li>
           </ul>
         </li>
         <li><a href="/donation/">Помощь подкасту</a></li>
-        <li><a href="/news/"><sup style="color: #d44950">BETA</sup> Обсудить</a></li>
+        <li><a style="color:#a94442;" href="/news/"><strong>[Обсудить]</strong></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user is empty %}

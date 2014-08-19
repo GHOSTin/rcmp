@@ -11,7 +11,7 @@
   <section class="col-xs-12">
     <div class="panel panel-default" id="LastVideo">
       <div class="panel-heading">
-        <h3 class="panel-title">Последний выпуск: <span></span></h3>
+        <h3 class="panel-title">Свежий выпуск: <span></span></h3>
       </div>
       <div class="panel-body">
         <div class="row">

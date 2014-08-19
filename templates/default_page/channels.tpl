@@ -16,5 +16,8 @@
     <a href="http://meir.podfm.ru/los/?all=1" target="_blank">
       <img src="./images/logos/logo_podfm.jpg" class="img-responsive" alt="" title="">
     </a>
+    <a href="http://www.pinterest.com/cndlos/" target="_blank">
+      <img src="./images/logos/logo_pinterest.jpg" class="img-responsive" alt="" title="">
+    </a>
   </div>
 </div>
