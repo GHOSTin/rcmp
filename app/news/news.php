@@ -20,14 +20,15 @@ use DomainException;
  */
 class news {
   /** @Id
-   *  @Column(name="id", type="integer")
+   * @Column(name="id", type="integer")
+   * @GeneratedValue
    * @var int
    */
   private $id;
 
   /**
-   * @ManyToOne(targetEntity="user")
-   * @GeneratedValue
+   * @ManyToOne(targetEntity="\app\user\user")
+   * @JoinColumn(name="user_id", referencedColumnName="id")
    * @var \app\user\user
    */
   private $user;
@@ -47,12 +48,12 @@ class news {
    */
   private $description;
   /**
-   * @Column(name="raiting", type="integer")
+   * @Column(name="rating", type="integer")
    * @var int
    */
   private $rating;
   /**
-   * @ManyToMany(targetEntity="User")
+   * @ManyToMany(targetEntity="\app\user\user")
    * @JoinTable(name="news2votes",
    *    joinColumns={@JoinColumn(name="news_id", referencedColumnName="id")},
    *    inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
