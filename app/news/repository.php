@@ -17,7 +17,7 @@ class repository extends EntityRepository {
 
     $query = $this->_em->createNativeQuery("SELECT id, user_id, title, pubtime, description, rating FROM news n
      WHERE TIMESTAMPDIFF(DAY, FROM_UNIXTIME(n.pubtime, '%Y-%m-%d 00:00:00'), CURDATE())
-      <= MOD(3+WEEKDAY(NOW()), 7) ORDER BY n.pubtime", $rsm);
+      <= MOD(3+WEEKDAY(NOW()), 7)", $rsm);
 
     return $query->getResult();
   }
@@ -34,7 +34,7 @@ class repository extends EntityRepository {
 
     $query = $this->_em->createNativeQuery("SELECT id, user_id, title, pubtime, description, rating FROM news n
      WHERE TIMESTAMPDIFF(DAY, FROM_UNIXTIME(n.pubtime, '%Y-%m-%d 00:00:00'), CURDATE())
-      > MOD(3+WEEKDAY(NOW()), 7) ORDER BY n.pubtime", $rsm);
+      > MOD(3+WEEKDAY(NOW()), 7)", $rsm);
 
     return $query->getResult();
   }

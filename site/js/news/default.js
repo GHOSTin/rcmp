@@ -92,7 +92,7 @@ $(document).ready(function(){
             },
             sortAscending: {
                 number: false,
-                date: true,
+                date: false,
                 rating: false
             }
         });
