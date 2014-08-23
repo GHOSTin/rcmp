@@ -4,6 +4,7 @@
     <fileset id="app" dir="${project.basedir}">
         <include name="**/**"/>
         <exclude name="build.xml"/>
+        <exclude name="app/conf.php"/>
         <exclude name="vendor/**"/>
         <exclude name="builds/**"/>
         <exclude name="composer.lock"/>
