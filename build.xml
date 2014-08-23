@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="rcmp" default="main" basedir=".">
-  <property name="BUILD_DIR" value="${user.home}/builds/" override="false"/>
-    <fileset dir="." id="archive.files">
-        <exclude name="app/conf.php"/>
+<project name="mshc-client" default="main" basedir=".">
+    <property name="BUILD_DIR" value="${project.basedir}/builds/" override="false"/>
+    <fileset id="app" dir="${project.basedir}">
+        <include name="**/**"/>
         <exclude name="build.xml"/>
+        <exclude name="vendor/**"/>
+        <exclude name="builds/**"/>
+        <exclude name="composer.lock"/>
     </fileset>
-  <target name="main"  depends="clean, phplint, tar">
-  </target>
-  <target name="clean">
-    <delete includeemptydirs="true" verbose="true" failonerror="true">
-        <fileset dir="${BUILD_DIR}">
-            <include name="*.*" />
-        </fileset>
-    </delete>
-  </target>
-  <target name="phplint">
-    <phplint haltonfailure="true">
-      <fileset dir="${project.basedir}">
+    <fileset id="php_files" dir="${project.basedir}">
         <include name="**/*.php"/>
-      </fileset>
-    </phplint>
-  </target>
-  <target name="tar">
-    <tar destfile="${BUILD_DIR}/rcmp.tar.gz" compression="gzip">
-      <fileset refid="archive.files"/>
-    </tar>
-  </target>
+    </fileset>
+    <target name="main"  depends="phplint, clean, tar">
+    </target>
+    <target name="phplint">
+        <phplint haltonfailure="true">
+            <fileset refid="php_files" />
+        </phplint>
+    </target>
+    <target name="clean">
+        <mkdir dir="${BUILD_DIR}" />
+        <delete includeemptydirs="true" verbose="true" failonerror="true">
+            <fileset dir="${BUILD_DIR}">
+                <include name="*.*" />
+            </fileset>
+        </delete>
+    </target>
+    <target name="tar">
+        <tar destfile="${BUILD_DIR}/mshc.tar.gz" compression="gzip">
+            <fileset refid="app" />
+        </tar>
+    </target>
 </project>
