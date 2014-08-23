@@ -5,11 +5,12 @@ use \boxxy\classes\di;
 use \PDO;
 use \Doctrine\ORM\Tools\Setup;
 use \Doctrine\ORM\EntityManager;
+use \Pimple\Container as Pimple;
 
 class app extends \boxxy\classes\app {
   public function execute_before_request_block(){
-    $pimple = new \Pimple();
-    $pimple['em'] = $pimple->share(function($pimple){
+    $pimple = new Pimple();
+    $pimple['em'] = $pimple->factory(function($pimple){
       $paths = array(__DIR__);
       $isDevMode = (\app\conf::status == 'development')? true: false;
       $dbParams = array(

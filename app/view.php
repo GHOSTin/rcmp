@@ -8,7 +8,6 @@ class view extends \boxxy\classes\view {
 
   public function render($root, request $request, array $response){
     $response['user'] = di::get('user');
-    require_once($root.'libs/Twig/Autoloader.php');
     \Twig_Autoloader::register();
     $templates = $root.'templates'.DIRECTORY_SEPARATOR;
     $path = parse_url($request->get_uri());
