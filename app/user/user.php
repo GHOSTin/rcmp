@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping\Table;
 /**
  * Class user
  * @package app\user
- * @Entity(repositoryClass="Doctrine\ORM\EntityRepository")
+ * @Entity
  * @Table(name="users")
  */
 class user{
@@ -36,6 +36,11 @@ class user{
    * @var string
    */
   private $hash;
+  /**
+   * @Column(name="roles", type="simple_array")
+   * @var array
+   */
+  private $roles;
 
   public function get_email(){
     return $this->email;
@@ -67,5 +72,27 @@ class user{
 
   public function set_hash($hash){
     $this->hash = (string) $hash;
+  }
+
+  public function set_roles(array $roles)
+  {
+    foreach ($roles as $role) {
+      if(!preg_match_all('/^podcast_admin|news_admin$/', $role))
+        throw new \DomainException();
+    }
+    $this->roles = $roles;
+  }
+
+  public function get_roles()
+  {
+    return $this->roles;
+  }
+
+  public function isPodcastAdmin(){
+    return in_array('podcast_admin', $this->roles);
+  }
+
+  public function isNewsAdmin(){
+    return in_array('news_admin', $this->roles);
   }
 }
