@@ -1,0 +1,22 @@
+.podcasts-feed > li {
+    border-top: solid 1px rgb(216, 216, 216);
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+/*.news-feed > li:first-child {*/
+    /*border-top: none;*/
+/*}*/
+
+.tools {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: none;
+}
+
+.podcasts-feed > li .media-body:hover .tools{
+    display: block;
+}
