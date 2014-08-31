@@ -15,6 +15,7 @@
     color: black;
 }
 
+.news-history-feed > li,
 .news-feed > li {
     border-top: solid 1px rgb(216, 216, 216);
     margin: 0;
