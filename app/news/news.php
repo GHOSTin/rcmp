@@ -2,13 +2,13 @@
 
 use boxxy\classes\di;
 use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use DomainException;
 
@@ -16,7 +16,7 @@ use DomainException;
 /**
  * Class news
  * @package app\news
- * @Entity(repositoryClass="\app\news\repository")
+ * @Entity()
  * @Table(name="news")
  */
 class news {
@@ -29,6 +29,7 @@ class news {
 
   /**
    * @ManyToOne(targetEntity="\app\user\user")
+   * @JoinColumn(name="user_id", referencedColumnName="id")
    * @var \app\user\user
    */
   private $user;
@@ -59,7 +60,12 @@ class news {
    *    inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id")})
    */
   private $votes;
-
+  /**
+   * @ManyToOne(targetEntity="\app\podcasts\podcast")
+   * @JoinColumn(name="podcast_id", referencedColumnName="time")
+   * @var \app\podcasts\podcast|null
+   */
+  private $podcast;
   /**
    * @param mixed $description
    * @throws \DomainException
@@ -183,6 +189,22 @@ class news {
     if($votes)
       return $votes->contains(di::get('user'));
     return false;
+  }
+
+  /**
+   * @param mixed $podcast
+   */
+  public function set_podcast($podcast)
+  {
+    $this->podcast = $podcast;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function get_podcast()
+  {
+    return $this->podcast;
   }
 
 }

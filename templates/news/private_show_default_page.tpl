@@ -1,16 +1,22 @@
 {% extends "public.tpl" %}
+{% set news = response.news %}
 {% block content %}
   <p><button class="btn btn-success" id="new-news"><i class="glyphicon glyphicon-plus"></i> Добавить новость для обсуждения</button></p>
+  {% if user.isNewsAdmin() %}
   <p>
-    <div class="btn-group news-status" data-toggle="buttons">
-      <label class="btn btn-default active">
-        <input type="radio" name="status" id="active" checked>Активные темы
-      </label>
-      <label class="btn btn-default">
-        <input type="radio" name="status" id="history">Темы прошлых выпусков
-      </label>
+    <div class="input-group col-md-5">
+      <span class="input-group-btn">
+        <button class="btn btn-success attach" type="button"><i class="icon icon-paper-clip"></i> Привязать к</button>
+      </span>
+      <select type="text" class="form-control" id="attach_podcast">
+        <option></option>
+        {% for podcast in response.podcasts %}
+          <option value="{{ podcast.get_time() }}">{{ podcast.get_name() }}</option>
+        {% endfor %}
+      </select>
     </div>
   </p>
+  {% endif %}
   <p>
   <div id="sorts" class="btn-group btn-group-xs" data-toggle="buttons">
     <label class="btn btn-default active">
@@ -21,10 +27,11 @@
     </label>
   </div>
   </p>
-  <ul class="media-list isotope">
-  </ul>
+  {% include '@news/news-list.tpl' with {'news': news} %}
 {% endblock content %}
 {% block css %}
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome-ie7.css" rel="stylesheet">
   <link href="/css/news/default.css" rel="stylesheet">
   <link href="/css/wbbtheme.css" rel="stylesheet">
 {% endblock %}

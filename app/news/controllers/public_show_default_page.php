@@ -7,6 +7,6 @@ use \boxxy\interfaces\request;
 class public_show_default_page extends controller{
 
   public function execute(request $request){
-    return null;
+    return ['news'=>di::get('em')->getRepository('\app\news\news')->findByPodcast(0)];
   }
 }

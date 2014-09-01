@@ -64,21 +64,22 @@ $(document).ready(function(){
                     $('.isotope').isotope('reloadItems');
                     $('#sorts').trigger('change');
                 });
+    }).on('click', '.attach', function(){
+        if($('#attach_podcast').val()){
+            var myCheckboxes = new Array();
+            $(".news-feed input:checked").each(function() {
+                myCheckboxes.push($(this).closest('li').attr('data-id'));
+            });
+            $.post('/news/attach_news/', {
+                podcast: $('#attach_podcast').val(),
+                news: myCheckboxes
+            }, function(r){
+                show_content(r);
+                $('.isotope').isotope('reloadItems');
+                $('#sorts').trigger('change');
+            });
+        }
     });
-    $('.news-status').on('change', function(){
-        if($('input#active').is(':checked')) {
-            $.get('/news/get_news_list/', {}, function(r){
-                $('ul.media-list').replaceWith(r);
-                $('#sorts').trigger('change');
-            });
-        }
-        if($('input#history').is(':checked')) {
-            $.get('/news/get_history_news_list/', {}, function(r){
-                $('ul.media-list').replaceWith(r);
-                $('#sorts').trigger('change');
-            });
-        }
-    }).trigger('change');
 
     // bind sort button click
     $('#sorts').on( 'change', function() {
@@ -99,6 +100,6 @@ $(document).ready(function(){
         var sortValue = $(this).find('input[name=sort]:checked').attr('data-sort-value');
         sortValue = sortValue.split(',');
         $container.isotope({ sortBy: sortValue });
-    });
+    }).trigger('change');
 
 });

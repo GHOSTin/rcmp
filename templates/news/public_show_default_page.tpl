@@ -25,8 +25,7 @@
       </label>
     </div>
   </p>
-  <ul class="media-list isotope">
-  </ul>
+  {% include '@news/news-list.tpl' with {'news': news} %}
 {% endblock content %}
 {% block css %}
   <link href="/css/news/default.css" rel="stylesheet">

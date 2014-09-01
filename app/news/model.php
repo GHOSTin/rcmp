@@ -19,23 +19,23 @@ class model {
   public function edit_news($id, $title, $description){
     $em = di::get('em');
     $news = $em->find('\app\news\news', $id);
-    if($news->get_user() != di::get('user'))
-      return $news;
-    $news->set_title($title);
-    $news->set_description($description);
-    $em->persist($news);
-    $em->flush();
+    if($news->get_user() == di::get('user') or di::get('user')->isNewsAdmin()){
+      $news->set_title($title);
+      $news->set_description($description);
+      $em->flush();
+    }
     return $news;
   }
 
   public function delete_news($id){
     $em = di::get('em');
     $news = $em->find('\app\news\news', $id);
-    if($news->get_user() != di::get('user'))
-      return $news;
-    $em->remove($news);
-    $em->flush();
-    return $id;
+    if($news->get_user() == di::get('user') or di::get('user')->isNewsAdmin()){
+      $em->remove($news);
+      $em->flush();
+      return $id;
+    }
+    return null;
   }
 
 } 
