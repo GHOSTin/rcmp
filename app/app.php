@@ -10,21 +10,18 @@ use \Pimple\Container as Pimple;
 class app extends \boxxy\classes\app {
   public function execute_before_request_block(){
     $pimple = new Pimple();
-    $pimple['em'] = $pimple->factory(function($pimple){
-      $paths = array(__DIR__);
-      $isDevMode = (\app\conf::status == 'development')? true: false;
-      $dbParams = array(
-          'driver'   => 'pdo_mysql',
-          'host'     => \app\conf::db_host,
-          'user'     => \app\conf::db_user,
-          'password' => \app\conf::db_password,
-          'dbname'   => \app\conf::db_name,
-          'charset'  => 'utf8'
-      );
-
-      $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
-      return EntityManager::create($dbParams, $config);
-    });
+    $paths = array(__DIR__);
+    $isDevMode = (\app\conf::status == 'development')? true: false;
+    $dbParams = array(
+        'driver'   => 'pdo_mysql',
+        'host'     => \app\conf::db_host,
+        'user'     => \app\conf::db_user,
+        'password' => \app\conf::db_password,
+        'dbname'   => \app\conf::db_name,
+        'charset'  => 'utf8'
+    );
+    $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+    $pimple['em'] = EntityManager::create($dbParams, $config);
 
     $pimple['\app\php'] = function ($pimple) {
       return new \app\php();
@@ -36,7 +33,6 @@ class app extends \boxxy\classes\app {
       return new \app\news\model();
     };
     di::set_instance($pimple);
-    $php = di::get('\app\php');
     if(isset($_COOKIE['uid'])){
       $session = di::get('em')->find('\app\session\session', $_COOKIE['uid']);
       if(is_null($session)){
