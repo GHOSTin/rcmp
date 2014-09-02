@@ -4,6 +4,7 @@ namespace app\podcasts;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 /**
@@ -35,6 +36,11 @@ class podcast {
    * @var
    */
   private $url;
+  /**
+   * @OneToMany(targetEntity="\app\news\news", mappedBy="podcast")
+   * @var
+   */
+  private $news;
 
   public function set_alias($alias)
   {
@@ -78,6 +84,22 @@ class podcast {
   public function get_url()
   {
     return $this->url;
+  }
+
+  /**
+   * @param mixed $news
+   */
+  public function set_news($news)
+  {
+    $this->news = $news;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function get_news()
+  {
+    return $this->news;
   }
 
 } 
