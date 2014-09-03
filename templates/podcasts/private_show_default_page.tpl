@@ -1,7 +1,7 @@
 {% extends "public.tpl" %}
 {% block content %}
   {% if user.isPodcastAdmin() %}
-  <p><button class="btn btn-success" id="new-podcast"><i class="glyphicon glyphicon-plus"></i> Добавить подкаст</button></p>
+  <p><button class="btn btn-success" id="new-podcast"><i class="fa fa-plus"></i> Добавить подкаст</button></p>
   {% endif %}
   <p>
   {% include '@podcasts/podcast-list.tpl' with {'podcasts': response.podcasts} %}

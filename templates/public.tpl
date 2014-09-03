@@ -8,6 +8,7 @@
   <meta name="author" content="Торонто, Виндзор, Umputun, Podcast, Иммиграция в Канаду, Подкаст, RPOD, Жизнь в Канаде">
   <meta charset="utf-8">
   <link rel="stylesheet" href="/css/bootstrap.min.css?v=1">
+  <link href="/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/default.css">
   <link rel="shortcut icon" href="favicon.ico">
   {% block css %}{% endblock css %}

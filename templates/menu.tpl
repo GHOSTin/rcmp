@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/" ><i class="glyphicon glyphicon-home"></i></a>
+      <a class="navbar-brand" href="/" ><i class="fa fa-home"></i></a>
     </div>
     <div class="collapse navbar-collapse" id="nav-collapse">
       <ul class="nav navbar-nav">
@@ -62,8 +62,8 @@
         <div class="jp-type-single">
           <div class="jp-gui jp-interface">
             <ul class="jp-controls">
-              <li><a href="javascript:;" class="jp-play" tabindex="1" style="display: block;"><i class="glyphicon glyphicon-play"></i></a></li>
-              <li><a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;"><i class="glyphicon glyphicon-stop"></i></a></li>
+              <li><a href="javascript:;" class="jp-play" tabindex="1" style="display: block;"><i class="fa fa-play"></i></a></li>
+              <li><a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;"><i class="fa fa-stop"></i></a></li>
             </ul>
             <div class="jp-volume-bar">
               <div class="jp-volume-bar-value" style="width: 80%;"></div>

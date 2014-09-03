@@ -1,4 +1,4 @@
-<li class="media">
+<li class="media" data-id="{{ podcast.get_time() }}">
   <div class="media-body">
     <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}</h4>
     <div class="list-group-item-text">
@@ -8,16 +8,18 @@
           <li>- {{ news.get_title() }}</li>
         {% endfor %}
       </ul>
-      <iframe height="60" class="col-xs-12" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
+      {% if podcast.get_url() is not empty %}
+        <iframe height="60" class="col-xs-12" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
+      {% endif %}
     </div>
     {% if user.isPodcastAdmin() %}
       <div class="btn-group btn-group-sm tools">
-        <button type="button" class="btn btn-default edit_news">
-          <i class="glyphicon glyphicon-pencil"></i>
+        <button type="button" class="btn btn-default edit_podcast">
+          <i class="fa fa-pencil-square-o"></i>
           <span class="hidden-sm hidden-xs"> Редактировать</span>
         </button>
-        <button type="button" class="btn btn-default delete_news">
-          <i class="glyphicon glyphicon-trash"></i>
+        <button type="button" class="btn btn-default delete_podcast">
+          <i class="fa fa-trash"></i>
           <span class="hidden-sm hidden-xs"> Удалить</span>
         </button>
       </div>

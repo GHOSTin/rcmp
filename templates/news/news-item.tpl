@@ -1,6 +1,6 @@
 <li class="media" data-id="{{ item.get_id() }}">
   {% if user.isNewsAdmin() %}
-    <div class="pull-left" style="padding-top: 28px;">
+    <div class="pull-left" style="padding-top: 28px; width: 28px">
       <label>
         <input type="checkbox" name="attached[]">
         <span></span>
@@ -9,12 +9,12 @@
   {% endif %}
   <div class="pull-left news-rating">
     <p>{% if not item.isVoted() and user is not null %}
-        <a href="#up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+        <a href="#up"><i class="fa fa-chevron-up"></i></a>
       {% endif %}
     </p>
     <p class="rating">{{ item.get_rating() }}</p>
     <p>{% if not item.isVoted() and user is not null %}
-        <a href="#down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+        <a href="#down"><i class="fa fa-chevron-down"></i></a>
       {% endif %}
     </p>
   </div>
@@ -26,11 +26,11 @@
     {% if item.get_user() == user or user.isNewsAdmin() %}
       <div class="btn-group btn-group-sm tools">
         <button type="button" class="btn btn-default edit_news">
-          <i class="glyphicon glyphicon-pencil"></i>
+          <i class="fa fa-pencil-square-o"></i>
           <span class="hidden-sm hidden-xs"> Редактировать</span>
         </button>
         <button type="button" class="btn btn-default delete_news">
-          <i class="glyphicon glyphicon-trash"></i>
+          <i class="fa fa-trash"></i>
           <span class="hidden-sm hidden-xs"> Удалить</span>
         </button>
       </div>
