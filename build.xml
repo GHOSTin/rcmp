@@ -13,9 +13,12 @@
         <include name="**/*.php"/>
     </fileset>
     <target name="main"  depends="composer, phplint, clean, tar">
+<<<<<<< HEAD
     </target>
     <target name="composer">
         <exec command="composer update" passthru="true" checkreturn="true" />
+=======
+>>>>>>> master
     </target>
     <target name="phplint">
         <phplint haltonfailure="true">
@@ -30,6 +33,9 @@
             </fileset>
         </delete>
     </target>
+    <target name="composer">
+        <exec command="composer update" passthru="true" checkreturn="true" />
+      </target>
     <target name="tar">
         <tar destfile="${BUILD_DIR}/rcmp.tar.gz" compression="gzip">
             <fileset refid="app" />
