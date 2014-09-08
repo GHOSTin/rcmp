@@ -6,16 +6,6 @@
     Для того чтобы оставить новость для обсуждения или проголосовать, <a href="/login/" class="alert-link">авторизуйтесь</a>.
   </div>
   <p>
-    <div class="btn-group news-status" data-toggle="buttons">
-      <label class="btn btn-default active">
-        <input type="radio" name="status" id="active" checked>Активные темы
-      </label>
-      <label class="btn btn-default">
-        <input type="radio" name="status" id="history">Темы прошлых выпусков
-      </label>
-    </div>
-  </p>
-  <p>
     <div id="sorts" class="btn-group btn-group-xs" data-toggle="buttons">
       <label class="btn btn-default active">
         <input type="radio" name="sort" data-sort-value="date, id" checked>По дате добавления
