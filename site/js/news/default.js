@@ -1,5 +1,19 @@
 $(document).ready(function(){
     var $container;
+    // init Isotope
+    $container = $('.isotope').isotope({
+        layoutMode: 'vertical',
+        getSortData: {
+            date: '.date parseInt',
+            rating: '.rating parseInt'
+        },
+        sortAscending: {
+            date: false,
+            rating: false
+        }
+    });
+    $container.isotope({ sortBy: ['rating', 'date'] });
+
     $('body').on('click', '#new-news', function(){
         $.get('get_dialog_new_news/',{
         },function(r){
@@ -17,7 +31,7 @@ $(document).ready(function(){
         }, function(r){
             show_content(r);
             $('.isotope').isotope('reloadItems');
-            $('#sorts').trigger('change');
+            $container.isotope('updateSortData').isotope();
         });
     }).on('click', '.edit_news', function(){
         $.get('/news/get_dialog_edit_news/', {
@@ -37,7 +51,7 @@ $(document).ready(function(){
             }, function(r){
                 show_content(r);
                 $('.isotope').isotope('reloadItems');
-                $('#sorts').trigger('change');
+                $container.isotope('updateSortData').isotope();
             });
         }
     }).on('click', '.send_news', function(){
@@ -49,7 +63,7 @@ $(document).ready(function(){
                 $('.dialog').modal('hide');
                 $('.news-feed').append(r);
                 $('.isotope').isotope('reloadItems');
-                $('#sorts').trigger('change');
+                $container.isotope('updateSortData').isotope();
             });
     }).on('click', '.send_edit_news', function(){
             var id = $('.news_id').text();
@@ -62,7 +76,7 @@ $(document).ready(function(){
                     $('.dialog').modal('hide');
                     $('.news-feed').find('li[data-id='+id+']').replaceWith(r);
                     $('.isotope').isotope('reloadItems');
-                    $('#sorts').trigger('change');
+                    $container.isotope('updateSortData').isotope();
                 });
     }).on('click', '.attach', function(){
         if($('#attach_podcast').val()){
@@ -76,30 +90,9 @@ $(document).ready(function(){
             }, function(r){
                 show_content(r);
                 $('.isotope').isotope('reloadItems');
-                $('#sorts').trigger('change');
+                $container.isotope('updateSortData').isotope();
             });
         }
     });
-
-    // bind sort button click
-    $('#sorts').on( 'change', function() {
-        // init Isotope
-        $container = $('.isotope').isotope({
-            layoutMode: 'vertical',
-            getSortData: {
-                number: '[data-id] parseInt',
-                date: '.date parseInt',
-                rating: '.rating parseInt'
-            },
-            sortAscending: {
-                number: false,
-                date: false,
-                rating: false
-            }
-        });
-        var sortValue = $(this).find('input[name=sort]:checked').attr('data-sort-value');
-        sortValue = sortValue.split(',');
-        $container.isotope({ sortBy: sortValue });
-    }).trigger('change');
 
 });

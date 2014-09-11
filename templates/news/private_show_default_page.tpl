@@ -17,16 +17,6 @@
     </div>
   </p>
   {% endif %}
-  <p>
-  <div id="sorts" class="btn-group btn-group-xs" data-toggle="buttons">
-    <label class="btn btn-default active">
-      <input type="radio" name="sort" data-sort-value="date, number" checked>По дате добавления
-    </label>
-    <label class="btn btn-default">
-      <input type="radio" name="sort" data-sort-value="rating, date">По рейтингу
-    </label>
-  </div>
-  </p>
   {% include '@news/news-list.tpl' with {'news': news} %}
 {% endblock content %}
 {% block css %}

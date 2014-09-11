@@ -5,16 +5,6 @@
     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     Для того чтобы оставить новость для обсуждения или проголосовать, <a href="/login/" class="alert-link">авторизуйтесь</a>.
   </div>
-  <p>
-    <div id="sorts" class="btn-group btn-group-xs" data-toggle="buttons">
-      <label class="btn btn-default active">
-        <input type="radio" name="sort" data-sort-value="date, id" checked>По дате добавления
-      </label>
-      <label class="btn btn-default">
-        <input type="radio" name="sort" data-sort-value="rating, date">По рейтингу
-      </label>
-    </div>
-  </p>
   {% include '@news/news-list.tpl' with {'news': news} %}
 {% endblock content %}
 {% block css %}
