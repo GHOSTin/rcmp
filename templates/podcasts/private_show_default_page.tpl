@@ -8,8 +8,10 @@
 {% endblock content %}
 {% block css %}
   <link href="/css/podcasts/default.css" rel="stylesheet">
+  <link href="/css/datepicker.css" rel="stylesheet">
 {% endblock %}
 {% block js %}
   <script src="/js/default.js"></script>
   <script src="/js/podcasts/default.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
 {% endblock %}

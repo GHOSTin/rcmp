@@ -20,3 +20,9 @@
 .podcasts-feed > li .media-body:hover .tools{
     display: block;
 }
+
+.form-control#time[readonly] {
+    display: inline-block;
+    cursor: default;
+    background-color: #fff;
+}

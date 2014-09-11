@@ -7,6 +7,7 @@ $(document).ready(function(){
     }).on('click', '.send_podcast', function(){
         if(($('#title').val() != '' && $('#alias').val() != ''))
             $.get('/podcasts/save_podcast/', {
+                time: $('#time').val(),
                 title: $('#title').val(),
                 alias: $('#alias').val(),
                 url: $('#url').val()||null
@@ -25,6 +26,7 @@ $(document).ready(function(){
         if(($('#title').val() != '' && $('#alias').val() != ''))
             $.post('/podcasts/edit_podcast/', {
                 id: id,
+                time: $('#time').val(),
                 title: $('#title').val(),
                 alias: $('#alias').val(),
                 url: $('#url').val()||null
@@ -40,5 +42,12 @@ $(document).ready(function(){
                 show_content(r);
             });
         }
+    }).on('click', 'a[id^="news_"]', function(){
+        $.post('/podcasts/change_news/', {
+            id: $('.podcast_id').text(),
+            news_id: $(this).attr('id').split('_')[1]
+        }, function(r){
+            $('#attachNews').find('.panel-body').html(r);
+        });
     });
 });
