@@ -12,6 +12,7 @@
     "require": {
         "doctrine/orm": "*",
         "twig/twig": "1.*",
+        "jasny/twig-extensions": "dev-master",
         "pimple/pimple": "~3.0",
         "boxxy/commons":"846"
     },

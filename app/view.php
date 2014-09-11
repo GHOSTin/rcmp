@@ -1,5 +1,7 @@
 <?php namespace app;
 
+use \Jasny\Twig\PcreExtension;
+use \Jasny\Twig\TextExtension;
 use \RuntimeException;
 use \boxxy\classes\di;
 use \boxxy\classes\request;
@@ -27,6 +29,8 @@ class view extends \boxxy\classes\view {
     $twig = new \Twig_Environment($loader);
     require_once($root.'libs/BBCodeExtension.php');
     $twig->addExtension(new \BBCodeExtension());
+    $twig->addExtension(new PcreExtension());
+    $twig->addExtension(new TextExtension());
     return $twig->render($template_name, $response);
   }
 

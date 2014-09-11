@@ -1,3 +1,4 @@
+{% set pattern = '' %}
 <li class="media" data-id="{{ podcast.get_time() }}">
   <div class="media-body">
     <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}</h4>
@@ -5,7 +6,14 @@
       <h5>Обсужденные темы:</h5>
       <ul class="list-unstyled col-xs-12" style="margin-bottom: 15px;">
         {% for news in podcast.get_news() %}
-          <li>- {{ news.get_title() }}</li>
+          <li>
+            - {{ news.get_title() }} (
+            {% for link in news.get_description()|preg_get_all('/\\[url=((?:ftp|https?):\\/\\/.*?)\\].*?\\[\\/url\\]/', 1) %}
+              <a href="{{ link }}">{{ link|truncate(35) }}</a>
+              {% if not loop.last %}, {% endif %}
+            {% endfor %}
+            )
+          </li>
         {% endfor %}
       </ul>
       {% if podcast.get_url() is not empty %}
