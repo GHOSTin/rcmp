@@ -33,9 +33,7 @@
           </ul>
         </li>
         <li><a href="/donation/">Помощь подкасту</a></li>
-        {% if user is not empty %}
           <li><a href="/podcasts/">Список подкастов</a></li>
-        {% endif %}
         <li><a style="color:#a94442;" href="/news/"><strong>[Обсудить]</strong></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
