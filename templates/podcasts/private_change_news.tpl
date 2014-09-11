@@ -1,0 +1,1 @@
+{% include '@podcasts/news_list.tpl' with {'podcast': response.podcast} %}
