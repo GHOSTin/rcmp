@@ -2,7 +2,6 @@
 <project name="rcmp" default="main" basedir=".">
     <property name="BUILD_DIR" value="${project.basedir}/builds/" override="false"/>
     <fileset id="app" dir="${project.basedir}">
-        <include name="**/**"/>
         <exclude name="build.xml"/>
         <exclude name="app/conf.php"/>
         <exclude name="builds/**"/>
