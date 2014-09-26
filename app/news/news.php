@@ -185,7 +185,9 @@ class news {
   }
 
   public function isVoted(){
-    $votes = $this->get_votes();
+    if ($this->user == di::get('user'))
+      return true;
+    $votes = $this->votes;
     if($votes)
       return $votes->contains(di::get('user'));
     return false;
