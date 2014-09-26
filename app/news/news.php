@@ -61,7 +61,7 @@ class news {
    */
   private $votes;
   /**
-   * @ManyToOne(targetEntity="\app\podcasts\podcast")
+   * @ManyToOne(targetEntity="\app\podcasts\podcast", inversedBy="news")
    * @JoinColumn(name="podcast_id", referencedColumnName="time")
    * @var \app\podcasts\podcast|null
    */
