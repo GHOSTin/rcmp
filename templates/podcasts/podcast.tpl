@@ -8,7 +8,7 @@
         {% for news in podcast.get_news() %}
           <li>
             - {{ news.get_title() }} (
-            {% for link in news.get_description()|preg_get_all('/\\[url=((?:ftp|https?):\\/\\/.*?)\\].*?\\[\\/url\\]/', 1) %}
+            {% for link in news.get_description()|preg_get_all('/\\[url=((?:ftp|https?):\\/\\/.*?)\\].*\\n?\\[\\/url\\]/', 1) %}
               <a href="{{ link }}">{{ link|truncate(35) }}</a>
               {% if not loop.last %}, {% endif %}
             {% endfor %}
