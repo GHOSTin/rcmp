@@ -8,7 +8,6 @@
 })(jQuery);
 function getLastVideo(data){
     var $container = $('#LastVideo');
-    console.debug(JSON.parse(data).podcast);
     if(!data.error) {
         var entry = JSON.parse(data).podcast;
         $container.find('.panel-title span').html(entry.title);
@@ -56,10 +55,15 @@ $(document).ready(function(){
                     },
                     pause: function() {
                         $(this).jPlayer("clearMedia");
+                        localforage.setItem('playerStatus', 'stop');
+                    },
+                    play: function() {
+                        localforage.setItem('playerStatus', 'play');
                     },
                     error: function(event) {
                         if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
                             $(this).jPlayer("setMedia", stream).jPlayer("play");
+                            localforage.setItem('playerStatus', 'play');
                         }
                     },
                     swfPath: "../js",
@@ -71,7 +75,12 @@ $(document).ready(function(){
                 $('.page-header').prepend('<img src="/images/online.png" class="img-responsive img-online">');
                 $('body').addClass('online');
             }
+            localforage.getItem('playerStatus')
+                .then(function(res){
+                    if(res){
+                        $("#jquery_jplayer").jPlayer(res.toString());
+                    }
+                });
         }
     });
-    $.post()
 });
