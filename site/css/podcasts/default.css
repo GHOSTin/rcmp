@@ -26,3 +26,27 @@
     cursor: default;
     background-color: #fff;
 }
+input[type="radio"] {
+    display:none;
+}
+
+input[type="radio"] + span:before {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 24px;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input[type="radio"] + span:before {
+    content: "\f10c"; /* unchecked */
+}
+
+input[type="radio"]:checked + span:before {
+    content: "\f05d";; /* check */
+}

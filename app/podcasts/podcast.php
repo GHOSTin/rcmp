@@ -41,6 +41,11 @@ class podcast {
    * @var
    */
   private $news;
+  /**
+   * @Column(name="showing", type="integer")
+   * @var
+   */
+  private $showPodcast;
 
   public function set_alias($alias)
   {
@@ -100,6 +105,26 @@ class podcast {
   public function get_news()
   {
     return $this->news;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function get_showPodcast()
+  {
+    return $this->showPodcast;
+  }
+
+  /**
+   * @param mixed $showPodcast
+   */
+  public function set_showPodcast($showPodcast)
+  {
+    $this->showPodcast = $showPodcast;
+  }
+
+  public function isShowPodcast(){
+    return (boolean)$this->showPodcast;
   }
 
 } 

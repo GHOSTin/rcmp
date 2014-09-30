@@ -200,3 +200,18 @@ a+.btn-inverse{
         display: none;
     }
 }
+
+.datepicker.dropdown-menu th,
+.datepicker.datepicker-inline th,
+.datepicker.dropdown-menu td,
+.datepicker.datepicker-inline td {
+    padding: 0px 5px;
+}
+@media only screen
+and (orientation : landscape){
+    .datepicker table tr td,
+    .datepicker table tr th{
+        width: 25px;
+        height: 25px;
+    }
+}
