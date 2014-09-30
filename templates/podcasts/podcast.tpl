@@ -1,5 +1,17 @@
 {% set pattern = '' %}
 <li class="media" data-id="{{ podcast.get_time() }}">
+  {% if user.isPodcastAdmin() %}
+    <div class="pull-left" style="padding-top: 28px; width: 28px">
+      <label>
+        <input type="radio" name="mainPodcast" value="{{ podcast.get_time() }}"
+            {% if podcast.isShowPodcast() %}
+              checked
+            {% endif %}
+            >
+        <span></span>
+      </label>
+    </div>
+  {% endif %}
   <div class="media-body">
     <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}</h4>
     <div class="list-group-item-text">

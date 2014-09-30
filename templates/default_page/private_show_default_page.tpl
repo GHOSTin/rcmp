@@ -35,5 +35,10 @@
 {% include "@default_page/donation.tpl" %}
 {% endblock content %}
 {% block js %}
-  <script src="http://gdata.youtube.com/feeds/api/users/cndlos/uploads?v=2&alt=json-in-script&format=5&max-results=1&callback=getLastVideo"></script>
+  <script defer="defer">
+    $(document).ready(function(){
+      $.post('/api/get_show_podcast/', {})
+          .done(function(response){getLastVideo(response)});
+    });
+  </script>
 {% endblock %}

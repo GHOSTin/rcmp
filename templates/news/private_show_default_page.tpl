@@ -21,11 +21,11 @@
 {% endblock content %}
 {% block css %}
   <link href="/css/news/default.css" rel="stylesheet">
-  <link href="/css/wbbtheme.css" rel="stylesheet">
+  <link href="/public/components/jqjquery-wysibb/theme/default/wbbtheme.css" rel="stylesheet">
 {% endblock %}
 {% block js %}
-  <script src="/js/jquery.wysibb.min.js"></script>
-  <script src="/js/jquery.wysibb-ru-RU.js"></script>
+  <script src="/public/components/jqjquery-wysibb/jquery.wysibb.min.js"></script>
+  <script src="/public/components/jqjquery-wysibb/lang/ru.js"></script>
   <script src="/js/news/isotope.min.js"></script>
   <script src="/js/default.js"></script>
   <script src="/js/news/default.js"></script>

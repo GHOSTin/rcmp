@@ -7,8 +7,8 @@
   <meta name="description" content="Подкаст Канадского Лося и Со. - жизнь иммигрантов в Канаде.">
   <meta name="author" content="Торонто, Виндзор, Umputun, Podcast, Иммиграция в Канаду, Подкаст, RPOD, Жизнь в Канаде">
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/css/bootstrap.min.css?v=1">
-  <link href="/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/components/bootstrap/dist/css/bootstrap.min.css?v=1">
+  <link href="/public/components/Font-Awesome/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/default.css">
   <link rel="shortcut icon" href="favicon.ico">
   {% block css %}{% endblock css %}
@@ -31,9 +31,10 @@
       </div>
     </div>
   </footer>
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/jquery.jplayer.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
+  <script src="/public/components/jquery/dist/jquery.min.js"></script>
+  <script src="/public/components/jplayer/jquery.jplayer/jquery.jplayer.js"></script>
+  <script src="/public/components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/public/components/localforage/dist/localforage.min.js"></script>
   <script src="/js/default.js"></script>
   <script src="/js/main.js"></script>
   {% block js %}{% endblock js %}
