@@ -2,3 +2,4 @@
 /builds/
 composer.lock
 app/conf.php
+/site/public/

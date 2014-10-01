@@ -34,7 +34,7 @@
         <exec command="bower update" passthru="true" checkreturn="true" />
       </target>
     <target name="tar">
-        <tar destfile="${BUILD_DIR}/rcmp.tar.gz" compression="gzip">
+        <tar destfile="${BUILD_DIR}/${phing.project.name}.tar.gz" compression="gzip">
             <fileset refid="app" />
         </tar>
     </target>
