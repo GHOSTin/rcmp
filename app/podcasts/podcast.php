@@ -42,10 +42,10 @@ class podcast {
    */
   private $news;
   /**
-   * @Column(name="showing", type="integer")
+   * @Column(name="showing", type="integer", options={"default":0})
    * @var
    */
-  private $showPodcast;
+  private $showPodcast = 0;
 
   public function set_alias($alias)
   {
