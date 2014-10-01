@@ -6,15 +6,21 @@
     display: inline-block;
     width: 100%;
 }
-/*.news-feed > li:first-child {*/
-    /*border-top: none;*/
-/*}*/
 
 .tools {
     position: absolute;
     right: 10px;
     top: 10px;
     display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .tools {
+        display: inline-block;
+    }
+    .podcasts-feed .media-heading{
+        padding-right: 74px;
+    }
 }
 
 .podcasts-feed > li .media-body:hover .tools{
