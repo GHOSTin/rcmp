@@ -10,7 +10,7 @@
           {
             "title":"{{ news.get_title() }}",
             "urls":[
-              {% for link in news.get_description()|preg_get_all('/\\[url=((?:ftp|https?):\\/\\/.*?)\\].*\\n?\\[\\/url\\]/', 1) %}
+              {% for link in news.get_urls() %}
                 {
                   "url":"{{ link }}",
                   "title":"{{ link|truncate(35) }}"

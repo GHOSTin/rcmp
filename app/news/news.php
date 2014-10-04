@@ -209,4 +209,10 @@ class news {
     return $this->podcast;
   }
 
+  public function get_urls(){
+    preg_match_all('/\\[url=((?:ftp|https?):\\/\\/.*?)\\].*\\n?\\[\\/url\\]/',
+        $this->description, $matches, PREG_PATTERN_ORDER );
+    return isset($matches[1]) ? $matches[1] : array();
+  }
+
 }

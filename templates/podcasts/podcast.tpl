@@ -19,8 +19,8 @@
       <ul class="list-unstyled col-xs-12" style="margin-bottom: 15px;">
         {% for news in podcast.get_news() %}
           <li>
-            - {{ news.get_title() }} (
-            {% for link in news.get_description()|preg_get_all('/\\[url=((?:ftp|https?):\\/\\/.*?)\\].*\\n?\\[\\/url\\]/', 1) %}
+            {{ news.get_title() }} (
+            {% for link in news.get_urls() %}
               <a href="{{ link }}">{{ link|truncate(35) }}</a>
               {% if not loop.last %}, {% endif %}
             {% endfor %}
