@@ -25,13 +25,24 @@
     width: 100%;
 }
 
+.tools {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: none;
+}
+
 @media screen and (max-width: 1024px) {
+    .tools {
+        display: inline-block;
+    }
     .news-rating{
         width: 32px;
     }
 }
 
 .news-feed > li .media-body:hover .tools{
+    display: block;
 }
 
 input[type="checkbox"] {

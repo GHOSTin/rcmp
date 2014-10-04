@@ -17,7 +17,7 @@ function getLastVideo(data){
             $container.find('.panel-body #description').append('<ul class="list-unstyled"></ul>');
             for(var id in entry.news){
                 var news = '';
-                news += '<li>'+entry.news[id].title;
+                news += '<li>-'+entry.news[id].title;
                 if(entry.news[id].urls){
                     news += ' (';
                     news += entry.news[id].urls.map(function(elem){
@@ -29,8 +29,6 @@ function getLastVideo(data){
                 $container.find('.panel-body #description ul').append(news);
             }
         }
-    } else {
-        $container.remove();
     }
 }
 $(document).ready(function(){
