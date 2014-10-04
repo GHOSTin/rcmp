@@ -49,9 +49,11 @@ $(document).ready(function(){
         }, function(r){
             $('#attachNews').find('.panel-body').html(r);
         });
-    }).on('change', 'input[type=radio]', function(){
-        $.post('/podcasts/change_showing_podcast', {
-            id: $(this).val()
+    }).on('click', '.main_podcast', function(){
+        $.post('/podcasts/change_showing_podcast/', {
+            id: $(this).attr('data-id')
+        }).done(function(res){
+            $('.podcasts-feed').replaceWith(res);
         });
     });
 });

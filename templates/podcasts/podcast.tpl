@@ -1,19 +1,26 @@
-{% set pattern = '' %}
-<li class="media" data-id="{{ podcast.get_time() }}">
-  {% if user.isPodcastAdmin() %}
-    <div class="pull-left" style="padding-top: 28px; width: 28px">
-      <label>
-        <input type="radio" name="mainPodcast" value="{{ podcast.get_time() }}"
-            {% if podcast.isShowPodcast() %}
-              checked
-            {% endif %}
-            >
-        <span></span>
-      </label>
-    </div>
-  {% endif %}
+<li class="media">
   <div class="media-body">
-    <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}</h4>
+    <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}
+      {% if podcast.isShowPodcast() %}<small>Подкаст отображается на главной странице</small>{% endif %}
+    </h4>
+    {% if user.isPodcastAdmin() %}
+      <div class="btn-group btn-group-xs tools">
+        <button type="button" class="btn btn-default edit_podcast">
+          <i class="fa fa-pencil-square-o"></i>
+          <span class="hidden-sm hidden-xs"> Редактировать</span>
+        </button>
+        <button type="button" class="btn btn-default delete_podcast">
+          <i class="fa fa-trash"></i>
+          <span class="hidden-sm hidden-xs"> Удалить</span>
+        </button>
+        {% if not podcast.isShowPodcast() %}
+        <button type="button" class="btn btn-default main_podcast" data-id="{{ podcast.get_time() }}">
+          <i class="fa fa-tags"></i>
+          <span class="hidden-sm hidden-xs"> Поместить на главную</span>
+        </button>
+        {% endif %}
+      </div>
+    {% endif %}
     <div class="list-group-item-text">
       <h5>Обсужденные темы:</h5>
       <ul class="list-unstyled col-xs-12" style="margin-bottom: 15px;">
@@ -32,17 +39,5 @@
         <iframe height="60" class="col-xs-12" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
       {% endif %}
     </div>
-    {% if user.isPodcastAdmin() %}
-      <div class="btn-group btn-group-sm tools">
-        <button type="button" class="btn btn-default edit_podcast">
-          <i class="fa fa-pencil-square-o"></i>
-          <span class="hidden-sm hidden-xs"> Редактировать</span>
-        </button>
-        <button type="button" class="btn btn-default delete_podcast">
-          <i class="fa fa-trash"></i>
-          <span class="hidden-sm hidden-xs"> Удалить</span>
-        </button>
-      </div>
-    {% endif %}
   </div>
 </li>
