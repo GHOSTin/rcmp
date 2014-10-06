@@ -1,7 +1,7 @@
 <li class="media">
   <div class="media-body">
     <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}
-      {% if podcast.isShowPodcast() %}<small>Подкаст отображается на главной странице</small>{% endif %}
+      {% if podcast.isShowPodcast() %}<small><i class="fa fa-tags" style="color:#d9534f" title="Подкаст отображается на главной странице сайта"></i>{% endif %}
     </h4>
     {% if user.isPodcastAdmin() %}
       <div class="btn-group btn-group-xs tools">
