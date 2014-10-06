@@ -14,23 +14,6 @@
         "twig/twig": "1.*",
         "jasny/twig-extensions": "dev-master",
         "pimple/pimple": "~3.0",
-        "boxxy/commons":"846"
-    },
-    "repositories":[
-        {
-            "type":"package",
-            "package":{
-                "name":"boxxy/commons",
-                "version":"846",
-                "source":{
-                    "type":"git",
-                    "url":"ssh://git@rus-20-1.mlsco.ru:9000/boxxy-commons",
-                    "reference":"master"
-                },
-                "autoload":{
-                    "psr-4": {"boxxy\\": "/"}
-                }
-            }
-        }
-    ]
+        "boxxy/commons":"dev-master"
+    }
 }
