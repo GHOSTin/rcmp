@@ -1,7 +1,7 @@
 {% extends "public.tpl" %}
 {% set news = response.news %}
 {% block content %}
-  <p><button class="btn btn-success" id="new-news"><i class="fa fa-plus"></i> Добавить новость для обсуждения</button></p>
+  <p><button class="btn btn-success" id="new-news"><i class="fa fa-plus"></i> Добавить тему для обсуждения</button></p>
   {% if user.isNewsAdmin() %}
   <p>
     <div class="input-group col-md-5">
