@@ -20,7 +20,7 @@
   </div>
   <div class="media-body">
     <span class="date sr-only">{{ item.get_pubtime() }}</span>
-    <h6><span class="text-primary" style="text-decoration: underline">{{ item.get_user().get_nickname() }}</span> {{ item.get_pubtime()|date('d.m.Y H:i') }}</h6>
+    <h6>{{ item.get_user().get_nickname() }} предложил(а) тему:</h6>
     {% if item.get_user() == user or user.isNewsAdmin() %}
       <p>
         <div class="btn-group btn-group-xs tools">
