@@ -3,7 +3,7 @@
 {% block content %}
   <div class="alert alert-warning alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    Для того чтобы оставить новость для обсуждения или проголосовать, <a href="/login/" class="alert-link">авторизуйтесь</a>.
+    Для того чтобы оставить тему для обсуждения или проголосовать, <a href="/login/" class="alert-link">авторизуйтесь</a>.
   </div>
   {% include '@news/news-list.tpl' with {'news': news} %}
 {% endblock content %}
