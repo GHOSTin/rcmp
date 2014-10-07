@@ -161,6 +161,7 @@ a+.btn-inverse{
 }
 .page-header{
     position: relative;
+    border-bottom: none;
 }
 .page-header h1{
     z-index: 1;
