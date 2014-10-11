@@ -107,6 +107,11 @@ class podcast {
     return $this->news;
   }
 
+  public function add_news(\app\news\news $news)
+  {
+    $this->news->add($news);
+  }
+
   /**
    * @return mixed
    */

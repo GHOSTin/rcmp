@@ -10,7 +10,8 @@ $(document).ready(function(){
                 time: $('#time').val(),
                 title: $('#title').val(),
                 alias: $('#alias').val(),
-                url: $('#url').val()||null
+                url: $('#url').val()||null,
+                podcasts: $('#podcasts').val()||null
             }, function(r){
                 $('.dialog').modal('hide');
                 $('.podcasts-feed').prepend(r);
@@ -20,6 +21,17 @@ $(document).ready(function(){
             podcast_id: $(this).closest('li').attr('data-id')
         }, function(r){
             show_content(r);
+        }).done(function(){
+            $('#podcasts').multiSelect({
+                selectableHeader: "<div class='custom-header'>Все</div>",
+                selectionHeader: "<div class='custom-header'>Обсужденные</div>",
+                afterSelect: function(values){
+                    $('#counter').text(Number($('#podcasts').find(':selected').length));
+                },
+                afterDeselect: function(values){
+                    $('#counter').text(Number($('#podcasts').find(':selected').length));
+                }
+            });
         });
     }).on('click', '.send_edit_podcast', function(){
         var id = $('.podcast_id').text();
@@ -29,7 +41,8 @@ $(document).ready(function(){
                 time: $('#time').val(),
                 title: $('#title').val(),
                 alias: $('#alias').val(),
-                url: $('#url').val()||null
+                url: $('#url').val()||null,
+                podcasts: $('#podcasts').val()||null
             }, function(r){
                 $('.dialog').modal('hide');
                 $('.podcasts-feed').find('li[data-id='+id+']').replaceWith(r);
@@ -51,9 +64,15 @@ $(document).ready(function(){
         });
     }).on('click', '.main_podcast', function(){
         $.post('/podcasts/change_showing_podcast/', {
-            id: $(this).attr('data-id')
+            id: $(this).closest('li').attr('data-id')
         }).done(function(res){
             $('.podcasts-feed').replaceWith(res);
         });
+    }).on('click', '#select-all', function(){
+        $('#podcasts').multiSelect('select_all');
+        return false;
+    }).on('click', '#deselect-all', function(){
+        $('#podcasts').multiSelect('deselect_all');
+        return false;
     });
 });

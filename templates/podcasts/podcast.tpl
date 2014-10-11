@@ -1,4 +1,4 @@
-<li class="media">
+<li class="media" data-id="{{ podcast.get_time() }}">
   <div class="media-body">
     <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}
       {% if podcast.isShowPodcast() %}<i class="fa fa-tags" style="color:#d9534f" title="Подкаст отображается на главной странице сайта"></i>{% endif %}
@@ -14,7 +14,7 @@
           <span class="hidden-sm hidden-xs"> Удалить</span>
         </button>
         {% if not podcast.isShowPodcast() %}
-        <button type="button" class="btn btn-default main_podcast" data-id="{{ podcast.get_time() }}">
+        <button type="button" class="btn btn-default main_podcast">
           <i class="fa fa-tags"></i>
           <span class="hidden-sm hidden-xs"> Поместить на главную</span>
         </button>
