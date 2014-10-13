@@ -47,6 +47,10 @@ class podcast {
    */
   private $showPodcast = 0;
 
+  public function __construct(){
+    $this->news = new \Doctrine\Common\Collections\ArrayCollection();
+  }
+
   public function set_alias($alias)
   {
     if(!preg_match('/[0-9a-zA-Z]+/', $alias))

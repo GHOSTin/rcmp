@@ -55,13 +55,6 @@ $(document).ready(function(){
                 show_content(r);
             });
         }
-    }).on('click', 'a[id^="news_"]', function(){
-        $.post('/podcasts/change_news/', {
-            id: $('.podcast_id').text(),
-            news_id: $(this).attr('id').split('_')[1]
-        }, function(r){
-            $('#attachNews').find('.panel-body').html(r);
-        });
     }).on('click', '.main_podcast', function(){
         $.post('/podcasts/change_showing_podcast/', {
             id: $(this).closest('li').attr('data-id')
