@@ -78,21 +78,6 @@ $(document).ready(function(){
                     $('.isotope').isotope('reloadItems');
                     $container.isotope('updateSortData').isotope();
                 });
-    }).on('click', '.attach', function(){
-        if($('#attach_podcast').val()){
-            var myCheckboxes = new Array();
-            $(".news-feed input:checked").each(function() {
-                myCheckboxes.push($(this).closest('li').attr('data-id'));
-            });
-            $.post('/news/attach_news/', {
-                podcast: $('#attach_podcast').val(),
-                news: myCheckboxes
-            }, function(r){
-                show_content(r);
-                $('.isotope').isotope('reloadItems');
-                $container.isotope('updateSortData').isotope();
-            });
-        }
     });
 
 });

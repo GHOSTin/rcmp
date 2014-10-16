@@ -2,21 +2,6 @@
 {% set news = response.news %}
 {% block content %}
   <p><button class="btn btn-success" id="new-news"><i class="fa fa-plus"></i> Добавить тему</button></p>
-  {% if user.isNewsAdmin() %}
-  <p>
-    <div class="input-group col-md-5">
-      <span class="input-group-btn">
-        <button class="btn btn-success attach" type="button"><i class="fa fa-paperclip"></i> Привязать к</button>
-      </span>
-      <select type="text" class="form-control" id="attach_podcast">
-        <option></option>
-        {% for podcast in response.podcasts %}
-          <option value="{{ podcast.get_time() }}">{{ podcast.get_name() }}</option>
-        {% endfor %}
-      </select>
-    </div>
-  </p>
-  {% endif %}
   {% include '@news/news-list.tpl' with {'news': news} %}
 {% endblock content %}
 {% block css %}

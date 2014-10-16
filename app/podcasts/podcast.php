@@ -47,6 +47,10 @@ class podcast {
    */
   private $showPodcast = 0;
 
+  public function __construct(){
+    $this->news = new \Doctrine\Common\Collections\ArrayCollection();
+  }
+
   public function set_alias($alias)
   {
     if(!preg_match('/[0-9a-zA-Z]+/', $alias))
@@ -105,6 +109,11 @@ class podcast {
   public function get_news()
   {
     return $this->news;
+  }
+
+  public function add_news(\app\news\news $news)
+  {
+    $this->news->add($news);
   }
 
   /**

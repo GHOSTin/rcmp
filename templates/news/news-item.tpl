@@ -1,12 +1,4 @@
 <li class="media" data-id="{{ item.get_id() }}">
-  {% if user.isNewsAdmin() %}
-    <div class="pull-left" style="padding-top: 28px; width: 28px">
-      <label>
-        <input type="checkbox" name="attached[]">
-        <span></span>
-      </label>
-    </div>
-  {% endif %}
   <div class="pull-left news-rating">
     <p>{% if not item.isVoted() and user is not null %}
         <a href="#up"><i class="fa fa-chevron-up"></i></a>
