@@ -5,7 +5,7 @@
     <form action="/login/enter/" method="post" role="form">
       <div class="form-group">
         <label>Email:</label>
-        <input type="text" class="form-control" name="login">
+        <input type="text" class="form-control" name="login" autofocus>
       </div>
       <div class="form-group">
         <label>Пароль:</label>

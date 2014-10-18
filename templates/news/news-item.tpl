@@ -1,12 +1,4 @@
 <li class="media" data-id="{{ item.get_id() }}">
-  {% if user.isNewsAdmin() %}
-    <div class="pull-left" style="padding-top: 28px; width: 28px">
-      <label>
-        <input type="checkbox" name="attached[]">
-        <span></span>
-      </label>
-    </div>
-  {% endif %}
   <div class="pull-left news-rating">
     <p>{% if not item.isVoted() and user is not null %}
         <a href="#up"><i class="fa fa-chevron-up"></i></a>
@@ -20,7 +12,7 @@
   </div>
   <div class="media-body">
     <span class="date sr-only">{{ item.get_pubtime() }}</span>
-    <h6><span class="text-primary" style="text-decoration: underline">{{ item.get_user().get_nickname() }}</span> {{ item.get_pubtime()|date('d.m.Y H:i') }}</h6>
+    <h6>{{ item.get_user().get_nickname() }} предложил(а) тему:</h6>
     {% if item.get_user() == user or user.isNewsAdmin() %}
       <p>
         <div class="btn-group btn-group-xs tools">

@@ -16,16 +16,20 @@ class private_edit_podcast extends controller{
     if(di::get('user')->isPodcastAdmin()){
       $dtime = DateTime::createFromFormat("d.m.Y H:i:s", $request->get_property('time').' 00:00:00');
       $timestamp = $dtime->getTimestamp();
+      foreach ($podcast->get_news() as $news) {
+        $podcast->get_news()->removeElement($news);
+        $news->set_podcast(null);
+      }
       if($podcast->get_time() != $timestamp) {
         $show = $podcast->get_showPodcast();
-        $podcast_news = $podcast->get_news();
         $em->remove($podcast);
         $podcast = new podcast();
         $podcast->set_showPodcast($show);
-        $podcast->set_news($podcast_news);
-        foreach ($podcast_news as $news) {
-          $news->set_podcast($podcast);
-        }
+      }
+      foreach ($request->get_property('podcasts') as $id) {
+        $news = $em->find('\app\news\news', $id);
+        $news->set_podcast($podcast);
+        $podcast->add_news($news);
       }
       $podcast->set_time($timestamp);
       $podcast->set_name($request->get_property('title'));

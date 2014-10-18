@@ -28,13 +28,30 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" href="#attachNews">
-          Прикрепленные новости
-        </a><span class="label label-success">{{ podcast.get_news()|length }}</span>
+          Привязка новостей
+        </a><span class="label label-success" id="counter">{{ podcast.get_news()|length }}</span>
       </h4>
     </div>
     <div id="attachNews" class="panel-collapse collapse">
       <div class="panel-body">
-        {% include '@podcasts/news_list.tpl' with {'podcast': podcast} %}
+        <div class="btn-group">
+          <button type="button" class="btn btn-default" id="select-all">
+            <i class="fa fa-plus-square-o"></i>
+            <span> Добавить все</span>
+          </button>
+          <button type="button" class="btn btn-default" id="deselect-all">
+            <i class="fa fa-minus-square-o"></i>
+            <span> Очистить все</span>
+          </button>
+        </div>
+        <select id='podcasts' multiple='multiple'>
+          {% for news in response.news %}
+            <option value='{{ news.get_id() }}'>{{ news.get_title() }}</option>
+          {% endfor %}
+          {% for news in podcast.get_news() %}
+            <option value='{{ news.get_id() }}' selected>{{ news.get_title() }}</option>
+          {% endfor %}
+        </select>
       </div>
     </div>
   </div>
