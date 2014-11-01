@@ -9,6 +9,9 @@
             "email": "email@email.com"
         }
     ],
+    "autoload": {
+        "psr-4": {"app\\": "app/"}
+    },
     "require": {
         "doctrine/orm": "*",
         "twig/twig": "1.*",
