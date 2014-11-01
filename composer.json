@@ -3,7 +3,6 @@
     "description": "rcmp",
     "minimum-stability": "stable",
     "license": "proprietary",
-    "preferred-install": "source",
     "authors": [
         {
             "name": "author",
