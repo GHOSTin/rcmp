@@ -26,7 +26,10 @@ class view extends \boxxy\classes\view {
     $template_name = self::get_strong_name($route);
     $loader = new \Twig_Loader_Filesystem($templates);
     $loader->prependPath($templates.$route[0], $route[0]);
-    $twig = new \Twig_Environment($loader);
+    $options = array();
+    if(conf::status == 'production')
+      $options['cache'] = $root.\app\conf::twig_cache_path;
+    $twig = new \Twig_Environment($loader, $options);
     require_once($root.'libs/BBCodeExtension.php');
     $twig->addExtension(new \BBCodeExtension());
     $twig->addExtension(new PcreExtension());
