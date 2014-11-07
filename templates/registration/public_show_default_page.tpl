@@ -16,7 +16,7 @@
           <label>Пароль</label>
           <input type="password" class="form-control" name="password" placeholder="Введите ваш пароль">
         </div>
-        <button type="submit" class="btn btn-default">Зарегистрироватся</button>
+        <button type="submit" class="btn btn-default">Зарегистрироваться</button>
     </form>
   </div>
   <div class="col-md-6" style="padding:40px 0px 0px 0px">

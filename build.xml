@@ -12,7 +12,7 @@
     <fileset id="php_files" dir="${project.basedir}">
         <include name="**/*.php"/>
     </fileset>
-    <target name="main"  depends="composer, bower, phplint, clean, tar">
+    <target name="main"  depends="composer, bower, generate-proxies, phplint, clean, tar">
     </target>
     <target name="phplint">
         <phplint haltonfailure="true">
@@ -32,6 +32,9 @@
       </target>
     <target name="bower">
         <exec command="bower update" passthru="true" checkreturn="true" />
+      </target>
+    <target name="generate-proxies">
+        <exec command="${project.basedir}/vendor/bin/doctrine orm:generate-proxies" passthru="true" checkreturn="true" />
       </target>
     <target name="tar">
         <tar destfile="${BUILD_DIR}/${phing.project.name}.tar.gz" compression="gzip">
