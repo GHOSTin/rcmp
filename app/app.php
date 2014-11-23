@@ -47,7 +47,7 @@ $app->before(function (Request $request, Application $app) {
       $app['user'] = $session->get_user();
   }else
     $app['user'] = null;
-});
+}, Application::EARLY_EVENT);
 
 $app->get('/', 'app\\controllers\\default_page::default_page');
 $app->get('/enter/', 'app\\controllers\\login::enter');
@@ -91,4 +91,8 @@ $app->get('/api/{api_key}/get_user_info/',
           'app\\controllers\\api::get_user_info');
 $app->get('/api/{api_key}/get_user_list/',
           'app\\controllers\\api::get_user_list');
+
+$app->error(function (\Exception $e, $code) use ($app){
+  return $app['twig']->render('404.tpl', ['user' => $app['user']]);
+});
 $app->run();
