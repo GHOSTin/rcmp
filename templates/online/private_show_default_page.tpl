@@ -1,1 +1,0 @@
-{% include '@online/public_show_default_page.tpl' %}

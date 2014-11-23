@@ -3,7 +3,7 @@
     <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}
       {% if podcast.isShowPodcast() %}<i class="fa fa-tags" style="color:#d9534f" title="Подкаст отображается на главной странице сайта"></i>{% endif %}
     </h4>
-    {% if user.isPodcastAdmin() %}
+    {% if user and user.isPodcastAdmin() %}
       <div class="btn-group btn-group-xs tools">
         <button type="button" class="btn btn-default edit_podcast">
           <i class="fa fa-pencil-square-o"></i>

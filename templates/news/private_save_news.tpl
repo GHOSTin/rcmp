@@ -1,1 +1,0 @@
-{% include '@news/news-item.tpl' with {'item': response.news} %}

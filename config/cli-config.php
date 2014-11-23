@@ -9,10 +9,7 @@ $root = substr(__DIR__, 0, (strlen(__DIR__) - strlen(DIRECTORY_SEPARATOR.'config
 require_once($root."vendor/autoload.php");
 
 $paths = array(
-    $root.'app/news',
-    $root.'app/podcasts',
-    $root.'app/session',
-    $root.'app/user'
+    $root.'app/domain'
 );
 $isDevMode = (conf::status == 'development')? true: false;
 if ($isDevMode) {

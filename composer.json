@@ -16,7 +16,7 @@
         "doctrine/orm": "*",
         "twig/twig": "1.*",
         "jasny/twig-extensions": "dev-master",
-        "pimple/pimple": "~3.0",
-        "boxxy/commons":"dev-master"
+        "silex/silex": "2.0.*@dev",
+        "swiftmailer/swiftmailer": "@stable"
     }
 }
