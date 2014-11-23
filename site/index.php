@@ -1,4 +1,1 @@
-<?php
-$root = substr(__DIR__, 0, (strlen(__DIR__) - strlen('/site'))).DIRECTORY_SEPARATOR;
-require_once($root."vendor/autoload.php");
-(new \boxxy\classes\container($root, new \app\app()))->run();
+<?php require_once('../app/app.php');
