@@ -60,7 +60,8 @@ class news{
       $app['em']->persist($news);
       $app['em']->flush();
     }
-    return $app['twig']->render('news\change_rating.tpl', ['news' => $news]);
+    return $app['twig']->render('news\change_rating.tpl',
+                                ['user' => $app['user'], 'news' => $news]);
   }
 
   public function save_news(Request $request, Application $app){

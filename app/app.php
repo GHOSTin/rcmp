@@ -6,6 +6,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Silex\Provider\TwigServiceProvider;
 use \app\conf;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $root = substr(__DIR__, 0, (strlen(__DIR__) - strlen(DIRECTORY_SEPARATOR.'app'))).DIRECTORY_SEPARATOR;
 require_once($root."vendor/autoload.php");
@@ -92,7 +93,7 @@ $app->get('/api/{api_key}/get_user_info/',
 $app->get('/api/{api_key}/get_user_list/',
           'app\\controllers\\api::get_user_list');
 
-$app->error(function (\Exception $e, $code) use ($app){
-  return $app['twig']->render('404.tpl', ['user' => $app['user']]);
+$app->error(function (NotFoundHttpException $e, $code) use ($app){
+    return $app['twig']->render('404.tpl', ['user' => $app['user']]);
 });
 $app->run();
