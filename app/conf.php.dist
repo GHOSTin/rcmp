@@ -12,4 +12,9 @@ class conf{
   const API_KEY = 'a7bdda50b1292bddfdee31f4a0d904b9db8a13e4';
   const doctrine_proxy_path = 'cache/proxy/';
   const twig_cache_path = 'cache/twig';
+  const smtp_server = 'smtp.yandex.ru';
+  const smtp_port = 465;
+  const smtp_encryption = 'ssl';
+  const smtp_user = 'yourmail@yandex.ru';
+  const smtp_password= 'password';
 }

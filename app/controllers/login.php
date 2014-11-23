@@ -44,7 +44,8 @@ class login{
       $hash = sha1(md5($request->request->get('password').conf::auth_salt));
       if($user->get_hash() === $hash){
         $session = new \app\domain\session();
-        $session->set_session(sha1($user->get_id().$user->get_nickname().$user->get_email().time()));
+        $key = sha1($user->get_id().$user->get_nickname().$user->get_email().time());
+        $session->set_session($key);
         $session->set_user($user);
         $app['em']->persist($session);
         $response = new RedirectResponse('/');
@@ -60,21 +61,22 @@ class login{
 
   public function recovery(Request $request, Application $app){
     $user = $app['em']->getRepository('\app\domain\user')
-                      ->findOneBy(array('email' => $request->request->get('login')));
+                ->findOneBy(array('email' => $request->request->get('login')));
     if(is_null($user))
-      return $app['twig']->render('login\no_user_email.tpl', ['user' => $app['user']]);
+      return $app['twig']->render('login\no_user_email.tpl',
+                                  ['user' => $app['user']]);
     $password = substr(str_shuffle(sha1(time())), 0, 8);
     $user->set_hash(sha1(md5($password.conf::auth_salt)));
     $app['em']->persist($user);
     $app['em']->flush();
-    $php = $app['\app\php'];
-    $headers[] = "MIME-Version: 1.0";
-    $headers[] = "Content-type: text/plain; charset=utf-8";
-    $headers[] = 'From: nekrasov@mlsco.ru';
-    $headers[] = 'X-Mailer: PHP/' . phpversion();
-    $message = 'Ваш новый пароль: '.$password;
-    $php->mail($user->get_email(), 'Recovery password', $message, implode("\r\n", $headers));
-    return $app['twig']->render('login\recovery_success.tpl', ['user' => $app['user']]);
+    $message = \Swift_Message::newInstance()
+      ->setSubject('RCMP recovery password')
+      ->setFrom(array('nekrasov@mlsco.ru'))
+      ->setTo(array($user->get_email()))
+      ->setBody('Ваш новый пароль: '.$password);
+    $app['mailer']->send($message);
+    return $app['twig']->render('login\recovery_success.tpl',
+                                ['user' => $app['user']]);
   }
 
   public function logout(Request $request, Application $app){

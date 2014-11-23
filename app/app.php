@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Silex\Provider\TwigServiceProvider;
 use \app\conf;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \Silex\Provider\SwiftmailerServiceProvider;
 
 $root = substr(__DIR__, 0, (strlen(__DIR__) - strlen(DIRECTORY_SEPARATOR.'app'))).DIRECTORY_SEPARATOR;
 require_once($root."vendor/autoload.php");
@@ -29,9 +30,21 @@ $dbParams = array(
 $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
 $app['em'] = EntityManager::create($dbParams, $config);
 
+$app['swiftmailer.options'] = array(
+    'host' => conf::smtp_server,
+    'port' => conf::smtp_port,
+    'username' => conf::smtp_user,
+    'password' => conf::smtp_password,
+    'encryption' => conf::smtp_encryption,
+    'auth_mode' => null
+);
+
+
 $app->register(new TwigServiceProvider(), array(
   'twig.path' => $root.'/templates',
 ));
+
+$app->register(new SwiftmailerServiceProvider());
 
 $app['twig']->addExtension(new BBCodeExtension());
 $app['twig']->addExtension(new \Jasny\Twig\PcreExtension());
