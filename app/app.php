@@ -50,9 +50,9 @@ $app->before(function (Request $request, Application $app) {
 });
 
 $app->get('/', 'app\\controllers\\default_page::default_page');
-$app->get('/login/', 'app\\controllers\\login::login');
-$app->post('/login/enter/', 'app\\controllers\\login::enter');
-$app->get('/login/exit/', 'app\\controllers\\login::logout');
+$app->get('/enter/', 'app\\controllers\\login::enter');
+$app->post('/login/', 'app\\controllers\\login::login');
+$app->get('/logout/', 'app\\controllers\\login::logout');
 $app->get('/password/', 'app\\controllers\\login::password');
 $app->post('/password/recovery/', 'app\\controllers\\login::recovery');
 $app->get('/new_user/', 'app\\controllers\\login::new_user');

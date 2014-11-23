@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
   <div class="col-md-4">
-    <form action="/login/enter/" method="post" role="form">
+    <form action="/login/" method="post" role="form">
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="text" id="email" class="form-control" name="login" autofocus>

@@ -8,8 +8,8 @@ use \app\conf;
 
 class login{
 
-  public function login(Request $request, Application $app){
-    return $app['twig']->render('login\default_page.tpl', ['user' => $app['user']]);
+  public function enter(Request $request, Application $app){
+    return $app['twig']->render('login\enter.tpl', ['user' => $app['user']]);
   }
 
   public function new_user(Request $request, Application $app){
@@ -37,7 +37,7 @@ class login{
     return $app->redirect('/');
   }
 
-  public function enter(Request $request, Application $app){
+  public function login(Request $request, Application $app){
     $user = $app['em']->getRepository('\app\domain\user')
                       ->findOneByEmail($request->request->get('login'));
     if(!is_null($user)){

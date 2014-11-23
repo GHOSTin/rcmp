@@ -38,12 +38,12 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if user is empty %}
-          <li><a href="/login/">Вход</a></li>
+          <li><a href="/enter/">Вход</a></li>
           {% else %}
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.get_nickname() }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="/login/exit/">Выход</a></li>
+              <li><a href="/logout/">Выход</a></li>
             </ul>
           </li>
           {% endif %}
