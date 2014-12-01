@@ -33,6 +33,9 @@
     <target name="bower">
         <exec command="bower update" passthru="true" checkreturn="true" />
       </target>
+    <target name="phpunit">
+        <exec command="phpunit --bootstrap ./tests/autoload.php --coverage-html builds/cover/ tests/" passthru="true" checkreturn="true" />
+    </target>
     <target name="tar">
         <tar destfile="${BUILD_DIR}/${phing.project.name}.tar.gz" compression="gzip">
             <fileset refid="app" />
