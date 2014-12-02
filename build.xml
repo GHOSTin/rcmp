@@ -8,11 +8,14 @@
         <exclude name="composer.*"/>
         <exclude name="bower.json"/>
         <exclude name=".bowerrc"/>
+        <exclude name="tests/**"/>
     </fileset>
     <fileset id="php_files" dir="${project.basedir}">
+        <exclude name="cache/**"/>
+        <exclude name="vendor/**"/>
         <include name="**/*.php"/>
     </fileset>
-    <target name="main"  depends="composer, bower, phplint, clean, tar">
+    <target name="main"  depends="composer, bower, phplint, phpunit, clean, tar">
     </target>
     <target name="phplint">
         <phplint haltonfailure="true">
@@ -33,6 +36,9 @@
     <target name="bower">
         <exec command="bower update" passthru="true" checkreturn="true" />
       </target>
+    <target name="phpunit">
+        <exec command="phpunit --bootstrap ./tests/autoload.php --coverage-html builds/cover/ tests/" passthru="true" checkreturn="true" />
+    </target>
     <target name="tar">
         <tar destfile="${BUILD_DIR}/${phing.project.name}.tar.gz" compression="gzip">
             <fileset refid="app" />

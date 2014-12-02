@@ -2,22 +2,19 @@
 
 use \Doctrine\ORM\Tools\Setup;
 use \Doctrine\ORM\EntityManager;
-use Silex\Application;
-use Symfony\Component\HttpFoundation\Request;
-use Silex\Provider\TwigServiceProvider;
-use \app\conf;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \Silex\Application;
+use \Silex\Provider\TwigServiceProvider;
 use \Silex\Provider\SwiftmailerServiceProvider;
+use \Symfony\Component\HttpFoundation\Request;
+use \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \app\conf;
 
 $root = substr(__DIR__, 0, (strlen(__DIR__) - strlen(DIRECTORY_SEPARATOR.'app'))).DIRECTORY_SEPARATOR;
 require_once($root."vendor/autoload.php");
 
 $app = new Application();
-if(conf::status === 'development')
-  $app['debug'] = true;
+$app['debug'] = (conf::status === 'development')? true: false;
 
-$paths = array(__DIR__);
-$isDevMode = (conf::status == 'development')? true: false;
 $dbParams = array(
   'driver'   => 'pdo_mysql',
   'host'     => conf::db_host,
@@ -27,7 +24,7 @@ $dbParams = array(
   'charset'  => 'utf8'
 );
 
-$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__), $app['debug']);
 $app['em'] = EntityManager::create($dbParams, $config);
 
 $app['swiftmailer.options'] = array(
@@ -38,7 +35,6 @@ $app['swiftmailer.options'] = array(
     'encryption' => conf::smtp_encryption,
     'auth_mode' => null
 );
-
 
 $app->register(new TwigServiceProvider(), array(
   'twig.path' => $root.'/templates',
@@ -105,8 +101,8 @@ $app->get('/api/{api_key}/get_user_info/',
           'app\\controllers\\api::get_user_info');
 $app->get('/api/{api_key}/get_user_list/',
           'app\\controllers\\api::get_user_list');
-
-$app->error(function (NotFoundHttpException $e, $code) use ($app){
-    return $app['twig']->render('404.tpl', ['user' => $app['user']]);
+# errorhandlers
+$app->error(function (NotFoundHttpException $e) use ($app){
+  return $app['twig']->render('404.tpl', ['user' => $app['user']]);
 });
 $app->run();

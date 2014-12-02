@@ -4,20 +4,23 @@
 <div class="row">
   <div class="col-md-12">
     <p>
-      Мы записываем подкаст с октября <b>2005</b> года уже более <b>8 лет</b> и записали более <b>400 выпусков</b>.
-      Этого не могло бы состоятся без наших преданных слушателей, которые поддерживали нас пожертвованиями.</p>
+      Мы записываем подкаст с октября <b>2005</b> года уже более <b>8 лет</b> и записали более <b>400 выпусков</b>.<br>
+      Этого не могло бы состоятся без наших преданных слушателей, которые поддерживали нас пожертвованиями.<br>
+      Все пожертвования мы используем для развития подкаста: проводим конкурсы, оплачиваем хостинг.<br>
+      Мы рады взаимному сотрудничеству и будем рады если с твоей помощью нас услышит большее количество людей.</p>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-2 col-sm-1"> <!-- required for floating -->
-    <!-- Nav tabs -->
+  <!-- Nav tabs -->
+  <div class="col-xs-2 col-sm-1">
     <ul class="nav nav-tabs tabs-left vertical-text">
       <li class="active"><a href="#yandex" data-toggle="tab">Yandex</a></li>
       <li><a href="#paypal" data-toggle="tab">PayPal</a></li>
     </ul>
   </div>
+  <!-- /Nav tabs -->
+  <!-- Tab panes -->
   <div class="col-xs-9">
-    <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane" id="paypal">
         <p class="donate">Если ты хочешь поддерживать нас постоянно оформи подписку</p>
@@ -63,21 +66,14 @@
         </form>
       </div>
       <div class="tab-pane active" id="yandex">
+        <h2>Yandex-кошелек: <a href="https://money.yandex.ru/topup/card/carddetails.xml?receiver=410011225397189&skr_sum=99" target="_blank">410011225397189</a></h2>
         <iframe frameborder="0" allowtransparency="true" scrolling="no" src="https://money.yandex.ru/embed/donate.xml?account=410011225397189&quickpay=donate&payment-type-choice=on&default-sum=99&targets=%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C+%D0%BF%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%D1%83&target-visibility=on&project-name=RCMP.me&project-site=rcmp.me&button-text=05" width="507" height="133"></iframe>
         <iframe frameborder="0" allowtransparency="true" scrolling="no" src="https://money.yandex.ru/embed/donate.xml?account=410011225397189&quickpay=donate&payment-type-choice=on&default-sum=199&targets=%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C+%D0%BF%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%D1%83&target-visibility=on&project-name=RCMP.me&project-site=rcmp.me&button-text=05" width="507" height="133"></iframe>
         <iframe frameborder="0" allowtransparency="true" scrolling="no" src="https://money.yandex.ru/embed/donate.xml?account=410011225397189&quickpay=donate&payment-type-choice=on&default-sum=299&targets=%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C+%D0%BF%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%D1%83&target-visibility=on&project-name=RCMP.me&project-site=rcmp.me&button-text=05" width="507" height="133"></iframe>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <p class="donate">
-      Все пожертвования мы используем для развития подкаста: покупаем записывающую аппаратуру,
-      проводим конкурсы, оплачиваем хостинг и разработку для аудитории слушателей.
-      Мы рады взаимному сотрудничеству и будем рады если с твоей помощью нас услышит большее количество людей.
-    </p>
-  </div>
+  <!-- /Tab panes -->
 </div>
 {% endblock content %}
 

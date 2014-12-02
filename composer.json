@@ -13,6 +13,7 @@
         "psr-4": {"app\\": "app/"}
     },
     "require": {
+        "phpunit/phpunit": "4.3.*",
         "doctrine/orm": "*",
         "twig/twig": "1.*",
         "jasny/twig-extensions": "dev-master",
