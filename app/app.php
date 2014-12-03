@@ -14,6 +14,8 @@ require_once($root."vendor/autoload.php");
 
 $app = new Application();
 $app['debug'] = (conf::status === 'development')? true: false;
+$app['salt'] = conf::auth_salt;
+$app['host'] = conf::host;
 
 $dbParams = array(
   'driver'   => 'pdo_mysql',

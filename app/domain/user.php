@@ -5,6 +5,8 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use Respect\Validation\Validator as v;
+use DomainException;
 
 /**
  * Class user
@@ -13,6 +15,8 @@ use Doctrine\ORM\Mapping\Table;
  * @Table(name="users")
  */
 class user{
+
+  const nickname_re = '/^[а-яА-ЯёЁa-zA-Z0-9][а-яА-ЯёЁa-zA-Z0-9 ]{1,31}$/u';
 
   /**
    * @Id
@@ -59,19 +63,23 @@ class user{
   }
 
   public function set_email($email){
-    $this->email = (string) $email;
+    if(!v::email()->validate($email))
+      throw new DomainException();
+    $this->email = $email;
   }
 
   public function set_id($id){
-    $this->id = (int) $id;
+    $this->id = $id;
   }
 
   public function set_nickname($nickname){
-    $this->nickname = (string) $nickname;
+    if(!preg_match(self::nickname_re, $nickname))
+      throw new DomainException('Wrong user firstname '.$nickname);
+    $this->nickname = $nickname;
   }
 
   public function set_hash($hash){
-    $this->hash = (string) $hash;
+    $this->hash = $hash;
   }
 
   public function set_roles(array $roles)
