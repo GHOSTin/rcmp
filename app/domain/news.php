@@ -71,7 +71,7 @@ class news {
   public function set_description($description)
   {
     if(empty($description))
-      throw new DomainException;
+      throw new DomainException();
     $this->description = strip_tags(htmlspecialchars_decode($description));
   }
 
@@ -122,7 +122,7 @@ class news {
   public function set_title($title)
   {
     if(empty($title))
-      throw new DomainException;
+      throw new DomainException();
     $this->title = $title;
   }
 
@@ -194,7 +194,7 @@ class news {
   /**
    * @param mixed $podcast
    */
-  public function set_podcast($podcast)
+  public function set_podcast(podcast $podcast = null)
   {
     $this->podcast = $podcast;
   }

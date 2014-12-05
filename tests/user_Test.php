@@ -2,7 +2,7 @@
 
 use app\domain\user;
 
-class controller_user_Test extends PHPUnit_Framework_TestCase{
+class user_Test extends PHPUnit_Framework_TestCase{
 
   public function setUp(){
     $this->user = new user();
