@@ -5,15 +5,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class news{
 
-  public function default_page(Request $request, Application $app){
+  public function default_page(Application $app){
     $news = $app['em']->getRepository('\app\domain\news')->findByPodcast(null);
     return $app['twig']->render('news\default_page.tpl',
                                 ['user' => $app['user'], 'news' => $news]);
   }
 
   public function delete_news(Request $request, Application $app){
-    $news = $app['em']->find('\app\domain\news', $request->query->get('news_id'));
-    if($news->get_user() == $app['user'] or $app['user']->isNewsAdmin()){
+    $news = $app['em']->getRepository('\app\domain\news')
+                      ->findOne($request->get('news_id'));
+    if($news->get_user() == $app['user'] || $app['user']->isNewsAdmin()){
       $app['em']->remove($news);
       $app['em']->flush();
     }
@@ -22,24 +23,25 @@ class news{
   }
 
   public function get_dialog_edit_news(Request $request, Application $app){
-    $news = $app['em']->find('\app\domain\news',
-                             $request->query->get('news_id'));
+    $news = $app['em']->getRepository('\app\domain\news')
+                      ->findOne($request->get('news_id'));
     return $app['twig']->render('news\get_dialog_edit_news.tpl',
                                 ['news' => $news]);
   }
 
-  public function get_dialog_new_news(Request $request, Application $app){
+  public function get_dialog_new_news(Application $app){
     return $app['twig']->render('news\get_dialog_new_news.tpl');
   }
 
   public function edit_news(Request $request, Application $app){
-    $news = $app['em']->find('\app\domain\news', $request->request->get('id'));
-    if($news->get_user() == $app['user'] or $app['user']->isNewsAdmin()){
-      $news->set_title($request->request->get('title'));
-      $news->set_description($request->request->get('description'));
+    $news = $app['em']->getRepository('\app\domain\news')
+                      ->findOne($request->get('id'));
+    if($news->get_user() == $app['user'] || $app['user']->isNewsAdmin()){
+      $news->set_title($request->get('title'));
+      $news->set_description($request->get('description'));
       $app['em']->flush();
     }
-    return $app['twig']->render('news/news-item.tpl',
+    return $app['twig']->render('news\news-item.tpl',
                                 ['user' => $app['user'], 'item' => $news]);
   }
 
@@ -66,8 +68,8 @@ class news{
 
   public function save_news(Request $request, Application $app){
     $news = new \app\domain\news();
-    $news->set_title($request->query->get('title'));
-    $news->set_description($request->query->get('description'));
+    $news->set_title($request->get('title'));
+    $news->set_description($request->get('description'));
     $news->set_user($app['user']);
     $news->set_pubtime(time());
     $app['em']->persist($news);

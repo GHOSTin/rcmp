@@ -1,6 +1,5 @@
 <?php namespace app\domain;
 
-use boxxy\classes\di;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
@@ -11,7 +10,6 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use DomainException;
-
 
 /**
  * Class news
@@ -73,7 +71,7 @@ class news {
   public function set_description($description)
   {
     if(empty($description))
-      throw new DomainException;
+      throw new DomainException();
     $this->description = strip_tags(htmlspecialchars_decode($description));
   }
 
@@ -124,7 +122,7 @@ class news {
   public function set_title($title)
   {
     if(empty($title))
-      throw new DomainException;
+      throw new DomainException();
     $this->title = $title;
   }
 
@@ -184,19 +182,19 @@ class news {
     $this->votes = $votes;
   }
 
-  public function isVoted(){
-    if ($this->user == di::get('user'))
+  public function isVoted(user $user){
+    if ($this->user == $user)
       return true;
     $votes = $this->votes;
     if($votes)
-      return $votes->contains(di::get('user'));
+      return $votes->contains($user);
     return false;
   }
 
   /**
    * @param mixed $podcast
    */
-  public function set_podcast($podcast)
+  public function set_podcast(podcast $podcast = null)
   {
     $this->podcast = $podcast;
   }

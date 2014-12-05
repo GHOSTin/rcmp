@@ -42,7 +42,7 @@ $app['swiftmailer.options'] = array(
 if($app['debug']){
   $twig_conf = ['twig.path' => $root.'/templates'];
 }else{
-  $cache = $root.$DS.'cache'.$DS.'twig'.$DS.'main'.$DS;
+  $cache = $root.$DS.'cache'.$DS.'twig'.$DS;
   $twig_conf = ['twig.path' => $root.'/templates',
                 'twig.options' => ['cache' => $cache]];
 }
