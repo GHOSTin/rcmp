@@ -1,4 +1,5 @@
 /vendor/
+/cache/
 /builds/
 composer.lock
 app/conf.php

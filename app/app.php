@@ -8,8 +8,8 @@ use \Silex\Provider\SwiftmailerServiceProvider;
 use \Symfony\Component\HttpFoundation\Request;
 use \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use \app\conf;
-
-$root = substr(__DIR__, 0, (strlen(__DIR__) - strlen(DIRECTORY_SEPARATOR.'app'))).DIRECTORY_SEPARATOR;
+$DS = DIRECTORY_SEPARATOR;
+$root = substr(__DIR__, 0, (strlen(__DIR__) - strlen($DS.'app'))).$DS;
 require_once($root."vendor/autoload.php");
 
 $app = new Application();
@@ -26,7 +26,8 @@ $dbParams = array(
   'charset'  => 'utf8'
 );
 
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__), $app['debug']);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__),
+                                                       $app['debug']);
 $app['em'] = EntityManager::create($dbParams, $config);
 
 $app['swiftmailer.options'] = array(
@@ -38,10 +39,15 @@ $app['swiftmailer.options'] = array(
     'auth_mode' => null
 );
 
-$app->register(new TwigServiceProvider(), array(
-  'twig.path' => $root.'/templates',
-));
+if($app['debug']){
+  $twig_conf = ['twig.path' => $root.'/templates'];
+}else{
+  $cache = $root.$DS.'cache'.$DS.'twig'.$DS.'main'.$DS;
+  $twig_conf = ['twig.path' => $root.'/templates',
+                'twig.options' => ['cache' => $cache]];
+}
 
+$app->register(new TwigServiceProvider(), $twig_conf);
 $app->register(new SwiftmailerServiceProvider());
 
 $app['twig']->addExtension(new BBCodeExtension());
