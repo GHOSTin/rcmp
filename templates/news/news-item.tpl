@@ -2,7 +2,7 @@
   <div class="pull-left news-rating">
     <p>
     {% if user %}
-      {% if not item.isVoted() or user.isNewsAdmin() %}
+      {% if not item.isVoted(user) or user.isNewsAdmin() %}
         <a href="#up"><i class="fa fa-chevron-up"></i></a>
       {% endif %}
     {% endif %}
@@ -10,7 +10,7 @@
     <p class="rating">{{ item.get_rating() }}</p>
     <p>
       {% if user %}
-        {% if not item.isVoted() or user.isNewsAdmin() %}
+        {% if not item.isVoted(user) or user.isNewsAdmin() %}
           <a href="#down"><i class="fa fa-chevron-down"></i></a>
         {% endif %}
       {% endif %}
