@@ -7,11 +7,11 @@
         <legend>Регистрация</legend>
         <div class="form-group">
           <label>Почта</label>
-          <input type="text" class="form-control" name="email" placeholder="Введите вашу почту">
+          <input type="text" class="form-control" name="email" placeholder="Введите вашу почту"{% if email %} value="{{ email }}"{% endif %}>
         </div>
         <div class="form-group">
           <label>Никнейм</label>
-          <input type="text" class="form-control" name="nickname" placeholder="Введите ваш никнейм">
+          <input type="text" class="form-control" name="nickname" placeholder="Введите ваш никнейм"{% if nickname %} value="{{ nickname }}"{% endif %}>
         </div>
         <div class="form-group">
           <label>Пароль</label>
