@@ -18,16 +18,17 @@ use DomainException;
  * @Table(name="news")
  */
 class news {
-  /** @Id
-   * @Column(name="id", type="integer")
-   * @GeneratedValue
+  /**
+   * @Id
+   * @Column(name="id", type="smallint", options={"unsigned":true})
+   * @GeneratedValue(strategy="AUTO")
    * @var int
    */
   private $id;
 
   /**
    * @ManyToOne(targetEntity="\app\domain\user")
-   * @JoinColumn(name="user_id", referencedColumnName="id")
+   * @JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
    * @var \app\domain\user
    */
   private $user;
@@ -42,12 +43,12 @@ class news {
    */
   private $pubtime;
   /**
-   * @Column(name="description", type="string")
+   * @Column(name="description", type="text", nullable=true)
    * @var string
    */
   private $description;
   /**
-   * @Column(name="rating", type="integer")
+   * @Column(name="rating", type="smallint", nullable=true)
    * @var int
    */
   private $rating;
@@ -60,7 +61,7 @@ class news {
   private $votes;
   /**
    * @ManyToOne(targetEntity="\app\domain\podcast", inversedBy="news")
-   * @JoinColumn(name="podcast_id", referencedColumnName="time")
+   * @JoinColumn(name="podcast_id", referencedColumnName="time", nullable=true)
    * @var \app\domain\podcast|null
    */
   private $podcast;
