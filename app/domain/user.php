@@ -20,28 +20,28 @@ class user{
 
   /**
    * @Id
-   * @Column(name="id", type="integer")
-   * @GeneratedValue
+   * @Column(name="id", type="smallint", nullable=false, options={"unsigned":true})
+   * @GeneratedValue(strategy="AUTO")
    * @var int
    */
   private $id;
   /**
-   * @Column(name="nickname", type="string")
+   * @Column(name="nickname", type="string", length=31)
    * @var string
    */
   private $nickname;
   /**
-   * @Column(name="email", type="string")
+   * @Column(name="email", type="string", length=128)
    * @var string
    */
   private $email;
   /**
-   * @Column(name="hash", type="string")
+   * @Column(name="hash", type="string", length=40)
    * @var string
    */
   private $hash;
   /**
-   * @Column(name="roles", type="simple_array")
+   * @Column(name="roles", type="simple_array", length=65535, nullable=true)
    * @var array
    */
   private $roles;

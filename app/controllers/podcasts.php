@@ -1,5 +1,6 @@
 <?php namespace app\controllers;
 
+use app\domain\podcast;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 

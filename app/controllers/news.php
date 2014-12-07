@@ -13,7 +13,7 @@ class news{
 
   public function delete_news(Request $request, Application $app){
     $news = $app['em']->getRepository('\app\domain\news')
-                      ->findOne($request->get('news_id'));
+                      ->find($request->get('news_id'));
     if($news->get_user() == $app['user'] || $app['user']->isNewsAdmin()){
       $app['em']->remove($news);
       $app['em']->flush();
@@ -24,7 +24,7 @@ class news{
 
   public function get_dialog_edit_news(Request $request, Application $app){
     $news = $app['em']->getRepository('\app\domain\news')
-                      ->findOne($request->get('news_id'));
+                      ->find($request->get('news_id'));
     return $app['twig']->render('news\get_dialog_edit_news.tpl',
                                 ['news' => $news]);
   }
@@ -35,7 +35,7 @@ class news{
 
   public function edit_news(Request $request, Application $app){
     $news = $app['em']->getRepository('\app\domain\news')
-                      ->findOne($request->get('id'));
+                      ->find($request->get('id'));
     if($news->get_user() == $app['user'] || $app['user']->isNewsAdmin()){
       $news->set_title($request->get('title'));
       $news->set_description($request->get('description'));
@@ -48,9 +48,10 @@ class news{
   public function change_rating(Request $request, Application $app){
     $news = $app['em']->find('\app\domain\news', $request->query->get('news_id'));
     $user = $app['user'];
-    if(!$news->get_votes()->contains($user) || $user->isNewsAdmin()){
+    if(!$news->isVoted($user) || $user->isNewsAdmin()){
       $rating = (int) $news->get_rating();
-      $news->get_votes()->add($user);
+      if(!$news->isVoted($user))
+        $news->get_votes()->add($user);
       switch($request->query->get('number')){
         case 'up':
           $news->set_rating(++$rating);
@@ -59,7 +60,6 @@ class news{
           $news->set_rating(--$rating);
           break;
       }
-      $app['em']->persist($news);
       $app['em']->flush();
     }
     return $app['twig']->render('news\change_rating.tpl',
