@@ -23,22 +23,22 @@ class podcast {
 
   /**
    * @Id()
-   * @Column(name="time", type="bigint")
+   * @Column(name="time", type="bigint", options={"unsigned":true})
    * @var int
    */
   private $time;
   /**
-   * @Column(name="name", type="string")
+   * @Column(name="name", type="text", length=255)
    * @var string
    */
   private $name;
   /**
-   * @Column(name="alias", type="string", nullable=false)
+   * @Column(name="alias", type="text", length=255, nullable=false)
    * @var string
    */
   private $alias;
   /**
-   * @Column(name="url", type="string", nullable=true)
+   * @Column(name="url", type="text", length=255, nullable=true)
    * @var
    */
   private $url;
@@ -48,7 +48,7 @@ class podcast {
    */
   private $news;
   /**
-   * @Column(name="showing", type="integer", options={"default":0})
+   * @Column(name="showing", type="smallint", options={"default": 0})
    * @var
    */
   private $showPodcast = 0;

@@ -48,9 +48,10 @@ class news{
   public function change_rating(Request $request, Application $app){
     $news = $app['em']->find('\app\domain\news', $request->query->get('news_id'));
     $user = $app['user'];
-    if(!$news->get_votes()->contains($user) || $user->isNewsAdmin()){
+    if(!$news->isVoted($user) || $user->isNewsAdmin()){
       $rating = (int) $news->get_rating();
-      $news->get_votes()->add($user);
+      if(!$news->isVoted($user))
+        $news->get_votes()->add($user);
       switch($request->query->get('number')){
         case 'up':
           $news->set_rating(++$rating);
@@ -59,7 +60,6 @@ class news{
           $news->set_rating(--$rating);
           break;
       }
-      $app['em']->persist($news);
       $app['em']->flush();
     }
     return $app['twig']->render('news\change_rating.tpl',

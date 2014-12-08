@@ -1,5 +1,6 @@
 <?php namespace app\controllers;
 
+use app\domain\podcast;
 use RuntimeException;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -85,7 +86,6 @@ class podcasts{
       $podcast->set_name($request->request->get('title'));
       $podcast->set_alias($request->request->get('alias'));
       $podcast->set_url($request->request->get('url'));
-      $podcast->set_file_url($request->request->get('file'));
       $app['em']->persist($podcast);
       $app['em']->flush();
     }
