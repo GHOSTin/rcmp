@@ -1,10 +1,14 @@
 <?php namespace app\domain;
 
+
+use DomainException;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
+use \Doctrine\Common\Collections\ArrayCollection;
+use app\domain\news;
 
 /**
  * Class podcasts
@@ -13,6 +17,9 @@ use Doctrine\ORM\Mapping\Table;
  * @Table(name="podcasts")
  */
 class podcast {
+
+  const alias_re = '/^[0-9a-zA-Z]{2,16}$/';
+  const name_re = '/^[а-яА-ЯёЁa-zA-Z0-9 !?.,"-]{1,255}$/u';
 
   /**
    * @Id()
@@ -46,14 +53,16 @@ class podcast {
    */
   private $showPodcast = 0;
 
+  private $file_url;
+
   public function __construct(){
-    $this->news = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->news = new ArrayCollection();
   }
 
   public function set_alias($alias)
   {
-    if(!preg_match('/[0-9a-zA-Z]+/', $alias))
-      throw new \DomainException();
+    if(!preg_match(self::alias_re, $alias))
+      throw new DomainException();
     $this->alias = $alias;
   }
 
@@ -64,6 +73,8 @@ class podcast {
 
   public function set_name($name)
   {
+    if(!preg_match(self::name_re, $name))
+      throw new DomainException();
     $this->name = $name;
   }
 
@@ -74,6 +85,8 @@ class podcast {
 
   public function set_time($time)
   {
+    if($time < 1)
+      throw new DomainException();
     $this->time = $time;
   }
 
@@ -92,14 +105,6 @@ class podcast {
   public function get_url()
   {
     return $this->url;
-  }
-
-  /**
-   * @param mixed $news
-   */
-  public function set_news($news)
-  {
-    $this->news = $news;
   }
 
   /**
@@ -128,11 +133,20 @@ class podcast {
    */
   public function set_showPodcast($showPodcast)
   {
+    if(!in_array($showPodcast, [0, 1], true))
+      throw new DomainException();
     $this->showPodcast = $showPodcast;
   }
 
   public function isShowPodcast(){
-    return (boolean)$this->showPodcast;
+    return (boolean) $this->showPodcast;
   }
 
+  public function set_file_url($url = null){
+    $this->file_url = $url;
+  }
+
+  public function get_file_url(){
+    return $this->file_url;
+  }
 }
