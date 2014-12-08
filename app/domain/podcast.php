@@ -53,6 +53,10 @@ class podcast {
    */
   private $showPodcast = 0;
 
+  /**
+  * @Column(name="file_url", type="text", nullable=true)
+  * @var string
+  */
   private $file_url;
 
   public function __construct(){
