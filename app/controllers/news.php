@@ -13,7 +13,7 @@ class news{
 
   public function delete_news(Request $request, Application $app){
     $news = $app['em']->getRepository('\app\domain\news')
-                      ->findOne($request->get('news_id'));
+                      ->find($request->get('news_id'));
     if($news->get_user() == $app['user'] || $app['user']->isNewsAdmin()){
       $app['em']->remove($news);
       $app['em']->flush();
@@ -24,7 +24,7 @@ class news{
 
   public function get_dialog_edit_news(Request $request, Application $app){
     $news = $app['em']->getRepository('\app\domain\news')
-                      ->findOne($request->get('news_id'));
+                      ->find($request->get('news_id'));
     return $app['twig']->render('news\get_dialog_edit_news.tpl',
                                 ['news' => $news]);
   }
@@ -35,7 +35,7 @@ class news{
 
   public function edit_news(Request $request, Application $app){
     $news = $app['em']->getRepository('\app\domain\news')
-                      ->findOne($request->get('id'));
+                      ->find($request->get('id'));
     if($news->get_user() == $app['user'] || $app['user']->isNewsAdmin()){
       $news->set_title($request->get('title'));
       $news->set_description($request->get('description'));

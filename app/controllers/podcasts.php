@@ -1,29 +1,31 @@
 <?php namespace app\controllers;
 
+use RuntimeException;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
 class podcasts{
 
-  public function default_page(Request $request, Application $app){
+  public function default_page(Application $app){
     $podcasts = $app['em']->getRepository('\app\domain\podcast')
-                          ->findBy(array(), array('time' => 'DESC'));
+                          ->findBy([], ['time' => 'DESC']);
     return $app['twig']->render('podcasts\default_page.tpl',
                             ['user' => $app['user'], 'podcasts' => $podcasts]);
   }
 
   public function change_podcast(Request $request, Application $app){
-    $podcast = $app['em']->find('\app\domain\podcast', $request->request->get('id'));
-    if($podcast){
-      $oldPodcast = $app['em']->getRepository('\app\domain\podcast')
-                              ->findOneByshowPodcast("1");
-      if($oldPodcast)
-        $oldPodcast->set_showPodcast("0");
-      $podcast->set_showPodcast("1");
-      $app['em']->flush();
-    }
+    $podcast = $app['em']->getRepository('\app\domain\podcast')
+                         ->find($request->get('id'));
+    if(is_null($podcast))
+      throw new RuntimeException();
+    $oldPodcast = $app['em']->getRepository('\app\domain\podcast')
+                            ->findOneByshowPodcast("1");
+    if(!is_null($oldPodcast))
+      $oldPodcast->set_showPodcast("0");
+    $podcast->set_showPodcast("1");
+    $app['em']->flush();
     $podcasts = $app['em']->getRepository('\app\domain\podcast')
-                          ->findBy(array(), array('time' => 'DESC'));
+                          ->findBy([], ['time' => 'DESC']);
     return $app['twig']->render('podcasts/podcast-list.tpl',
                             ['user' => $app['user'], 'podcasts' => $podcasts]);
   }
@@ -45,14 +47,15 @@ class podcasts{
   }
 
   public function get_dialog_edit_podcast(Request $request, Application $app){
-    $podcast = $app['em']->find('\app\domain\podcast',
-                                $request->query->get('podcast_id'));
+    $podcast = $app['em']->getRepository('\app\domain\podcast')
+                         ->find($request->get('podcast_id'));
     $news = $app['em']->getRepository('\app\domain\news')->findByPodcast(null);
     return $app['twig']->render('podcasts\get_dialog_edit_podcast.tpl',
-              ['user' => $app['user'], 'podcast' => $podcast, 'news' => $news]);
+                                ['user' => $app['user'], 'podcast' => $podcast,
+                                 'news' => $news]);
   }
 
-  public function get_dialog_new_podcast(Request $request, Application $app){
+  public function get_dialog_new_podcast(Application $app){
     return $app['twig']->render('podcasts\get_dialog_new_podcast.tpl');
   }
 
