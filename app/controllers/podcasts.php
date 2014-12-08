@@ -85,6 +85,7 @@ class podcasts{
       $podcast->set_name($request->request->get('title'));
       $podcast->set_alias($request->request->get('alias'));
       $podcast->set_url($request->request->get('url'));
+      $podcast->set_file_url($request->request->get('file'));
       $app['em']->persist($podcast);
       $app['em']->flush();
     }
@@ -94,16 +95,18 @@ class podcasts{
 
   public function save_podcast(Request $request, Application $app){
     $dtime = \DateTime::createFromFormat("d.m.Y H:i:s",
-                                    $request->query->get('time').' 00:00:00');
+                                         $request->get('time').' 00:00:00');
     $timestamp = $dtime->getTimestamp();
     $podcast = new \app\domain\podcast();
     $podcast->set_time($timestamp);
-    $podcast->set_name($request->query->get('title'));
-    $podcast->set_alias($request->query->get('alias'));
-    $podcast->set_url($request->query->get('url'));
+    $podcast->set_name($request->get('title'));
+    $podcast->set_alias($request->get('alias'));
+    $podcast->set_url($request->get('url'));
+    $podcast->set_file_url($request->get('file'));
     $app['em']->persist($podcast);
     $app['em']->flush();
-    return $app['twig']->render('podcasts/podcast.tpl',
-                              ['user' => $app['user'], 'podcast' => $podcast]);
+    return $app['twig']->render('podcasts\podcast.tpl',
+                                ['user' => $app['user'],
+                                 'podcast' => $podcast]);
   }
 }

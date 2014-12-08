@@ -117,4 +117,10 @@ class podcast_Test extends PHPUnit_Framework_TestCase{
     $this->setExpectedException('DomainException');
     $this->podcast->set_showPodcast(2);
   }
+
+  public function test_file_url(){
+    $url = 'http://pirate.rcmp.me/records/rcmp_raw_v2.2/_podcast_record_1417919340_raw.mp3';
+    $this->podcast->set_file_url($url);
+    $this->assertEquals($url, $this->podcast->get_file_url());
+  }
 }

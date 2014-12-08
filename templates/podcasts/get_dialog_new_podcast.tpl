@@ -22,6 +22,10 @@
     <label for="url">Youtube URL</label>
     <input id="url" class="form-control">
   </p>
+  <p>
+    <label for="file">File URL</label>
+    <input id="file" class="form-control">
+  </p>
 {% endblock %}
 
 {% block buttons %}

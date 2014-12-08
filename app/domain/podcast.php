@@ -53,6 +53,8 @@ class podcast {
    */
   private $showPodcast = 0;
 
+  private $file_url;
+
   public function __construct(){
     $this->news = new ArrayCollection();
   }
@@ -138,5 +140,13 @@ class podcast {
 
   public function isShowPodcast(){
     return (boolean) $this->showPodcast;
+  }
+
+  public function set_file_url($url = null){
+    $this->file_url = $url;
+  }
+
+  public function get_file_url(){
+    return $this->file_url;
   }
 }

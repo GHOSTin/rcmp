@@ -22,6 +22,10 @@
     <label for="url">Youtube URL</label>
     <input id="url" class="form-control" value="{{ podcast.get_url() }}">
   </p>
+  <p>
+    <label for="file">File URL</label>
+    <input id="file" class="form-control" value="{{ podcast.get_file_url() }}">
+  </p>
   <span class="podcast_id sr-only">{{ podcast.get_time() }}</span>
   <div class="panel panel-default">
     <div class="panel-heading">

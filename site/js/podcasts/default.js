@@ -11,6 +11,7 @@ $(document).ready(function(){
                 title: $('#title').val(),
                 alias: $('#alias').val(),
                 url: $('#url').val()||null,
+                file: $('#file').val()||null,
                 podcasts: $('#podcasts').val()||null
             }, function(r){
                 $('.dialog').modal('hide');
@@ -42,6 +43,7 @@ $(document).ready(function(){
                 title: $('#title').val(),
                 alias: $('#alias').val(),
                 url: $('#url').val()||null,
+                file: $('#file').val()||null,
                 podcasts: $('#podcasts').val()||null
             }, function(r){
                 $('.dialog').modal('hide');

@@ -189,4 +189,18 @@ class controller_podcast_Test extends PHPUnit_Framework_TestCase{
     $response = $this->controller->get_dialog_new_podcast($this->app);
     $this->assertEquals('render_template', $response);
   }
+
+
+  public function test_save_podcast(){
+    $this->request->query->set('time', '02.11.2014');
+    $this->request->query->set('title', 'Привет');
+    $this->request->query->set('alias', '423podcast');
+    $this->request->query->set('file', 'http://mi.rpodru/file.mp3');
+    $this->app['user'] = 'user_object';
+    $this->app['twig']->expects($this->once())
+                      ->method('render')
+                      ->will($this->returnValue('render_template'));
+    $response = $this->controller->save_podcast($this->request, $this->app);
+    $this->assertEquals('render_template', $response);
+  }
 }
