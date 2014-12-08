@@ -52,10 +52,10 @@ class controller_news_Test extends PHPUnit_Framework_TestCase{
     $this->app['user'] = $user;
     $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
                        ->disableOriginalConstructor()
-                       ->setMethods(['findOne'])
+                       ->setMethods(['find'])
                        ->getMock();
     $repository->expects($this->once())
-               ->method('findOne')
+               ->method('find')
                ->with(123)
                ->will($this->returnValue($news));
     $this->app['em']->expects($this->once())
@@ -90,10 +90,10 @@ class controller_news_Test extends PHPUnit_Framework_TestCase{
     $this->app['user'] = $admin;
     $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
                        ->disableOriginalConstructor()
-                       ->setMethods(['findOne'])
+                       ->setMethods(['find'])
                        ->getMock();
     $repository->expects($this->once())
-               ->method('findOne')
+               ->method('find')
                ->with(123)
                ->will($this->returnValue($news));
     $this->app['em']->expects($this->once())
@@ -128,10 +128,10 @@ class controller_news_Test extends PHPUnit_Framework_TestCase{
     $this->app['user'] = $admin;
     $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
                        ->disableOriginalConstructor()
-                       ->setMethods(['findOne'])
+                       ->setMethods(['find'])
                        ->getMock();
     $repository->expects($this->once())
-               ->method('findOne')
+               ->method('find')
                ->with(123)
                ->will($this->returnValue($news));
     $this->app['em']->expects($this->once())
@@ -155,10 +155,10 @@ class controller_news_Test extends PHPUnit_Framework_TestCase{
     $this->request->query->set('news_id', 123);
     $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
                        ->disableOriginalConstructor()
-                       ->setMethods(['findOne'])
+                       ->setMethods(['find'])
                        ->getMock();
     $repository->expects($this->once())
-               ->method('findOne')
+               ->method('find')
                ->with(123)
                ->will($this->returnValue('news_object'));
     $this->app['em']->expects($this->once())
@@ -194,10 +194,10 @@ class controller_news_Test extends PHPUnit_Framework_TestCase{
     $this->app['user'] = $user;
     $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
                        ->disableOriginalConstructor()
-                       ->setMethods(['findOne'])
+                       ->setMethods(['find'])
                        ->getMock();
     $repository->expects($this->once())
-               ->method('findOne')
+               ->method('find')
                ->with(123)
                ->will($this->returnValue($news));
     $this->app['em']->expects($this->once())
@@ -229,10 +229,10 @@ class controller_news_Test extends PHPUnit_Framework_TestCase{
     $this->app['user'] = $admin;
     $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
                        ->disableOriginalConstructor()
-                       ->setMethods(['findOne'])
+                       ->setMethods(['find'])
                        ->getMock();
     $repository->expects($this->once())
-               ->method('findOne')
+               ->method('find')
                ->with(123)
                ->will($this->returnValue($news));
     $this->app['em']->expects($this->once())
@@ -264,10 +264,10 @@ class controller_news_Test extends PHPUnit_Framework_TestCase{
     $this->app['user'] = $admin;
     $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
                        ->disableOriginalConstructor()
-                       ->setMethods(['findOne'])
+                       ->setMethods(['find'])
                        ->getMock();
     $repository->expects($this->once())
-               ->method('findOne')
+               ->method('find')
                ->with(123)
                ->will($this->returnValue($news));
     $this->app['em']->expects($this->once())
