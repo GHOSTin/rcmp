@@ -36,6 +36,12 @@
     <target name="bower">
         <exec command="bower update" passthru="true" checkreturn="true" />
       </target>
+    <target name="phpmetrics">
+        <exec command="vendor/bin/phpmetrics --report-html=builds/phpmetrics.html app" passthru="true" checkreturn="true" />
+    </target>
+    <target name="phpmd">
+        <exec command="vendor/bin/phpmd app html codesize,unusedcode --reportfile builds/phpmd.html" passthru="true" checkreturn="true" />
+    </target>
     <target name="phpunit">
         <exec command="phpunit --bootstrap ./tests/autoload.php --coverage-html builds/cover/ tests/" passthru="true" checkreturn="true" />
     </target>

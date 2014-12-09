@@ -14,6 +14,11 @@
     },
     "require": {
         "phpunit/phpunit": "4.4.*",
+        "halleck45/php-metrics": "dev-master",
+        "phpmd/phpmd" : "@stable",
+        "phploc/phploc": "*",
+        "sebastian/phpcpd": "*",
+        "sebastian/phpdcd": "*",
         "doctrine/orm": "*",
         "twig/twig": "1.*",
         "jasny/twig-extensions": "dev-master",

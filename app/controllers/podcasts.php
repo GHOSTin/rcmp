@@ -11,7 +11,8 @@ class podcasts{
     $podcasts = $app['em']->getRepository('\app\domain\podcast')
                           ->findBy([], ['time' => 'DESC']);
     return $app['twig']->render('podcasts\default_page.tpl',
-                            ['user' => $app['user'], 'podcasts' => $podcasts]);
+                                ['user' => $app['user'],
+                                 'podcasts' => $podcasts]);
   }
 
   public function change_podcast(Request $request, Application $app){
@@ -22,13 +23,14 @@ class podcasts{
     $oldPodcast = $app['em']->getRepository('\app\domain\podcast')
                             ->findOneByshowPodcast("1");
     if(!is_null($oldPodcast))
-      $oldPodcast->set_showPodcast("0");
-    $podcast->set_showPodcast("1");
+      $oldPodcast->set_showPodcast(0);
+    $podcast->set_showPodcast(1);
     $app['em']->flush();
     $podcasts = $app['em']->getRepository('\app\domain\podcast')
                           ->findBy([], ['time' => 'DESC']);
     return $app['twig']->render('podcasts/podcast-list.tpl',
-                            ['user' => $app['user'], 'podcasts' => $podcasts]);
+                                ['user' => $app['user'],
+                                 'podcasts' => $podcasts]);
   }
 
   public function delete_podcast(Request $request, Application $app){
