@@ -123,4 +123,11 @@ class podcast_Test extends PHPUnit_Framework_TestCase{
     $this->podcast->set_file_url($url);
     $this->assertEquals($url, $this->podcast->get_file_url());
   }
+
+  public function test_shownotes()
+  {
+    $shownotes = 'Тестовые shownotes';
+    $this->podcast->set_shownotes($shownotes);
+    $this->assertEquals($shownotes, $this->podcast->get_shownotes());
+  }
 }

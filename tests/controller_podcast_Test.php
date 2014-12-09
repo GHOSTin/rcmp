@@ -196,6 +196,7 @@ class controller_podcast_Test extends PHPUnit_Framework_TestCase{
     $this->request->query->set('title', 'Привет');
     $this->request->query->set('alias', '423podcast');
     $this->request->query->set('file', 'http://mi.rpodru/file.mp3');
+    $this->request->query->set('shownotes', 'Тестовые shownotes');
     $this->app['user'] = 'user_object';
     $this->app['twig']->expects($this->once())
                       ->method('render')

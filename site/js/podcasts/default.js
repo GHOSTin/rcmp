@@ -12,6 +12,7 @@ $(document).ready(function(){
                 alias: $('#alias').val(),
                 url: $('#url').val()||null,
                 file: $('#file').val()||null,
+                shownotes: $('#shownotes').val()||null,
                 podcasts: $('#podcasts').val()||null
             }, function(r){
                 $('.dialog').modal('hide');
@@ -44,6 +45,7 @@ $(document).ready(function(){
                 alias: $('#alias').val(),
                 url: $('#url').val()||null,
                 file: $('#file').val()||null,
+                shownotes: $('#shownotes').val()||null,
                 podcasts: $('#podcasts').val()||null
             }, function(r){
                 $('.dialog').modal('hide');
