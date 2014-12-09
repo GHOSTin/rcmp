@@ -20,7 +20,12 @@
     <iframe height="360" width="100%" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
   </div>
   <div class="col-md-6">
-    <h4>Свежий выпуск: {{ podcast.get_name() }}</h4>
+    <h4>Свежий выпуск: {{ podcast.get_name() }}
+    {% if podcast.get_file_url() %}
+      <a href="{{ podcast.get_file_url() }}" target="_blank">
+        <span class="badge">скачать</span></h4>
+      </a>
+    {% endif %}
     <ul class="list-unstyled">
     {%- for news in podcast.get_news -%}
     <li>{{ news.get_title() }}
