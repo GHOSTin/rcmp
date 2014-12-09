@@ -87,6 +87,7 @@ class podcasts{
       $podcast->set_alias($request->request->get('alias'));
       $podcast->set_url($request->request->get('url'));
       $podcast->set_file_url($request->get('file'));
+      $podcast->set_shownotes($request->get('shownotes'));
       $app['em']->persist($podcast);
       $app['em']->flush();
     }
@@ -105,6 +106,7 @@ class podcasts{
     $podcast->set_alias($request->get('alias'));
     $podcast->set_url($request->get('url'));
     $podcast->set_file_url($request->get('file'));
+    $podcast->set_shownotes($request->get('shownotes'));
     $app['em']->persist($podcast);
     $app['em']->flush();
     return $app['twig']->render('podcasts\podcast.tpl',

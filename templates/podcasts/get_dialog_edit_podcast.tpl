@@ -26,6 +26,10 @@
     <label for="file">File URL</label>
     <input id="file" class="form-control" value="{{ podcast.get_file_url() }}">
   </p>
+  <p>
+    <label for="shownotes">Shownotes</label>
+    <textarea id="shownotes" class="form-control" rows="5">{{ podcast.get_shownotes() }}</textarea>
+  </p>
   <span class="podcast_id sr-only">{{ podcast.get_time() }}</span>
   <div class="panel panel-default">
     <div class="panel-heading">

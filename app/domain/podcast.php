@@ -19,7 +19,7 @@ use app\domain\news;
 class podcast {
 
   const alias_re = '/^[0-9a-zA-Z]{2,16}$/';
-  const name_re = '/^[а-яА-ЯёЁa-zA-Z0-9 !?.,"-]{1,255}$/u';
+  const name_re = '/^[а-яА-ЯёЁa-zA-Z0-9 !?.,;&"“-]{1,255}$/u';
 
   /**
    * @Id()
@@ -42,6 +42,11 @@ class podcast {
    * @var
    */
   private $url;
+  /**
+   * @Column(name="shownotes", type="text", length=255, nullable=true)
+   * @var string
+   */
+  private $shownotes;
   /**
    * @OneToMany(targetEntity="\app\domain\news", mappedBy="podcast")
    * @var
@@ -152,5 +157,21 @@ class podcast {
 
   public function get_file_url(){
     return $this->file_url;
+  }
+
+  /**
+   * @return string
+   */
+  public function get_shownotes()
+  {
+    return $this->shownotes;
+  }
+
+  /**
+   * @param string $shownotes
+   */
+  public function set_shownotes($shownotes = null)
+  {
+    $this->shownotes = $shownotes;
   }
 }
