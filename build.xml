@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="rcmp" default="main" basedir=".">
-    <property name="BUILD_DIR" value="${project.basedir}/builds/" override="false"/>
-    <fileset id="app" dir="${project.basedir}">
+    <property name="BUILD_DIR" location="${basedir}/builds/"/>
+    <fileset id="app" dir="${basedir}">
         <exclude name="build.xml"/>
         <exclude name="app/conf.php"/>
         <exclude name="builds/**"/>
@@ -9,18 +9,19 @@
         <exclude name="bower.json"/>
         <exclude name=".bowerrc"/>
         <exclude name="tests/**"/>
-    </fileset>
-    <fileset id="php_files" dir="${project.basedir}">
         <exclude name="cache/**"/>
-        <exclude name="vendor/**"/>
-        <include name="**/*.php"/>
     </fileset>
-    <target name="main"  depends="composer, bower, phplint, phpunit, clean, tar">
+    <target name="main"  depends="composer, bower, phpunit, clean, tar">
     </target>
     <target name="phplint">
-        <phplint haltonfailure="true">
-            <fileset refid="php_files" />
-        </phplint>
+        <apply executable="php" failonerror="true">
+           <arg value="-l" />
+           <fileset dir="${basedir}/">
+            <exclude name="cache/**"/>
+            <exclude name="vendor/**"/>
+            <include name="**/*.php"/>
+           </fileset>
+        </apply>
     </target>
     <target name="clean">
         <mkdir dir="${BUILD_DIR}" />
@@ -31,22 +32,39 @@
         </delete>
     </target>
     <target name="composer">
-        <exec command="composer update" passthru="true" checkreturn="true" />
+        <exec executable="composer">
+            <arg value="update"/>
+        </exec>
       </target>
     <target name="bower">
-        <exec command="bower update" passthru="true" checkreturn="true" />
-      </target>
+        <exec executable="bower">
+            <arg value="update"/>
+        </exec>
+    </target>
     <target name="phpmetrics">
-        <exec command="vendor/bin/phpmetrics --report-html=builds/phpmetrics.html app" passthru="true" checkreturn="true" />
+        <exec executable="vendor/bin/phpmetrics" failonerror="true">
+            <arg value="--report-html=builds/phpmetrics.html"/>
+            <arg value="app"/>
+        </exec>
     </target>
     <target name="phpmd">
-        <exec command="vendor/bin/phpmd app html codesize,unusedcode --reportfile builds/phpmd.html" passthru="true" checkreturn="true" />
+        <exec executable="vendor/bin/phpmd" failonerror="true">
+            <arg value="app"/>
+            <arg value="html"/>
+            <arg value="codesize,unusedcode"/>
+            <arg value="--reportfile"/>
+            <arg value="builds/phpmd.html"/>
+        </exec>
     </target>
     <target name="phpunit">
-        <exec command="phpunit --bootstrap ./tests/autoload.php --coverage-html builds/cover/ tests/" passthru="true" checkreturn="true" />
+        <exec executable="vendor/bin/phpunit" failonerror="true">
+            <arg value="--bootstrap"/>
+            <arg value="./tests/autoload.php"/>
+            <arg value="tests/"/>
+        </exec>
     </target>
     <target name="tar">
-        <tar destfile="${BUILD_DIR}/${phing.project.name}.tar.gz" compression="gzip">
+        <tar destfile="${BUILD_DIR}/${ant.project.name}.tar.gz" compression="gzip">
             <fileset refid="app" />
         </tar>
     </target>
