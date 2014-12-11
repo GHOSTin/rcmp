@@ -30,7 +30,7 @@
     <label for="shownotes">Shownotes</label>
     <textarea id="shownotes" class="form-control" rows="5">{{ podcast.get_shownotes() }}</textarea>
   </p>
-  <span class="podcast_id sr-only">{{ podcast.get_time() }}</span>
+  <span class="podcast_id sr-only">{{ podcast.get_id() }}</span>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">

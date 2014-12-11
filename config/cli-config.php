@@ -40,5 +40,13 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 $cli = new Application('Doctrine Command Line Interface', \Doctrine\ORM\Version::VERSION);
 $cli->setCatchExceptions(true);
 $cli->setHelperSet($helperSet);
+$cli->addCommands(array(
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\DiffCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand()
+));
 ConsoleRunner::addCommands($cli);
 $cli->run();
