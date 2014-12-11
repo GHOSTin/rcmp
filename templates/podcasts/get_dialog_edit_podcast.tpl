@@ -51,7 +51,7 @@
             <span> Очистить все</span>
           </button>
         </div>
-        <select id='podcasts' multiple='multiple'>
+        <select id='news' multiple='multiple'>
           {% for news in news %}
             <option value='{{ news.get_id() }}'>{{ news.get_title() }}</option>
           {% endfor %}

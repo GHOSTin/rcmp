@@ -14,12 +14,13 @@ class news{
   public function delete_news(Request $request, Application $app){
     $news = $app['em']->getRepository('\app\domain\news')
                       ->find($request->get('news_id'));
+    $id = $news->get_id();
     if($news->get_user() == $app['user'] || $app['user']->isNewsAdmin()){
       $app['em']->remove($news);
       $app['em']->flush();
     }
     return $app['twig']->render('news\delete_news.tpl',
-                                ['id' => $news->get_id()]);
+                                ['id' => $id]);
   }
 
   public function get_dialog_edit_news(Request $request, Application $app){

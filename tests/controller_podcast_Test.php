@@ -191,7 +191,7 @@ class controller_podcast_Test extends PHPUnit_Framework_TestCase{
   }
 
 
-  public function test_save_podcast(){
+  public function test_create_podcast(){
     $this->request->query->set('time', '02.11.2014');
     $this->request->query->set('title', 'Привет');
     $this->request->query->set('alias', '423podcast');
@@ -201,7 +201,50 @@ class controller_podcast_Test extends PHPUnit_Framework_TestCase{
     $this->app['twig']->expects($this->once())
                       ->method('render')
                       ->will($this->returnValue('render_template'));
-    $response = $this->controller->save_podcast($this->request, $this->app);
+    $response = $this->controller->create_podcast($this->request, $this->app);
+    $this->assertEquals('render_template', $response);
+  }
+
+  public function test_show_podcast_1()
+  {
+    $this->setExpectedException('\Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+    $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
+        ->disableOriginalConstructor()
+        ->setMethods(['findOneByAlias'])
+        ->getMock();
+    $repository->expects($this->once())
+        ->method('findOneByAlias')
+        ->with('alias')
+        ->will($this->returnValue(null));
+    $this->app['em']->expects($this->once())
+        ->method('getRepository')
+        ->with('\app\domain\podcast')
+        ->will($this->returnValue($repository));
+    $response = $this->controller->show_podcast('alias', $this->app);
+  }
+
+  public function test_show_podcast_2()
+  {
+    $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
+        ->disableOriginalConstructor()
+        ->setMethods(['findOneByAlias'])
+        ->getMock();
+    $repository->expects($this->once())
+        ->method('findOneByAlias')
+        ->with('alias')
+        ->will($this->returnValue('podcast_array'));
+    $this->app['em']->expects($this->once())
+        ->method('getRepository')
+        ->with('\app\domain\podcast')
+        ->will($this->returnValue($repository));
+    $this->app['user'] = 'user_object';
+    $this->app['twig']->expects($this->once())
+        ->method('render')
+        ->with('podcasts/show_podcast.tpl',
+            ['user' => 'user_object',
+                'podcast' => 'podcast_array'])
+        ->will($this->returnValue('render_template'));
+    $response = $this->controller->show_podcast('alias', $this->app);
     $this->assertEquals('render_template', $response);
   }
 }

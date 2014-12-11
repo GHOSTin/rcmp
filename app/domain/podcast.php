@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use \Doctrine\Common\Collections\ArrayCollection;
-use app\domain\news;
 
 /**
  * Class podcasts
@@ -20,7 +19,7 @@ use app\domain\news;
 class podcast {
 
   const alias_re = '/^[0-9a-zA-Z]{2,16}$/';
-  const name_re = '/^[а-яА-ЯёЁa-zA-Z0-9 !?.,;&"“-]{1,255}$/u';
+  const name_re = '/^[а-яА-ЯёЁa-zA-Z0-9 !?.,;&"“”-]{1,255}$/u';
 
   /**
    * @Id()
@@ -50,7 +49,7 @@ class podcast {
    */
   private $url;
   /**
-   * @Column(name="shownotes", type="text", length=255, nullable=true)
+   * @Column(name="shownotes", type="text", nullable=true)
    * @var string
    */
   private $shownotes;
