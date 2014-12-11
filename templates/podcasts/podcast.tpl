@@ -1,4 +1,4 @@
-<li class="media" data-id="{{ podcast.get_time() }}">
+<li class="media" data-id="{{ podcast.get_id() }}">
   <div class="media-body">
     <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}
       {% if podcast.isShowPodcast() %}<i class="fa fa-tags" style="color:#d9534f" title="Подкаст отображается на главной странице сайта"></i>{% endif %}

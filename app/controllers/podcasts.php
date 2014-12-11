@@ -42,7 +42,7 @@ class podcasts{
         $podcast->get_news()->removeElement($news);
         $news->set_podcast(null);
       }
-      $id = $podcast->get_time();
+      $id = $podcast->get_id();
       $app['em']->remove($podcast);
       $app['em']->flush();
     }
@@ -67,23 +67,8 @@ class podcasts{
                                 $request->request->get('id'));
     if($app['user']->isPodcastAdmin()){
       $dtime = \DateTime::createFromFormat("d.m.Y H:i:s",
-                                  $request->request->get('time').' 00:00:00');
+          $request->request->get('time').' 00:00:00');
       $timestamp = $dtime->getTimestamp();
-      foreach ($podcast->get_news() as $news) {
-        $podcast->get_news()->removeElement($news);
-        $news->set_podcast(null);
-      }
-      if($podcast->get_time() != $timestamp) {
-        $show = $podcast->get_showPodcast();
-        $app['em']->remove($podcast);
-        $podcast = new podcast();
-        $podcast->set_showPodcast($show);
-      }
-      foreach ($request->request->get('podcasts') as $id) {
-        $news = $app['em']->find('\app\domain\news', $id);
-        $news->set_podcast($podcast);
-        $podcast->add_news($news);
-      }
       $podcast->set_time($timestamp);
       $podcast->set_name($request->request->get('title'));
       $podcast->set_alias($request->request->get('alias'));

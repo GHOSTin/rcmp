@@ -1,6 +1,7 @@
 <?php namespace app\domain;
 
 
+use Doctrine\ORM\Mapping\GeneratedValue;
 use DomainException;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -23,6 +24,12 @@ class podcast {
 
   /**
    * @Id()
+   * @GeneratedValue(strategy="AUTO")
+   * @Column(name="id", type="integer", options={"unsigned":true})
+   * @var
+   */
+  private $id;
+  /**
    * @Column(name="time", type="bigint", options={"unsigned":true})
    * @var int
    */
@@ -66,6 +73,22 @@ class podcast {
 
   public function __construct(){
     $this->news = new ArrayCollection();
+  }
+
+  /**
+   * @return mixed
+   */
+  public function get_id()
+  {
+    return $this->id;
+  }
+
+  /**
+   * @param mixed $id
+   */
+  public function set_id($id)
+  {
+    $this->id = $id;
   }
 
   public function set_alias($alias)

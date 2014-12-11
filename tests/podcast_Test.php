@@ -130,4 +130,11 @@ class podcast_Test extends PHPUnit_Framework_TestCase{
     $this->podcast->set_shownotes($shownotes);
     $this->assertEquals($shownotes, $this->podcast->get_shownotes());
   }
+
+  public function test_id()
+  {
+    $id = '123';
+    $this->podcast->set_id($id);
+    $this->assertEquals($id, $this->podcast->get_id());
+  }
 }
