@@ -88,9 +88,11 @@ $app->get('/podcasts/get_dialog_edit_podcast/',
 $app->get('/podcasts/get_dialog_new_podcast/',
           'app\\controllers\\podcasts::get_dialog_new_podcast');
 $app->get('/podcasts/save_podcast/',
-          'app\\controllers\\podcasts::save_podcast');
+          'app\\controllers\\podcasts::create_podcast');
 $app->get('/podcasts/delete_podcast/',
           'app\\controllers\\podcasts::delete_podcast');
+$app->get('/podcasts/{alias}',
+          'app\\controllers\\podcasts::show_podcast');
 # news
 $app->get('/news/', 'app\\controllers\\news::default_page');
 $app->get('/news/delete_news/', 'app\\controllers\\news::delete_news');

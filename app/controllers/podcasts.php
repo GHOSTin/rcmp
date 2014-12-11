@@ -4,6 +4,7 @@ use app\domain\podcast;
 use RuntimeException;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class podcasts{
 
@@ -75,6 +76,11 @@ class podcasts{
       $podcast->set_url($request->request->get('url'));
       $podcast->set_file_url($request->get('file'));
       $podcast->set_shownotes($request->get('shownotes'));
+      foreach ($request->request->get('news') as $id) {
+        $news = $app['em']->find('\app\domain\news', $id);
+        $news->set_podcast($podcast);
+        $podcast->add_news($news);
+      }
       $app['em']->persist($podcast);
       $app['em']->flush();
     }
@@ -82,11 +88,11 @@ class podcasts{
                               ['user' => $app['user'], 'podcast' => $podcast]);
   }
 
-  public function save_podcast(Request $request, Application $app){
+  public function create_podcast(Request $request, Application $app){
     $dtime = \DateTime::createFromFormat("d.m.Y H:i:s",
                                          $request->get('time').' 00:00:00');
     $timestamp = $dtime->getTimestamp();
-    $podcast = new \app\domain\podcast();
+    $podcast = new podcast();
 
     $podcast->set_time($timestamp);
     $podcast->set_name($request->get('title'));
@@ -99,5 +105,14 @@ class podcasts{
     return $app['twig']->render('podcasts\podcast.tpl',
                                 ['user' => $app['user'],
                                  'podcast' => $podcast]);
+  }
+
+  public function show_podcast($alias, Application $app){
+    $podcast = $app['em']->getRepository('\app\domain\podcast')
+                         ->findOneByAlias($alias);
+    if(is_null($podcast))
+      throw new NotFoundHttpException();
+    return $app['twig']->render('podcasts/show_podcast.tpl',
+        ['user' => $app['user'], 'podcast' => $podcast]);
   }
 }
