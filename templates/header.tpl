@@ -35,6 +35,7 @@
           <li><a href="/donation/">Инвестиции</a></li>
             <li><a href="/podcasts/">Список подкастов</a></li>
           <li><a style="color:#a94442;" href="/news/"><strong>[Обсудить]</strong></a></li>
+          <li><a style="color:#a94442;" href="/rss/feed/"><i class="fa fa-rss-square"></i> RSS</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if user is empty %}
