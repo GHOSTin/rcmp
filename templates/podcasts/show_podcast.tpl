@@ -4,7 +4,7 @@
     <h3 class="list-group-item-heading media-heading">
       {{ podcast.get_name() }}
       {% if podcast.get_file_url() %}
-        <a href="{{ podcast.get_file_url() }}">
+        <a href="{{ podcast.get_file_url() }}" target="_blank">
           <span class="badge"><i class="fa fa-download" title="Скачать"></i> скачать</span>
         </a>
       {% endif %}
