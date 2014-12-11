@@ -11,7 +11,9 @@ $(document).ready(function(){
                 title: $('#title').val(),
                 alias: $('#alias').val(),
                 url: $('#url').val()||null,
-                podcasts: $('#podcasts').val()||null
+                file: $('#file').val()||null,
+                shownotes: $('#shownotes').val()||null,
+                news: $('#news').val()||null
             }, function(r){
                 $('.dialog').modal('hide');
                 $('.podcasts-feed').prepend(r);
@@ -22,14 +24,14 @@ $(document).ready(function(){
         }, function(r){
             show_content(r);
         }).done(function(){
-            $('#podcasts').multiSelect({
+            $('#news').multiSelect({
                 selectableHeader: "<div class='custom-header'>Все</div>",
                 selectionHeader: "<div class='custom-header'>Обсужденные</div>",
                 afterSelect: function(values){
-                    $('#counter').text(Number($('#podcasts').find(':selected').length));
+                    $('#counter').text(Number($('#news').find(':selected').length));
                 },
                 afterDeselect: function(values){
-                    $('#counter').text(Number($('#podcasts').find(':selected').length));
+                    $('#counter').text(Number($('#news').find(':selected').length));
                 }
             });
         });
@@ -42,7 +44,9 @@ $(document).ready(function(){
                 title: $('#title').val(),
                 alias: $('#alias').val(),
                 url: $('#url').val()||null,
-                podcasts: $('#podcasts').val()||null
+                file: $('#file').val()||null,
+                shownotes: $('#shownotes').val()||null,
+                news: $('#news').val()||null
             }, function(r){
                 $('.dialog').modal('hide');
                 $('.podcasts-feed').find('li[data-id='+id+']').replaceWith(r);
@@ -62,10 +66,10 @@ $(document).ready(function(){
             $('.podcasts-feed').replaceWith(res);
         });
     }).on('click', '#select-all', function(){
-        $('#podcasts').multiSelect('select_all');
+        $('#news').multiSelect('select_all');
         return false;
     }).on('click', '#deselect-all', function(){
-        $('#podcasts').multiSelect('deselect_all');
+        $('#news').multiSelect('deselect_all');
         return false;
     });
 });

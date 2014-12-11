@@ -1,8 +1,9 @@
-<li class="media" data-id="{{ podcast.get_time() }}">
+<li class="media" data-id="{{ podcast.get_id() }}">
   <div class="media-body">
-    <h4 class="list-group-item-heading media-heading">{{ podcast.get_name() }}
+    <h3 class="list-group-item-heading media-heading">
+      <a href="/podcasts/{{ podcast.get_alias() }}">{{ podcast.get_name() }}</a>
       {% if podcast.isShowPodcast() %}<i class="fa fa-tags" style="color:#d9534f" title="Подкаст отображается на главной странице сайта"></i>{% endif %}
-    </h4>
+    </h3>
     {% if user and user.isPodcastAdmin() %}
       <div class="btn-group btn-group-xs tools">
         <button type="button" class="btn btn-default edit_podcast">

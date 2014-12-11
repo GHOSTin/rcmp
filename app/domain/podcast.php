@@ -1,10 +1,14 @@
 <?php namespace app\domain;
 
+
+use Doctrine\ORM\Mapping\GeneratedValue;
+use DomainException;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
+use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class podcasts
@@ -14,46 +18,82 @@ use Doctrine\ORM\Mapping\Table;
  */
 class podcast {
 
+  const alias_re = '/^[0-9a-zA-Z]{2,16}$/';
+  const name_re = '/^[а-яА-ЯёЁa-zA-Z0-9 !?.,;&"“”-]{1,255}$/u';
+
   /**
    * @Id()
-   * @Column(name="time", type="bigint")
+   * @GeneratedValue(strategy="AUTO")
+   * @Column(name="id", type="integer", options={"unsigned":true})
+   * @var
+   */
+  private $id;
+  /**
+   * @Column(name="time", type="bigint", options={"unsigned":true})
    * @var int
    */
   private $time;
   /**
-   * @Column(name="name", type="string")
+   * @Column(name="name", type="text", length=255)
    * @var string
    */
   private $name;
   /**
-   * @Column(name="alias", type="string", nullable=false)
+   * @Column(name="alias", type="text", length=255, nullable=false)
    * @var string
    */
   private $alias;
   /**
-   * @Column(name="url", type="string", nullable=true)
+   * @Column(name="url", type="text", length=255, nullable=true)
    * @var
    */
   private $url;
+  /**
+   * @Column(name="shownotes", type="text", nullable=true)
+   * @var string
+   */
+  private $shownotes;
   /**
    * @OneToMany(targetEntity="\app\domain\news", mappedBy="podcast")
    * @var
    */
   private $news;
   /**
-   * @Column(name="showing", type="integer", options={"default":0})
+   * @Column(name="showing", type="smallint", options={"default": 0})
    * @var
    */
   private $showPodcast = 0;
 
+  /**
+  * @Column(name="file_url", type="text", nullable=true)
+  * @var string
+  */
+  private $file_url;
+
   public function __construct(){
-    $this->news = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->news = new ArrayCollection();
+  }
+
+  /**
+   * @return mixed
+   */
+  public function get_id()
+  {
+    return $this->id;
+  }
+
+  /**
+   * @param mixed $id
+   */
+  public function set_id($id)
+  {
+    $this->id = $id;
   }
 
   public function set_alias($alias)
   {
-    if(!preg_match('/[0-9a-zA-Z]+/', $alias))
-      throw new \DomainException();
+    if(!preg_match(self::alias_re, $alias))
+      throw new DomainException();
     $this->alias = $alias;
   }
 
@@ -64,6 +104,8 @@ class podcast {
 
   public function set_name($name)
   {
+    if(!preg_match(self::name_re, $name))
+      throw new DomainException();
     $this->name = $name;
   }
 
@@ -74,6 +116,8 @@ class podcast {
 
   public function set_time($time)
   {
+    if($time < 1)
+      throw new DomainException();
     $this->time = $time;
   }
 
@@ -92,14 +136,6 @@ class podcast {
   public function get_url()
   {
     return $this->url;
-  }
-
-  /**
-   * @param mixed $news
-   */
-  public function set_news($news)
-  {
-    $this->news = $news;
   }
 
   /**
@@ -128,11 +164,36 @@ class podcast {
    */
   public function set_showPodcast($showPodcast)
   {
+    if(!in_array($showPodcast, [0, 1], true))
+      throw new DomainException();
     $this->showPodcast = $showPodcast;
   }
 
   public function isShowPodcast(){
-    return (boolean)$this->showPodcast;
+    return (boolean) $this->showPodcast;
   }
 
+  public function set_file_url($url = null){
+    $this->file_url = $url;
+  }
+
+  public function get_file_url(){
+    return $this->file_url;
+  }
+
+  /**
+   * @return string
+   */
+  public function get_shownotes()
+  {
+    return $this->shownotes;
+  }
+
+  /**
+   * @param string $shownotes
+   */
+  public function set_shownotes($shownotes = null)
+  {
+    $this->shownotes = $shownotes;
+  }
 }

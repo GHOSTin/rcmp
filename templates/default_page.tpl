@@ -14,12 +14,20 @@
   Специально для этого во время записи подкаста мы проводим <a href="/online/">онлайн-трансляцию</a> и сделали <a href="http://chat.rcmp.me/" target="_blank">чат</a> для общения с ведущими.
   Часто в официальный подкаст не попадает инсайд, который можно услышать во время онлайн-трансляции и он оказывается безвозвратно утерян, если конечно <a href="http://sniper.rpod.ru/" target="_blank">Снайпер</a> не записал <a href="http://pirate.rcmp.me/download.html" target="_blank">пиратку</a> и не выложил все  на свои сервера в NSA.</a> В том случае если вы услышали пикантные подробности в прямом эфире и хотели бы поделится своими наблюдениями со всеми слушателями вы можете воспользоваться нашей <a href="http://wiki.rcmp.me" target="_blank">wiki</a>.</p>
 </div>
+{% if podcast %}
 <div class="row">
-  <div class="col-md-6">
-    <iframe height="360" width="100%" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
+  <div class="embed-responsive embed-responsive-16by9 col-md-6" style="padding-bottom: 36%">
+    <iframe height="360" class="embed-responsive-item" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
   </div>
   <div class="col-md-6">
-    <h4>Свежий выпуск: {{ podcast.get_name() }}</h4>
+    <h4>Свежий выпуск:
+      <a href="/podcasts/{{ podcast.get_alias() }}">{{ podcast.get_name() }}</a>
+    {% if podcast.get_file_url() %}
+      <a href="{{ podcast.get_file_url() }}" target="_blank">
+        <span class="badge"><i class="fa fa-download" title="Скачать"></i> скачать</span>
+      </a>
+    {% endif %}
+    </h4>
     <ul class="list-unstyled">
     {%- for news in podcast.get_news -%}
     <li>{{ news.get_title() }}
@@ -31,6 +39,7 @@
     </ul>
   </div>
 </div>
+{% endif %}
 <section class="row">
   <div class="col-md-12 text-center">
     <h2 style="padding: 15px 0;">Ведущие подкаста</h2>

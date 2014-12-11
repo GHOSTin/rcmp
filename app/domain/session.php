@@ -3,6 +3,7 @@
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
@@ -16,12 +17,13 @@ class session {
 
   /**
    * @Id
-   * @Column(name="session")
+   * @Column(name="session", type="string", length=40)
    * @var string
    */
   private $session;
   /**
    * @ManyToOne(targetEntity="\app\domain\user")
+   * @JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
    * @var \app\domain\user
    */
   private $user;

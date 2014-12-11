@@ -22,7 +22,15 @@
     <label for="url">Youtube URL</label>
     <input id="url" class="form-control" value="{{ podcast.get_url() }}">
   </p>
-  <span class="podcast_id sr-only">{{ podcast.get_time() }}</span>
+  <p>
+    <label for="file">File URL</label>
+    <input id="file" class="form-control" value="{{ podcast.get_file_url() }}">
+  </p>
+  <p>
+    <label for="shownotes">Shownotes</label>
+    <textarea id="shownotes" class="form-control" rows="5">{{ podcast.get_shownotes() }}</textarea>
+  </p>
+  <span class="podcast_id sr-only">{{ podcast.get_id() }}</span>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -43,7 +51,7 @@
             <span> Очистить все</span>
           </button>
         </div>
-        <select id='podcasts' multiple='multiple'>
+        <select id='news' multiple='multiple'>
           {% for news in news %}
             <option value='{{ news.get_id() }}'>{{ news.get_title() }}</option>
           {% endfor %}

@@ -10,7 +10,7 @@ class api{
     return $app['twig']->render('api\get_user_info.tpl', ['user' => $user]);
   }
 
-  public function get_user_list(Application $app, $api_key){
+  public function get_user_list(Application $app){
     $users = $app['em']->getRepository('\app\domain\user')->findAll();
     return $app['twig']->render('api\get_user_list.tpl', ['users' => $users]);
   }

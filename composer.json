@@ -13,8 +13,14 @@
         "psr-4": {"app\\": "app/"}
     },
     "require": {
-        "phpunit/phpunit": "4.3.*",
+        "phpunit/phpunit": "4.4.*",
+        "halleck45/php-metrics": "dev-master",
+        "phpmd/phpmd" : "@stable",
+        "phploc/phploc": "*",
+        "sebastian/phpcpd": "*",
+        "sebastian/phpdcd": "*",
         "doctrine/orm": "*",
+        "doctrine/migrations": "1.0.*@dev",
         "twig/twig": "1.*",
         "jasny/twig-extensions": "dev-master",
         "silex/silex": "2.0.*@dev",
