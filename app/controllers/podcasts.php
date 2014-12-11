@@ -76,10 +76,16 @@ class podcasts{
       $podcast->set_url($request->request->get('url'));
       $podcast->set_file_url($request->get('file'));
       $podcast->set_shownotes($request->get('shownotes'));
-      foreach ($request->request->get('news') as $id) {
-        $news = $app['em']->find('\app\domain\news', $id);
-        $news->set_podcast($podcast);
-        $podcast->add_news($news);
+      foreach ($podcast->get_news() as $news) {
+        $podcast->get_news()->removeElement($news);
+        $news->set_podcast(null);
+      }
+      if($request->request->get('news')) {
+        foreach ($request->request->get('news') as $id) {
+          $news = $app['em']->find('\app\domain\news', $id);
+          $news->set_podcast($podcast);
+          $podcast->add_news($news);
+        }
       }
       $app['em']->persist($podcast);
       $app['em']->flush();
