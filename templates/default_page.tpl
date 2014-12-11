@@ -16,8 +16,10 @@
 </div>
 {% if podcast %}
 <div class="row">
-  <div class="embed-responsive embed-responsive-16by9 col-md-6" style="padding-bottom: 36%">
-    <iframe height="360" class="embed-responsive-item" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
+  <div class="col-md-6">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe height="360" class="embed-responsive-item" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
   <div class="col-md-6">
     <h4>Свежий выпуск:
@@ -33,6 +35,7 @@
     <li>{{ news.get_title() }}
       {% for link in news.get_urls %}
       <a href="{{ link }}">{{ link|truncate(35) }}</a>
+        {% if not loop.last %}, {% endif %}
       {% endfor %}
     </li>
     {%- endfor -%}
