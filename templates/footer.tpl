@@ -10,7 +10,7 @@
           <li><a href="http://pirate.rcmp.me/download.html" target="_blank">Пиратская версия</a></li>
           <li><a href="http://meir.podfm.ru/los/?all=1" target="_blank">На  PodFM.ru</a></li>
           <li><a href="/online/">Онлайн-трансляция</a></li>
-          <li><a href="/rss/feed/">RSS</a></li>
+          <li><a href="/rss/feed/" target="_blank">RSS</a></li>
         </ul>
       </div>
       <div class="col-xs-12 col-sm-4">
