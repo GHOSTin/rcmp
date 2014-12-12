@@ -23,7 +23,7 @@
   </div>
   <div class="col-md-6">
     <h4>Свежий выпуск:
-      <a href="/podcasts/{{ podcast.get_alias() }}">{{ podcast.get_name() }}</a>
+      <a href="/podcasts/{{ podcast.get_alias() }}/">{{ podcast.get_name() }}</a>
     {% if podcast.get_file_url() %}
       <a href="{{ podcast.get_file_url() }}" target="_blank">
         <span class="badge"><i class="fa fa-download" title="Скачать"></i> скачать</span>

@@ -91,7 +91,7 @@ $app->get('/podcasts/save_podcast/',
           'app\\controllers\\podcasts::create_podcast');
 $app->get('/podcasts/delete_podcast/',
           'app\\controllers\\podcasts::delete_podcast');
-$app->get('/podcasts/{alias}',
+$app->get('/podcasts/{alias}/',
           'app\\controllers\\podcasts::show_podcast');
 # news
 $app->get('/news/', 'app\\controllers\\news::default_page');
