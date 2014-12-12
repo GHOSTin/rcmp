@@ -1,7 +1,7 @@
 <li class="media" data-id="{{ podcast.get_id() }}">
   <div class="media-body">
     <h3 class="list-group-item-heading media-heading">
-      <a href="/podcasts/{{ podcast.get_alias() }}">{{ podcast.get_name() }}</a>
+      <a href="/podcasts/{{ podcast.get_alias() }}/">{{ podcast.get_name() }}</a>
       {% if podcast.isShowPodcast() %}<i class="fa fa-tags" style="color:#d9534f" title="Подкаст отображается на главной странице сайта"></i>{% endif %}
     </h3>
     {% if user and user.isPodcastAdmin() %}
