@@ -1,7 +1,14 @@
 <?php namespace app;
 
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\CachedReader;
+use Doctrine\Common\Cache\ArrayCache;
+use Doctrine\Common\EventManager;
+use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
 use \Doctrine\ORM\Tools\Setup;
 use \Doctrine\ORM\EntityManager;
+use Gedmo\DoctrineExtensions;
+use Gedmo\Tree\TreeListener;
 use \Silex\Application;
 use \Silex\Provider\TwigServiceProvider;
 use \Silex\Provider\SwiftmailerServiceProvider;
@@ -17,6 +24,23 @@ $app['debug'] = (conf::status === 'development')? true: false;
 $app['salt'] = conf::auth_salt;
 $app['host'] = conf::host;
 
+// globally used cache driver, in production use APC or memcached
+$cache = new ArrayCache;
+// standard annotation reader
+$annotationReader = new AnnotationReader;
+$cachedAnnotationReader = new CachedReader(
+    $annotationReader, // use reader
+    $cache // and a cache driver
+);
+// create a driver chain for metadata reading
+$driverChain = new MappingDriverChain();
+// load superclass metadata mapping only, into driver chain
+// also registers Gedmo annotations.NOTE: you can personalize it
+DoctrineExtensions::registerAbstractMappingIntoDriverChainORM(
+    $driverChain, // our metadata driver chain, to hook into
+    $cachedAnnotationReader // our cached annotation reader
+);
+
 $dbParams = array(
   'driver'   => 'pdo_mysql',
   'host'     => conf::db_host,
@@ -28,7 +52,14 @@ $dbParams = array(
 
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__),
                                                        $app['debug']);
-$app['em'] = EntityManager::create($dbParams, $config);
+
+$evm = new EventManager();
+// tree
+$treeListener = new TreeListener;
+$treeListener->setAnnotationReader($cachedAnnotationReader);
+$evm->addEventSubscriber($treeListener);
+
+$app['em'] = EntityManager::create($dbParams, $config, $evm);
 
 $app['swiftmailer.options'] = array(
     'host' => conf::smtp_server,
@@ -93,6 +124,11 @@ $app->get('/podcasts/delete_podcast/',
           'app\\controllers\\podcasts::delete_podcast');
 $app->get('/podcasts/{alias}/',
           'app\\controllers\\podcasts::show_podcast');
+#comments
+$app->post('/podcasts/{alias}/comment/',
+          'app\\controllers\\podcasts::add_comment');
+$app->get('/podcasts/{alias}/comment/',
+          'app\\controllers\\podcasts::get_comments');
 # news
 $app->get('/news/', 'app\\controllers\\news::default_page');
 $app->get('/news/delete_news/', 'app\\controllers\\news::delete_news');

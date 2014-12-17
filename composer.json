@@ -21,6 +21,7 @@
         "sebastian/phpdcd": "*",
         "doctrine/orm": "*",
         "doctrine/migrations": "1.0.*@dev",
+        "gedmo/doctrine-extensions": "2.3.*@dev",
         "twig/twig": "1.*",
         "jasny/twig-extensions": "dev-master",
         "silex/silex": "2.0.*@dev",

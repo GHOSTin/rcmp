@@ -118,7 +118,56 @@ class podcasts{
                          ->findOneByAlias($alias);
     if(is_null($podcast))
       throw new NotFoundHttpException();
+    $comments = $app['em']->getRepository('\app\domain\comment')
+        ->getRootNodesByPodcast($podcast, 'time', 'desc');
     return $app['twig']->render('podcasts/show_podcast.tpl',
-        ['user' => $app['user'], 'podcast' => $podcast]);
+        ['user' => $app['user'], 'podcast' => $podcast, 'comments' => $comments]);
+  }
+
+  public function add_comment($alias, Request $request, Application $app) {
+    $podcast = $app['em']->getRepository('\app\domain\podcast')
+        ->findOneByAlias($alias);
+    if(is_null($podcast))
+      throw new NotFoundHttpException();
+    if(is_null($app['user']))
+      throw new RuntimeException();
+    $comment = new \app\domain\comment();
+    $comment->set_text($request->request->get('text'));
+    $comment->set_time(time());
+    $comment->set_user($app['user']);
+    $comment->set_podcast($podcast);
+    $parent_id = $request->request->get('parent_id');
+    if(!empty($parent_id)) {
+      $id = explode('-', $parent_id)[1];
+      $parent = $app['em']->getRepository('\app\domain\comment')
+                          ->find($id);
+      if(is_null($parent)) {
+        throw new RuntimeException();
+      }
+      $comment->set_parent($parent);
+    }
+    $app['em']->persist($comment);
+    $app['em']->flush();
+    $sort = $request->request->get('sort');
+    $comments = $app['em']->getRepository('\app\domain\comment')
+        ->getRootNodesByPodcast($podcast, 'time', $sort);
+    $template = $app['twig']->render('comments/commentsList.tpl',['comments' => $comments,
+                                                                  'user'=>$app['user']]);
+    return $app->json(['template' => $template, 'count'=>$podcast->get_comments()->count()]);
+  }
+
+  public function get_comments($alias, Request $request, Application $app){
+    $podcast = $app['em']->getRepository('\app\domain\podcast')
+        ->findOneByAlias($alias);
+    if(is_null($podcast))
+      throw new NotFoundHttpException();
+    if(is_null($app['user']))
+      throw new RuntimeException();
+    $sort = $request->query->get('sort');
+    $comments = $app['em']->getRepository('\app\domain\comment')
+        ->getRootNodesByPodcast($podcast, 'time', $sort);
+    $template = $app['twig']->render('comments/commentsList.tpl',['comments' => $comments,
+                                                                  'user'=>$app['user']]);
+    return $app->json(['template' => $template, 'count'=>$podcast->get_comments()->count()]);
   }
 }
