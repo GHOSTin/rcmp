@@ -8,6 +8,11 @@
         </span>
       </div>
       <div class="post-body">
+        {% if comment.get_status() == 'delete' %}
+          <div class="delete-post-message" data-role="message" dir="auto">
+            (Комментарий удален)
+          </div>
+        {% else %}
         <header>
           <span class="post-byline">
             <span class="author">
@@ -26,26 +31,46 @@
           <div class="post-message-container">
             <div class="publisher-anchor-color">
               <div class="post-message " data-role="message" dir="auto">
-                {{ comment.get_text()|nl2br|linkify }}
+                  {{ comment.get_text()|nl2br|linkify }}
               </div>
             </div>
           </div>
         </div>
+        {% endif %}
         {% if not user == null %}
         <footer>
           <menu>
             <li class="bullet" aria-hidden="true">•</li>
             <li class="reply" data-role="reply-link">
               <a data-action="reply">
-                <i class="icon icon-mobile icon-reply"></i><span class="text">Ответить</span></a>
+                <span class="text">Ответить</span>
+              </a>
             </li>
+            {% if comment.get_user() == user %}
+              <li class="bullet" aria-hidden="true">•</li>
+              {% if comment.get_status() == 'active' %}
+              <li class="delete" data-role="delete-link">
+                <a data-action="delete">
+                  <span class="text">Удалить</span>
+                </a>
+              </li>
+              {% else %}
+                <li class="recovery" data-role="recovery-link">
+                  <a data-action="recovery">
+                    <span class="text">Восстановить</span>
+                  </a>
+                </li>
+              {% endif %}
+            {% endif %}
           </menu>
         </footer>
         {% endif %}
       </div>
+      {% if not user == null %}
       <div class="reply-form-container">
         {% include 'comments/commentForm.tpl' with {'classes': ['hidden']} %}
       </div>
+      {% endif %}
     </div>
     {% if comment.get_children()|length > 0 %}
       {% include 'comments/commentsList.tpl' with {'comments': comment.get_children()} %}
