@@ -52,6 +52,19 @@ $(document).ready(function(){
             document.getElementsByClassName('comment-count')[0].innerText = declension(res.count);
             momentTime();
         });
+    }).on('click', 'li.recovery a', function(){
+        var comment_id = $(this).closest('li.post').attr('id').split('-')[1];
+        $.ajax({
+            url: window.location.pathname + 'comment/' + comment_id + '/recovery/',
+            type: 'PUT',
+            data:{
+                sort: $('.sorting').find('.selected a').attr('data-sort') || 'desc'
+            }
+        }).done(function(res){
+            document.getElementsByClassName('post-list-container')[0].innerHTML = res.template;
+            document.getElementsByClassName('comment-count')[0].innerText = declension(res.count);
+            momentTime();
+        });
     }).on('click', '.sorting .dropdown-menu > li', function(){
         $(this).siblings('li').removeClass('selected');
         $(this).addClass('selected');
