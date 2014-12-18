@@ -30,5 +30,17 @@
         {% endfor %}
       </ul>
     </div>
+    {% embed 'comments/layout.tpl' with {'podcast': podcast, 'comments': comments} %}{% endembed %}
   </div>
+{% endblock %}
+
+{% block css %}
+  <link href="/css/podcasts/default.css" rel="stylesheet">
+  <link href="/css/comments/default.css" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+  <script src="/public/components/moment/moment.js"></script>
+  <script src="/public/components/moment/locale/ru.js"></script>
+  <script src="/js/comments/default.js"></script>
 {% endblock %}
