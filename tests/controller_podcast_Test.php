@@ -227,22 +227,26 @@ class controller_podcast_Test extends PHPUnit_Framework_TestCase{
   {
     $repository = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
         ->disableOriginalConstructor()
-        ->setMethods(['findOneByAlias'])
+        ->setMethods(['findOneByAlias', 'getRootNodesByPodcast'])
         ->getMock();
     $repository->expects($this->once())
         ->method('findOneByAlias')
         ->with('alias')
         ->will($this->returnValue('podcast_array'));
-    $this->app['em']->expects($this->once())
+    $repository->expects($this->once())
+        ->method('getRootNodesByPodcast')
+        ->with('podcast_array', 'time', 'desc')
+        ->will($this->returnValue('comments_array'));
+    $this->app['em']->expects($this->exactly(2))
         ->method('getRepository')
-        ->with('\app\domain\podcast')
+        ->withConsecutive(['\app\domain\podcast'], ['\app\domain\comment'])
         ->will($this->returnValue($repository));
     $this->app['user'] = 'user_object';
     $this->app['twig']->expects($this->once())
         ->method('render')
         ->with('podcasts/show_podcast.tpl',
-            ['user' => 'user_object',
-                'podcast' => 'podcast_array'])
+            ['user' => 'user_object', 'podcast' => 'podcast_array',
+             'comments' => 'comments_array'])
         ->will($this->returnValue('render_template'));
     $response = $this->controller->show_podcast('alias', $this->app);
     $this->assertEquals('render_template', $response);
