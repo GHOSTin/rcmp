@@ -27,6 +27,7 @@
     <script src="/public/components/jplayer/jquery.jplayer/jquery.jplayer.js"></script>
     <script src="/public/components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/public/components/localforage/dist/localforage.min.js"></script>
+    <script src="/public/components/lazyloadxt/dist/jquery.lazyloadxt.extra.min.js"></script>
     <script src="/js/main.js"></script>
     {% block js %}{% endblock js %}
     {% if constant('app\\conf::status')|trim  == 'production' %}
