@@ -129,6 +129,8 @@ $app->post('/podcasts/{alias}/comment/',
           'app\\controllers\\podcasts::add_comment');
 $app->get('/podcasts/{alias}/comment/',
           'app\\controllers\\podcasts::get_comments');
+$app->put('/podcasts/{alias}/comment/{id}/delete/',
+          'app\\controllers\\podcasts::delete_comment');
 # news
 $app->get('/news/', 'app\\controllers\\news::default_page');
 $app->get('/news/delete_news/', 'app\\controllers\\news::delete_news');

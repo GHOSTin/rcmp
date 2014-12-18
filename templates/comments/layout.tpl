@@ -42,13 +42,17 @@
       </ul>
     </div>
     <div id="posts">
+      {% if not user==null %}
       <div id="form">
         {% include 'comments/commentForm.tpl' %}
       </div>
+      {% else %}
+        <div id="no-auth"><a href="/enter/">Авторизуйтесь</a>, чтобы комментировать.</div>
+      {% endif %}
       <div class="post-list-container">
       {% if podcast.get_comments()|length > 0 %}
         {% include 'comments/commentsList.tpl' with {'comments': comments} %}
-      {% else %}
+      {% elseif not user==null %}
         <div id="no-posts">Прокомментируйте первым.</div>
       {% endif %}
       </div>

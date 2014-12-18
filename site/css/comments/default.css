@@ -314,9 +314,14 @@
 .reply-form-container .postbox {
     margin: 24px 0 0;
 }
+.delete-post-message {
+    color: #7f929c;
+    color: rgba(0,39,59,.5);
+}
+#no-auth,
 #no-posts {
     opacity: .6;
-    line-height: 107px;
+    line-height: 85px;
     text-align: center;
 }
 @media screen and (max-width: 768px) {
