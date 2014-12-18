@@ -69,9 +69,15 @@ class podcast {
   * @var string
   */
   private $file_url;
+  /**
+   * @OneToMany(targetEntity="\app\domain\comment", mappedBy="podcast")
+   * @var \app\domain\podcast
+   */
+  private $comments;
 
   public function __construct(){
     $this->news = new ArrayCollection();
+    $this->comments = new ArrayCollection();
   }
 
   /**
@@ -195,5 +201,20 @@ class podcast {
   public function set_shownotes($shownotes = null)
   {
     $this->shownotes = $shownotes;
+  }
+  /**
+   * @return podcast
+   */
+  public function get_comments()
+  {
+    return $this->comments;
+  }
+
+  /**
+   * @param podcast $comments
+   */
+  public function set_comments($comments)
+  {
+    $this->comments = $comments;
   }
 }

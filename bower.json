@@ -13,6 +13,8 @@
     "jqjquery-wysibb": "~1.5.1",
     "Font-Awesome": "~4.2.0",
     "multiselect": "~0.9.12",
-    "localforage": "1.0.1"
+    "localforage": "1.0.1",
+    "moment": "~2.8.4",
+    "lazyloadxt": "~1.0.5"
   }
 }
