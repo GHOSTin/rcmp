@@ -37,7 +37,7 @@
         {% endfor %}
       </ul>
       {% if podcast.get_url() is not empty %}
-        <iframe height="60" class="col-xs-12" src="http://www.youtube.com/embed/{{ podcast.get_url() }}" frameborder="0" allowfullscreen></iframe>
+        <iframe height="60" class="col-xs-12" data-src="http://www.youtube.com/embed/{{ podcast.get_url() }}?rel=0" frameborder="0" allowfullscreen></iframe>
       {% endif %}
     </div>
   </div>
