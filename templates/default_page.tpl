@@ -2,14 +2,14 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-md-7">
+  <div class="col-md-10 page-header">
     <h1>Подкаст Канадского Лося и Co<sup style="color: #A0A0A0;">18+</sup></h1>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-2">
     <h1 class="pull-right"><iframe frameborder="0" allowtransparency="true" scrolling="no" src="https://money.yandex.ru/embed/small.xml?account=410011225397189&quickpay=small&yamoney-payment-type=on&button-text=06&button-size=m&button-color=orange&targets=%D0%BF%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82&default-sum=99&successURL=" width="212" height="42"></iframe></h1>
   </div>
 </div>
-<div class="well">
+<div class="well" style="z-index: 2;position: relative;">
   <p>Своим слушателям мы даем возможность поучаствовать в записи подкаста.
   Специально для этого во время записи подкаста мы проводим <a href="/online/">онлайн-трансляцию</a> и сделали <a href="http://chat.rcmp.me/" target="_blank">чат</a> для общения с ведущими.
   Часто в официальный подкаст не попадает инсайд, который можно услышать во время онлайн-трансляции и он оказывается безвозвратно утерян, если конечно <a href="http://sniper.rpod.ru/" target="_blank">Снайпер</a> не записал <a href="http://pirate.rcmp.me/download.html" target="_blank">пиратку</a> и не выложил все  на свои сервера в NSA.</a> В том случае если вы услышали пикантные подробности в прямом эфире и хотели бы поделится своими наблюдениями со всеми слушателями вы можете воспользоваться нашей <a href="http://wiki.rcmp.me" target="_blank">wiki</a>.</p>
