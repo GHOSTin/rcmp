@@ -50,8 +50,11 @@ $dbParams = array(
   'charset'  => 'utf8'
 );
 
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__),
-                                                       $app['debug']);
+$config = Setup::createAnnotationMetadataConfiguration(
+    array(__DIR__),
+    $app['debug'],
+    $root.conf::doctrine_proxy_path
+);
 
 $evm = new EventManager();
 // tree
